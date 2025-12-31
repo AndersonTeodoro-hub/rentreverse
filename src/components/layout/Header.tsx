@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Bell } from 'lucide-react';
+import { Menu, X, Bell, Heart } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { LanguageSelector } from '@/components/LanguageSelector';
@@ -60,6 +60,14 @@ export function Header() {
           <LanguageSelector />
           {user ? (
             <>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => navigate('/my-favorites')}
+                aria-label={t('nav.favorites')}
+              >
+                <Heart className="h-5 w-5" />
+              </Button>
               <Button
                 variant="ghost"
                 size="icon"

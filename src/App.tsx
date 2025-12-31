@@ -20,6 +20,7 @@ import BrowseTenants from "./pages/BrowseTenants";
 import MyOffers from "./pages/MyOffers";
 import PropertyDetails from "./pages/PropertyDetails";
 import ExploreProperties from "./pages/ExploreProperties";
+import MyFavorites from "./pages/MyFavorites";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +48,7 @@ const App = () => (
               <Route path="/browse-tenants" element={<BrowseTenants />} />
               <Route path="/my-offers" element={<MyOffers />} />
               <Route path="/explore-properties" element={<ExploreProperties />} />
+              <Route path="/my-favorites" element={<MyFavorites />} />
               <Route path="/property/:id" element={<PropertyDetails />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

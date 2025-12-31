@@ -592,6 +592,13 @@
     "saveError": "Erro ao guardar imóvel",
     "removeError": "Erro ao remover dos favoritos",
     "save": "Guardar nos favoritos",
-    "remove": "Remover dos favoritos"
+    "remove": "Remover dos favoritos",
+    "title": "Meus Favoritos",
+    "subtitle": "Imóveis que guardou para ver mais tarde",
+    "empty": "Ainda não tem favoritos",
+    "emptyDesc": "Explore imóveis e guarde os seus favoritos para os encontrar facilmente aqui.",
+    "exploreNow": "Explorar Imóveis",
+    "loginRequired": "Inicie sessão para ver favoritos",
+    "loginRequiredDesc": "Precisa de iniciar sessão para guardar e ver os seus imóveis favoritos."
   }
 }
