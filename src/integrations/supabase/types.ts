@@ -47,6 +47,75 @@ export type Database = {
         }
         Relationships: []
       }
+      offers: {
+        Row: {
+          created_at: string
+          id: string
+          landlord_email: string | null
+          landlord_id: string
+          landlord_phone: string | null
+          message: string | null
+          property_id: string
+          proposed_move_in: string | null
+          proposed_rent: number | null
+          responded_at: string | null
+          response_message: string | null
+          status: Database["public"]["Enums"]["offer_status"]
+          tenant_id: string
+          tenant_request_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          landlord_email?: string | null
+          landlord_id: string
+          landlord_phone?: string | null
+          message?: string | null
+          property_id: string
+          proposed_move_in?: string | null
+          proposed_rent?: number | null
+          responded_at?: string | null
+          response_message?: string | null
+          status?: Database["public"]["Enums"]["offer_status"]
+          tenant_id: string
+          tenant_request_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          landlord_email?: string | null
+          landlord_id?: string
+          landlord_phone?: string | null
+          message?: string | null
+          property_id?: string
+          proposed_move_in?: string | null
+          proposed_rent?: number | null
+          responded_at?: string | null
+          response_message?: string | null
+          status?: Database["public"]["Enums"]["offer_status"]
+          tenant_id?: string
+          tenant_request_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "offers_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "offers_tenant_request_id_fkey"
+            columns: ["tenant_request_id"]
+            isOneToOne: false
+            referencedRelation: "tenant_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -75,6 +144,75 @@ export type Database = {
           full_name?: string | null
           id?: string
           phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      properties: {
+        Row: {
+          address: string
+          amenities: string[] | null
+          area_sqm: number | null
+          available_from: string | null
+          bathrooms: number | null
+          bedrooms: number | null
+          city: string
+          created_at: string
+          description: string | null
+          id: string
+          images: string[] | null
+          pets_allowed: boolean | null
+          postal_code: string | null
+          property_type: string
+          rent_amount: number
+          smoking_allowed: boolean | null
+          status: Database["public"]["Enums"]["property_status"]
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          address: string
+          amenities?: string[] | null
+          area_sqm?: number | null
+          available_from?: string | null
+          bathrooms?: number | null
+          bedrooms?: number | null
+          city: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          images?: string[] | null
+          pets_allowed?: boolean | null
+          postal_code?: string | null
+          property_type: string
+          rent_amount: number
+          smoking_allowed?: boolean | null
+          status?: Database["public"]["Enums"]["property_status"]
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          address?: string
+          amenities?: string[] | null
+          area_sqm?: number | null
+          available_from?: string | null
+          bathrooms?: number | null
+          bedrooms?: number | null
+          city?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          images?: string[] | null
+          pets_allowed?: boolean | null
+          postal_code?: string | null
+          property_type?: string
+          rent_amount?: number
+          smoking_allowed?: boolean | null
+          status?: Database["public"]["Enums"]["property_status"]
+          title?: string
           updated_at?: string
           user_id?: string
         }
@@ -131,6 +269,27 @@ export type Database = {
         }
         Relationships: []
       }
+      saved_tenants: {
+        Row: {
+          created_at: string
+          id: string
+          landlord_id: string
+          tenant_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          landlord_id: string
+          tenant_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          landlord_id?: string
+          tenant_id?: string
+        }
+        Relationships: []
+      }
       tenant_profiles: {
         Row: {
           created_at: string
@@ -168,6 +327,51 @@ export type Database = {
           move_in_date?: string | null
           preferred_locations?: string[] | null
           profession?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      tenant_requests: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean | null
+          max_budget: number | null
+          min_bedrooms: number | null
+          min_budget: number | null
+          move_in_date: string | null
+          preferred_cities: string[] | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          max_budget?: number | null
+          min_bedrooms?: number | null
+          min_budget?: number | null
+          move_in_date?: string | null
+          preferred_cities?: string[] | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          max_budget?: number | null
+          min_bedrooms?: number | null
+          min_budget?: number | null
+          move_in_date?: string | null
+          preferred_cities?: string[] | null
+          title?: string
           updated_at?: string
           user_id?: string
         }
@@ -365,6 +569,13 @@ export type Database = {
     }
     Enums: {
       app_role: "tenant" | "landlord"
+      offer_status:
+        | "pending"
+        | "accepted"
+        | "rejected"
+        | "expired"
+        | "cancelled"
+      property_status: "active" | "rented" | "inactive"
       verification_status: "pending" | "approved" | "rejected" | "expired"
       verification_type:
         | "identity"
@@ -500,6 +711,8 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["tenant", "landlord"],
+      offer_status: ["pending", "accepted", "rejected", "expired", "cancelled"],
+      property_status: ["active", "rented", "inactive"],
       verification_status: ["pending", "approved", "rejected", "expired"],
       verification_type: [
         "identity",
