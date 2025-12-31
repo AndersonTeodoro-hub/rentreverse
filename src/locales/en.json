@@ -387,6 +387,9 @@
     "editProfile": "Edit Profile",
     "addProperty": "Add Property",
     "myProperties": "My Properties",
+    "browseTenants": "Browse Tenants",
+    "myOffers": "My Offers",
+    "myRequests": "My Requests",
     "verifyProfile": "Verify Profile"
   },
   "trustScore": {

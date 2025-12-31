@@ -387,6 +387,9 @@
     "editProfile": "Editar Perfil",
     "addProperty": "Adicionar Imóvel",
     "myProperties": "Meus Imóveis",
+    "browseTenants": "Explorar Inquilinos",
+    "myOffers": "Minhas Ofertas",
+    "myRequests": "Meus Pedidos",
     "verifyProfile": "Verificar Perfil"
   },
   "trustScore": {
