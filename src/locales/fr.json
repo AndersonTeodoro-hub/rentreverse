@@ -1,0 +1,160 @@
+{
+  "common": {
+    "appName": "RentReverse",
+    "tagline": "Trouvez votre locataire idéal. Soyez trouvé par votre logement parfait.",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "retry": "Réessayer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "view": "Voir",
+    "close": "Fermer",
+    "back": "Retour",
+    "next": "Suivant",
+    "submit": "Soumettre",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "all": "Tous",
+    "none": "Aucun",
+    "yes": "Oui",
+    "no": "Non",
+    "or": "ou",
+    "and": "et"
+  },
+  "nav": {
+    "home": "Accueil",
+    "howItWorks": "Comment ça marche",
+    "pricing": "Tarifs",
+    "about": "À propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "dashboard": "Tableau de bord",
+    "profile": "Profil",
+    "settings": "Paramètres",
+    "logout": "Déconnexion"
+  },
+  "hero": {
+    "title": "La Façon Inversée de Louer",
+    "subtitle": "Arrêtez de chercher sans fin. Laissez les propriétaires vous trouver.",
+    "forTenants": "Je cherche un logement",
+    "forLandlords": "J'ai un bien",
+    "tenantsDescription": "Créez votre profil et laissez des propriétaires vérifiés vous contacter avec des offres correspondant à vos besoins.",
+    "landlordsDescription": "Parcourez des locataires pré-vérifiés à la recherche de biens comme le vôtre. Fini les visites inutiles."
+  },
+  "features": {
+    "title": "Pourquoi RentReverse ?",
+    "subtitle": "Une façon plus intelligente, rapide et transparente de louer",
+    "forTenants": {
+      "title": "Pour les Locataires",
+      "feature1": {
+        "title": "Vous Contrôlez",
+        "description": "Publiez vos besoins et recevez des offres de propriétaires correspondant à vos critères."
+      },
+      "feature2": {
+        "title": "Propriétaires Vérifiés",
+        "description": "Seuls les propriétaires vérifiés peuvent vous contacter. Pas d'arnaques, pas de fausses annonces."
+      },
+      "feature3": {
+        "title": "Trust Score",
+        "description": "Construisez votre profil avec des vérifications et démarquez-vous auprès des propriétaires."
+      }
+    },
+    "forLandlords": {
+      "title": "Pour les Propriétaires",
+      "feature1": {
+        "title": "Locataires Pré-Vérifiés",
+        "description": "Parcourez des locataires avec revenus, emploi et références vérifiés."
+      },
+      "feature2": {
+        "title": "Gagnez du Temps",
+        "description": "Fini les visites inutiles. Connectez-vous avec des locataires prêts à louer."
+      },
+      "feature3": {
+        "title": "Match Intelligent",
+        "description": "Notre algorithme vous montre les locataires qui correspondent parfaitement à votre bien."
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Comment Ça Marche",
+    "subtitle": "Commencez en 3 étapes simples",
+    "tenant": {
+      "step1": {
+        "title": "Créez Votre Profil",
+        "description": "Parlez-nous de vous, votre budget et ce que vous recherchez."
+      },
+      "step2": {
+        "title": "Faites-vous Vérifier",
+        "description": "Ajoutez des vérifications pour augmenter votre Trust Score et vous démarquer."
+      },
+      "step3": {
+        "title": "Recevez des Offres",
+        "description": "Les propriétaires vous enverront des offres correspondant à vos besoins."
+      }
+    },
+    "landlord": {
+      "step1": {
+        "title": "Ajoutez Votre Bien",
+        "description": "Listez les détails, photos et conditions de location de votre bien."
+      },
+      "step2": {
+        "title": "Parcourez les Locataires",
+        "description": "Recherchez des locataires vérifiés à la recherche de biens comme le vôtre."
+      },
+      "step3": {
+        "title": "Envoyez des Offres",
+        "description": "Trouvé un match ? Envoyez une offre et connectez-vous directement."
+      }
+    }
+  },
+  "cta": {
+    "getStarted": "Commencer",
+    "learnMore": "En Savoir Plus",
+    "startFree": "Commencer Gratuitement",
+    "createAccount": "Créer un Compte",
+    "seeHowItWorks": "Voir Comment Ça Marche"
+  },
+  "trust": {
+    "title": "La confiance de milliers",
+    "tenants": "Locataires Actifs",
+    "landlords": "Propriétaires Vérifiés",
+    "matches": "Matchs Réussis",
+    "cities": "Villes Couvertes"
+  },
+  "footer": {
+    "description": "La marketplace de location inversée où les locataires publient leurs besoins et les propriétaires les trouvent.",
+    "product": "Produit",
+    "company": "Entreprise",
+    "legal": "Légal",
+    "terms": "Conditions d'Utilisation",
+    "privacy": "Politique de Confidentialité",
+    "cookies": "Politique de Cookies",
+    "copyright": "© {{year}} RentReverse. Tous droits réservés."
+  },
+  "auth": {
+    "loginTitle": "Bon retour",
+    "loginSubtitle": "Connectez-vous à votre compte",
+    "signupTitle": "Créez votre compte",
+    "signupSubtitle": "Rejoignez des milliers qui trouvent leur match parfait",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "noAccount": "Pas de compte ?",
+    "hasAccount": "Déjà un compte ?",
+    "orContinueWith": "Ou continuez avec",
+    "google": "Continuer avec Google"
+  },
+  "roles": {
+    "tenant": "Locataire",
+    "landlord": "Propriétaire",
+    "selectRole": "Je suis...",
+    "tenantDescription": "Je cherche un logement à louer",
+    "landlordDescription": "J'ai des biens à louer"
+  }
+}

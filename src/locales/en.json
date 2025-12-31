@@ -1,0 +1,160 @@
+{
+  "common": {
+    "appName": "RentReverse",
+    "tagline": "Find your perfect tenant. Get found by your ideal home.",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Try again",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "all": "All",
+    "none": "None",
+    "yes": "Yes",
+    "no": "No",
+    "or": "or",
+    "and": "and"
+  },
+  "nav": {
+    "home": "Home",
+    "howItWorks": "How it works",
+    "pricing": "Pricing",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Log in",
+    "signup": "Sign up",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log out"
+  },
+  "hero": {
+    "title": "The Reverse Way to Rent",
+    "subtitle": "Stop searching endlessly. Let landlords find you.",
+    "forTenants": "I'm looking for a home",
+    "forLandlords": "I have a property",
+    "tenantsDescription": "Create your profile and let verified landlords come to you with offers that match your needs.",
+    "landlordsDescription": "Browse pre-verified tenants actively looking for properties like yours. No more empty viewings."
+  },
+  "features": {
+    "title": "Why RentReverse?",
+    "subtitle": "A smarter, faster, more transparent way to rent",
+    "forTenants": {
+      "title": "For Tenants",
+      "feature1": {
+        "title": "You're in Control",
+        "description": "Post what you need and receive offers from landlords who match your criteria."
+      },
+      "feature2": {
+        "title": "Verified Landlords",
+        "description": "Only verified property owners can contact you. No scams, no fake listings."
+      },
+      "feature3": {
+        "title": "Trust Score",
+        "description": "Build your profile with verifications and stand out to landlords."
+      }
+    },
+    "forLandlords": {
+      "title": "For Landlords",
+      "feature1": {
+        "title": "Pre-Verified Tenants",
+        "description": "Browse tenants with verified income, employment, and references."
+      },
+      "feature2": {
+        "title": "Save Time",
+        "description": "No more empty viewings. Connect with tenants ready to rent."
+      },
+      "feature3": {
+        "title": "Smart Matching",
+        "description": "Our algorithm shows you tenants that match your property perfectly."
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "Get started in 3 simple steps",
+    "tenant": {
+      "step1": {
+        "title": "Create Your Profile",
+        "description": "Tell us about yourself, your budget, and what you're looking for."
+      },
+      "step2": {
+        "title": "Get Verified",
+        "description": "Add verifications to boost your Trust Score and stand out."
+      },
+      "step3": {
+        "title": "Receive Offers",
+        "description": "Landlords will send you offers matching your needs."
+      }
+    },
+    "landlord": {
+      "step1": {
+        "title": "Add Your Property",
+        "description": "List your property details, photos, and rental conditions."
+      },
+      "step2": {
+        "title": "Browse Tenants",
+        "description": "Search verified tenants looking for properties like yours."
+      },
+      "step3": {
+        "title": "Send Offers",
+        "description": "Found a match? Send an offer and connect directly."
+      }
+    }
+  },
+  "cta": {
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "startFree": "Start for Free",
+    "createAccount": "Create Account",
+    "seeHowItWorks": "See How It Works"
+  },
+  "trust": {
+    "title": "Trusted by thousands",
+    "tenants": "Active Tenants",
+    "landlords": "Verified Landlords",
+    "matches": "Successful Matches",
+    "cities": "Cities Covered"
+  },
+  "footer": {
+    "description": "The reverse rental marketplace where tenants post needs and landlords find them.",
+    "product": "Product",
+    "company": "Company",
+    "legal": "Legal",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "copyright": "© {{year}} RentReverse. All rights reserved."
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Log in to your account",
+    "signupTitle": "Create your account",
+    "signupSubtitle": "Join thousands finding their perfect match",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "orContinueWith": "Or continue with",
+    "google": "Continue with Google"
+  },
+  "roles": {
+    "tenant": "Tenant",
+    "landlord": "Landlord",
+    "selectRole": "I am a...",
+    "tenantDescription": "I'm looking for a place to rent",
+    "landlordDescription": "I have properties to rent out"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "common": {
+    "appName": "RentReverse",
+    "tagline": "Encuentra tu inquilino perfecto. Sé encontrado por tu hogar ideal.",
+    "loading": "Cargando...",
+    "error": "Ocurrió un error",
+    "retry": "Reintentar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "view": "Ver",
+    "close": "Cerrar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "submit": "Enviar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "all": "Todos",
+    "none": "Ninguno",
+    "yes": "Sí",
+    "no": "No",
+    "or": "o",
+    "and": "y"
+  },
+  "nav": {
+    "home": "Inicio",
+    "howItWorks": "Cómo funciona",
+    "pricing": "Precios",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "login": "Iniciar sesión",
+    "signup": "Registrarse",
+    "dashboard": "Panel",
+    "profile": "Perfil",
+    "settings": "Configuración",
+    "logout": "Cerrar sesión"
+  },
+  "hero": {
+    "title": "La Forma Inversa de Alquilar",
+    "subtitle": "Deja de buscar sin fin. Deja que los propietarios te encuentren.",
+    "forTenants": "Busco un hogar",
+    "forLandlords": "Tengo una propiedad",
+    "tenantsDescription": "Crea tu perfil y deja que propietarios verificados te contacten con ofertas que coinciden con tus necesidades.",
+    "landlordsDescription": "Explora inquilinos pre-verificados buscando propiedades como la tuya. Sin visitas vacías."
+  },
+  "features": {
+    "title": "¿Por qué RentReverse?",
+    "subtitle": "Una forma más inteligente, rápida y transparente de alquilar",
+    "forTenants": {
+      "title": "Para Inquilinos",
+      "feature1": {
+        "title": "Tú Controlas",
+        "description": "Publica lo que necesitas y recibe ofertas de propietarios que coinciden con tus criterios."
+      },
+      "feature2": {
+        "title": "Propietarios Verificados",
+        "description": "Solo propietarios verificados pueden contactarte. Sin estafas, sin anuncios falsos."
+      },
+      "feature3": {
+        "title": "Trust Score",
+        "description": "Construye tu perfil con verificaciones y destaca ante los propietarios."
+      }
+    },
+    "forLandlords": {
+      "title": "Para Propietarios",
+      "feature1": {
+        "title": "Inquilinos Pre-Verificados",
+        "description": "Explora inquilinos con ingresos, empleo y referencias verificadas."
+      },
+      "feature2": {
+        "title": "Ahorra Tiempo",
+        "description": "Sin más visitas vacías. Conecta con inquilinos listos para alquilar."
+      },
+      "feature3": {
+        "title": "Match Inteligente",
+        "description": "Nuestro algoritmo te muestra inquilinos que coinciden perfectamente con tu propiedad."
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Cómo Funciona",
+    "subtitle": "Comienza en 3 simples pasos",
+    "tenant": {
+      "step1": {
+        "title": "Crea Tu Perfil",
+        "description": "Cuéntanos sobre ti, tu presupuesto y lo que buscas."
+      },
+      "step2": {
+        "title": "Verifícate",
+        "description": "Añade verificaciones para aumentar tu Trust Score y destacar."
+      },
+      "step3": {
+        "title": "Recibe Ofertas",
+        "description": "Los propietarios te enviarán ofertas que coinciden con tus necesidades."
+      }
+    },
+    "landlord": {
+      "step1": {
+        "title": "Añade Tu Propiedad",
+        "description": "Lista los detalles, fotos y condiciones de alquiler de tu propiedad."
+      },
+      "step2": {
+        "title": "Explora Inquilinos",
+        "description": "Busca inquilinos verificados buscando propiedades como la tuya."
+      },
+      "step3": {
+        "title": "Envía Ofertas",
+        "description": "¿Encontraste un match? Envía una oferta y conecta directamente."
+      }
+    }
+  },
+  "cta": {
+    "getStarted": "Comenzar",
+    "learnMore": "Saber Más",
+    "startFree": "Empezar Gratis",
+    "createAccount": "Crear Cuenta",
+    "seeHowItWorks": "Ver Cómo Funciona"
+  },
+  "trust": {
+    "title": "Confianza de miles",
+    "tenants": "Inquilinos Activos",
+    "landlords": "Propietarios Verificados",
+    "matches": "Matches Exitosos",
+    "cities": "Ciudades Cubiertas"
+  },
+  "footer": {
+    "description": "El marketplace de alquiler inverso donde inquilinos publican necesidades y propietarios los encuentran.",
+    "product": "Producto",
+    "company": "Empresa",
+    "legal": "Legal",
+    "terms": "Términos de Servicio",
+    "privacy": "Política de Privacidad",
+    "cookies": "Política de Cookies",
+    "copyright": "© {{year}} RentReverse. Todos los derechos reservados."
+  },
+  "auth": {
+    "loginTitle": "Bienvenido de nuevo",
+    "loginSubtitle": "Inicia sesión en tu cuenta",
+    "signupTitle": "Crea tu cuenta",
+    "signupSubtitle": "Únete a miles encontrando su match perfecto",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "orContinueWith": "O continúa con",
+    "google": "Continuar con Google"
+  },
+  "roles": {
+    "tenant": "Inquilino",
+    "landlord": "Propietario",
+    "selectRole": "Soy...",
+    "tenantDescription": "Busco un lugar para alquilar",
+    "landlordDescription": "Tengo propiedades para alquilar"
+  }
+}
