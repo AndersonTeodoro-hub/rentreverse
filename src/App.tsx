@@ -26,32 +26,32 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <AuthProvider>
-        <NotificationProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/how-it-works" element={<HowItWorks />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/onboarding" element={<Onboarding />} />
-            <Route path="/tenant/onboarding" element={<TenantOnboarding />} />
-            <Route path="/landlord/onboarding" element={<LandlordOnboarding />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/verifications" element={<Verifications />} />
-            <Route path="/my-properties" element={<MyProperties />} />
-            <Route path="/my-requests" element={<MyRequests />} />
-            <Route path="/browse-tenants" element={<BrowseTenants />} />
-            <Route path="/my-offers" element={<MyOffers />} />
-            <Route path="/property/:id" element={<PropertyDetails />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-        </NotificationProvider>
-      </AuthProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <AuthProvider>
+          <NotificationProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/how-it-works" element={<HowItWorks />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/onboarding" element={<Onboarding />} />
+              <Route path="/tenant/onboarding" element={<TenantOnboarding />} />
+              <Route path="/landlord/onboarding" element={<LandlordOnboarding />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/verifications" element={<Verifications />} />
+              <Route path="/my-properties" element={<MyProperties />} />
+              <Route path="/my-requests" element={<MyRequests />} />
+              <Route path="/browse-tenants" element={<BrowseTenants />} />
+              <Route path="/my-offers" element={<MyOffers />} />
+              <Route path="/property/:id" element={<PropertyDetails />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </NotificationProvider>
+        </AuthProvider>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
