@@ -83,33 +83,55 @@
   "howItWorks": {
     "title": "Comment Ça Marche",
     "subtitle": "Commencez en 3 étapes simples",
+    "hero": {
+      "title": "Comment Fonctionne RentReverse",
+      "subtitle": "Un processus simple et transparent pour que locataires et propriétaires se trouvent"
+    },
     "tenant": {
+      "title": "Pour les Locataires",
+      "subtitle": "Comment trouver votre logement parfait",
       "step1": {
-        "title": "Créez Votre Profil",
-        "description": "Parlez-nous de vous, votre budget et ce que vous recherchez."
+        "title": "Créez Votre Demande",
+        "description": "Dites-nous ce que vous cherchez : emplacement, budget, taille et quand vous devez déménager."
       },
       "step2": {
         "title": "Faites-vous Vérifier",
-        "description": "Ajoutez des vérifications pour augmenter votre Trust Score et vous démarquer."
+        "description": "Ajoutez des vérifications (revenus, emploi, ID) pour augmenter votre Trust Score."
       },
       "step3": {
         "title": "Recevez des Offres",
-        "description": "Les propriétaires vous enverront des offres correspondant à vos besoins."
+        "description": "Les propriétaires vous enverront des offres de biens correspondant à vos critères."
+      },
+      "step4": {
+        "title": "Trouvez Votre Logement",
+        "description": "Acceptez une offre, connectez-vous avec le propriétaire et emménagez."
       }
     },
     "landlord": {
+      "title": "Pour les Propriétaires",
+      "subtitle": "Comment trouver des locataires de qualité",
       "step1": {
-        "title": "Ajoutez Votre Bien",
-        "description": "Listez les détails, photos et conditions de location de votre bien."
+        "title": "Parcourez les Locataires",
+        "description": "Recherchez des locataires pré-vérifiés à la recherche de biens comme le vôtre."
       },
       "step2": {
-        "title": "Parcourez les Locataires",
-        "description": "Recherchez des locataires vérifiés à la recherche de biens comme le vôtre."
+        "title": "Vérifiez les Trust Scores",
+        "description": "Consultez des profils détaillés avec vérification des revenus, références et historique."
       },
       "step3": {
         "title": "Envoyez des Offres",
-        "description": "Trouvé un match ? Envoyez une offre et connectez-vous directement."
+        "description": "Trouvé un bon match ? Envoyez une offre personnalisée avec votre bien."
+      },
+      "step4": {
+        "title": "Concluez l'Affaire",
+        "description": "Une fois accepté, échangez vos coordonnées et finalisez le contrat de location."
       }
+    },
+    "cta": {
+      "title": "Prêt à Commencer ?",
+      "subtitle": "Rejoignez des milliers de locataires et propriétaires qui utilisent déjà RentReverse",
+      "getStarted": "Créer un Compte Gratuit",
+      "seePricing": "Voir les Tarifs"
     }
   },
   "cta": {

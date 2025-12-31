@@ -83,33 +83,55 @@
   "howItWorks": {
     "title": "Cómo Funciona",
     "subtitle": "Comienza en 3 simples pasos",
+    "hero": {
+      "title": "Cómo Funciona RentReverse",
+      "subtitle": "Un proceso simple y transparente para que inquilinos y propietarios se encuentren"
+    },
     "tenant": {
+      "title": "Para Inquilinos",
+      "subtitle": "Cómo encontrar tu hogar perfecto",
       "step1": {
-        "title": "Crea Tu Perfil",
-        "description": "Cuéntanos sobre ti, tu presupuesto y lo que buscas."
+        "title": "Crea Tu Solicitud",
+        "description": "Cuéntanos lo que buscas: ubicación, presupuesto, tamaño y cuándo necesitas mudarte."
       },
       "step2": {
         "title": "Verifícate",
-        "description": "Añade verificaciones para aumentar tu Trust Score y destacar."
+        "description": "Añade verificaciones (ingresos, empleo, ID) para aumentar tu Trust Score."
       },
       "step3": {
         "title": "Recibe Ofertas",
-        "description": "Los propietarios te enviarán ofertas que coinciden con tus necesidades."
+        "description": "Los propietarios te enviarán ofertas de propiedades que coincidan con tus criterios."
+      },
+      "step4": {
+        "title": "Encuentra Tu Hogar",
+        "description": "Acepta una oferta, conecta con el propietario y múdate a tu nuevo hogar."
       }
     },
     "landlord": {
+      "title": "Para Propietarios",
+      "subtitle": "Cómo encontrar inquilinos de calidad",
       "step1": {
-        "title": "Añade Tu Propiedad",
-        "description": "Lista los detalles, fotos y condiciones de alquiler de tu propiedad."
+        "title": "Explora Inquilinos",
+        "description": "Busca inquilinos pre-verificados buscando propiedades como la tuya."
       },
       "step2": {
-        "title": "Explora Inquilinos",
-        "description": "Busca inquilinos verificados buscando propiedades como la tuya."
+        "title": "Revisa Trust Scores",
+        "description": "Revisa perfiles detallados con verificación de ingresos, referencias e historial."
       },
       "step3": {
         "title": "Envía Ofertas",
-        "description": "¿Encontraste un match? Envía una oferta y conecta directamente."
+        "description": "¿Encontraste un buen match? Envía una oferta personalizada con tu propiedad."
+      },
+      "step4": {
+        "title": "Cierra el Trato",
+        "description": "Cuando acepten, intercambien contactos y finalicen el contrato de alquiler."
       }
+    },
+    "cta": {
+      "title": "¿Listo para Comenzar?",
+      "subtitle": "Únete a miles de inquilinos y propietarios que ya usan RentReverse",
+      "getStarted": "Crear Cuenta Gratis",
+      "seePricing": "Ver Precios"
     }
   },
   "cta": {

@@ -83,33 +83,55 @@
   "howItWorks": {
     "title": "How It Works",
     "subtitle": "Get started in 3 simple steps",
+    "hero": {
+      "title": "How RentReverse Works",
+      "subtitle": "A simple, transparent process for tenants and landlords to find each other"
+    },
     "tenant": {
+      "title": "For Tenants",
+      "subtitle": "How to find your perfect home",
       "step1": {
-        "title": "Create Your Profile",
-        "description": "Tell us about yourself, your budget, and what you're looking for."
+        "title": "Create Your Request",
+        "description": "Tell us what you're looking for: location, budget, size, and when you need to move."
       },
       "step2": {
         "title": "Get Verified",
-        "description": "Add verifications to boost your Trust Score and stand out."
+        "description": "Add verifications (income, employment, ID) to boost your Trust Score and stand out."
       },
       "step3": {
         "title": "Receive Offers",
-        "description": "Landlords will send you offers matching your needs."
+        "description": "Landlords will send you property offers that match your criteria directly."
+      },
+      "step4": {
+        "title": "Find Your Home",
+        "description": "Accept an offer, connect with the landlord, and move into your new home."
       }
     },
     "landlord": {
+      "title": "For Landlords",
+      "subtitle": "How to find quality tenants",
       "step1": {
-        "title": "Add Your Property",
-        "description": "List your property details, photos, and rental conditions."
+        "title": "Browse Tenants",
+        "description": "Search pre-verified tenants actively looking for properties like yours."
       },
       "step2": {
-        "title": "Browse Tenants",
-        "description": "Search verified tenants looking for properties like yours."
+        "title": "Check Trust Scores",
+        "description": "Review detailed profiles with income verification, references, and history."
       },
       "step3": {
         "title": "Send Offers",
-        "description": "Found a match? Send an offer and connect directly."
+        "description": "Found a great match? Send them a personalized offer with your property."
+      },
+      "step4": {
+        "title": "Close the Deal",
+        "description": "Once they accept, exchange contacts and finalize the rental agreement."
       }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Join thousands of tenants and landlords already using RentReverse",
+      "getStarted": "Create Free Account",
+      "seePricing": "See Pricing"
     }
   },
   "cta": {
