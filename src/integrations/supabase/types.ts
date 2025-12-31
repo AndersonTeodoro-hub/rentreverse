@@ -14,16 +14,233 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      landlord_profiles: {
+        Row: {
+          company_name: string | null
+          created_at: string
+          id: string
+          is_company: boolean | null
+          properties_count: number | null
+          tax_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          company_name?: string | null
+          created_at?: string
+          id?: string
+          is_company?: boolean | null
+          properties_count?: number | null
+          tax_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          company_name?: string | null
+          created_at?: string
+          id?: string
+          is_company?: boolean | null
+          properties_count?: number | null
+          tax_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      referral_codes: {
+        Row: {
+          code: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      referrals: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          id: string
+          points_awarded: number | null
+          referred_id: string
+          referrer_id: string
+          status: string | null
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          points_awarded?: number | null
+          referred_id: string
+          referrer_id: string
+          status?: string | null
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          points_awarded?: number | null
+          referred_id?: string
+          referrer_id?: string
+          status?: string | null
+        }
+        Relationships: []
+      }
+      tenant_profiles: {
+        Row: {
+          created_at: string
+          has_pets: boolean | null
+          id: string
+          is_smoker: boolean | null
+          max_budget: number | null
+          monthly_income: number | null
+          move_in_date: string | null
+          preferred_locations: string[] | null
+          profession: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          has_pets?: boolean | null
+          id?: string
+          is_smoker?: boolean | null
+          max_budget?: number | null
+          monthly_income?: number | null
+          move_in_date?: string | null
+          preferred_locations?: string[] | null
+          profession?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          has_pets?: boolean | null
+          id?: string
+          is_smoker?: boolean | null
+          max_budget?: number | null
+          monthly_income?: number | null
+          move_in_date?: string | null
+          preferred_locations?: string[] | null
+          profession?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_points: {
+        Row: {
+          created_at: string
+          id: string
+          total_points: number | null
+          updated_at: string
+          used_points: number | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          total_points?: number | null
+          updated_at?: string
+          used_points?: number | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          total_points?: number | null
+          updated_at?: string
+          used_points?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_referral_code: { Args: never; Returns: string }
+      get_user_role: {
+        Args: { _user_id: string }
+        Returns: Database["public"]["Enums"]["app_role"]
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "tenant" | "landlord"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +367,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["tenant", "landlord"],
+    },
   },
 } as const
