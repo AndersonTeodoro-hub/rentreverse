@@ -170,7 +170,12 @@
     "noAccount": "Don't have an account?",
     "hasAccount": "Already have an account?",
     "orContinueWith": "Or continue with",
-    "google": "Continue with Google"
+    "google": "Continue with Google",
+    "success": "Success",
+    "error": "Error",
+    "loginSuccess": "Welcome back! Redirecting...",
+    "signupSuccess": "Account created! Redirecting to complete your profile...",
+    "passwordMismatch": "Passwords do not match"
   },
   "roles": {
     "tenant": "Tenant",

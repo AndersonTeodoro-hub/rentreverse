@@ -170,7 +170,12 @@
     "noAccount": "Pas de compte ?",
     "hasAccount": "Déjà un compte ?",
     "orContinueWith": "Ou continuez avec",
-    "google": "Continuer avec Google"
+    "google": "Continuer avec Google",
+    "success": "Succès",
+    "error": "Erreur",
+    "loginSuccess": "Bon retour ! Redirection en cours...",
+    "signupSuccess": "Compte créé ! Redirection pour compléter votre profil...",
+    "passwordMismatch": "Les mots de passe ne correspondent pas"
   },
   "roles": {
     "tenant": "Locataire",

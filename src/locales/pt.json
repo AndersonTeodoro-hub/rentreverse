@@ -170,7 +170,12 @@
     "noAccount": "Não tem conta?",
     "hasAccount": "Já tem conta?",
     "orContinueWith": "Ou continue com",
-    "google": "Continuar com Google"
+    "google": "Continuar com Google",
+    "success": "Sucesso",
+    "error": "Erro",
+    "loginSuccess": "Bem-vindo de volta! A redirecionar...",
+    "signupSuccess": "Conta criada! A redirecionar para completar o seu perfil...",
+    "passwordMismatch": "As palavras-passe não coincidem"
   },
   "roles": {
     "tenant": "Inquilino",
