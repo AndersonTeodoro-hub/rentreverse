@@ -600,5 +600,21 @@
     "exploreNow": "Explorar Imóveis",
     "loginRequired": "Inicie sessão para ver favoritos",
     "loginRequiredDesc": "Precisa de iniciar sessão para guardar e ver os seus imóveis favoritos."
+  },
+  "priceAlerts": {
+    "title": "Alertas de Preço",
+    "subtitle": "Notificações de alterações de preço nos seus imóveis favoritos",
+    "empty": "Sem alertas de preço",
+    "emptyDesc": "Quando o preço de um imóvel favorito mudar, será notificado aqui.",
+    "viewFavorites": "Ver Favoritos",
+    "loginRequired": "Inicie sessão para ver alertas",
+    "loginRequiredDesc": "Precisa de iniciar sessão para ver alertas de preço.",
+    "markAllRead": "Marcar tudo como lido",
+    "new": "Novo",
+    "unknownProperty": "Imóvel"
+  },
+  "nav": {
+    "priceAlerts": "Alertas de Preço",
+    "favorites": "Favoritos"
   }
 }
