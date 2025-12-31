@@ -178,5 +178,79 @@
     "selectRole": "I am a...",
     "tenantDescription": "I'm looking for a place to rent",
     "landlordDescription": "I have properties to rent out"
+  },
+  "pricing": {
+    "hero": {
+      "title": "Simple, Transparent Pricing",
+      "subtitle": "Start for free, upgrade when you need more"
+    },
+    "popular": "Most Popular",
+    "period": {
+      "month": "month",
+      "forever": "forever"
+    },
+    "cta": {
+      "getStarted": "Get Started Free",
+      "upgrade": "Upgrade Now",
+      "contact": "Contact Sales"
+    },
+    "tenant": {
+      "title": "For Tenants",
+      "subtitle": "Find your perfect home",
+      "free": {
+        "name": "Free",
+        "description": "Perfect to get started",
+        "feature1": "2 active housing requests",
+        "feature2": "Basic profile with verifications",
+        "feature3": "Receive unlimited offers",
+        "feature4": "Priority visibility",
+        "feature5": "Detailed Trust Score breakdown"
+      },
+      "premium": {
+        "name": "Premium",
+        "description": "For serious home seekers",
+        "feature1": "5 active housing requests",
+        "feature2": "Enhanced profile visibility",
+        "feature3": "Receive unlimited offers",
+        "feature4": "Priority in landlord searches",
+        "feature5": "Detailed Trust Score breakdown"
+      }
+    },
+    "landlord": {
+      "title": "For Landlords",
+      "subtitle": "Find quality tenants faster",
+      "free": {
+        "name": "Free",
+        "description": "Try it out",
+        "feature1": "1 property listing",
+        "feature2": "5 offers per month",
+        "feature3": "Basic tenant search",
+        "feature4": "Advanced filters",
+        "feature5": "Priority support"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "For active landlords",
+        "feature1": "Up to 10 property listings",
+        "feature2": "50 offers per month",
+        "feature3": "Advanced tenant search",
+        "feature4": "All filters & Trust Score details",
+        "feature5": "Email support"
+      },
+      "business": {
+        "name": "Business",
+        "description": "For property managers",
+        "feature1": "Unlimited property listings",
+        "feature2": "Unlimited offers",
+        "feature3": "Full tenant database access",
+        "feature4": "API access & integrations",
+        "feature5": "Dedicated account manager"
+      }
+    },
+    "faq": {
+      "title": "Have questions?",
+      "subtitle": "Our team is here to help you choose the right plan",
+      "cta": "Contact Us"
+    }
   }
 }

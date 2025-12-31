@@ -178,5 +178,79 @@
     "selectRole": "Eu sou...",
     "tenantDescription": "Procuro um lugar para arrendar",
     "landlordDescription": "Tenho imóveis para arrendar"
+  },
+  "pricing": {
+    "hero": {
+      "title": "Preços Simples e Transparentes",
+      "subtitle": "Comece grátis, faça upgrade quando precisar"
+    },
+    "popular": "Mais Popular",
+    "period": {
+      "month": "mês",
+      "forever": "sempre"
+    },
+    "cta": {
+      "getStarted": "Começar Grátis",
+      "upgrade": "Fazer Upgrade",
+      "contact": "Contactar Vendas"
+    },
+    "tenant": {
+      "title": "Para Inquilinos",
+      "subtitle": "Encontre a sua casa perfeita",
+      "free": {
+        "name": "Grátis",
+        "description": "Perfeito para começar",
+        "feature1": "2 pedidos de arrendamento ativos",
+        "feature2": "Perfil básico com verificações",
+        "feature3": "Receba ofertas ilimitadas",
+        "feature4": "Visibilidade prioritária",
+        "feature5": "Detalhes do Trust Score"
+      },
+      "premium": {
+        "name": "Premium",
+        "description": "Para quem procura a sério",
+        "feature1": "5 pedidos de arrendamento ativos",
+        "feature2": "Visibilidade melhorada do perfil",
+        "feature3": "Receba ofertas ilimitadas",
+        "feature4": "Prioridade nas pesquisas",
+        "feature5": "Detalhes do Trust Score"
+      }
+    },
+    "landlord": {
+      "title": "Para Proprietários",
+      "subtitle": "Encontre inquilinos de qualidade mais rápido",
+      "free": {
+        "name": "Grátis",
+        "description": "Experimente",
+        "feature1": "1 imóvel listado",
+        "feature2": "5 ofertas por mês",
+        "feature3": "Pesquisa básica de inquilinos",
+        "feature4": "Filtros avançados",
+        "feature5": "Suporte prioritário"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "Para proprietários ativos",
+        "feature1": "Até 10 imóveis listados",
+        "feature2": "50 ofertas por mês",
+        "feature3": "Pesquisa avançada de inquilinos",
+        "feature4": "Todos os filtros e Trust Score",
+        "feature5": "Suporte por email"
+      },
+      "business": {
+        "name": "Business",
+        "description": "Para gestores de imóveis",
+        "feature1": "Imóveis ilimitados",
+        "feature2": "Ofertas ilimitadas",
+        "feature3": "Acesso total à base de inquilinos",
+        "feature4": "Acesso API e integrações",
+        "feature5": "Gestor de conta dedicado"
+      }
+    },
+    "faq": {
+      "title": "Tem dúvidas?",
+      "subtitle": "A nossa equipa está aqui para ajudar a escolher o plano certo",
+      "cta": "Contacte-nos"
+    }
   }
 }
