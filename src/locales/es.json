@@ -23,7 +23,8 @@
     "yes": "Sí",
     "no": "No",
     "or": "o",
-    "and": "y"
+    "and": "y",
+    "copied": "¡Copiado!"
   },
   "nav": {
     "home": "Inicio",
@@ -51,231 +52,20 @@
     "badge": "Programa de Referidos",
     "title": "Invita amigos y gana puntos",
     "subtitle": "Cada amigo que se registre con tu enlace te genera puntos. ¡Usa los puntos como descuento en tu suscripción!",
-    "step1": {
-      "title": "Comparte tu enlace",
-      "description": "Envía tu enlace único a amigos que buscan hogar o tienen propiedades"
-    },
-    "step2": {
-      "title": "Amigo se registra",
-      "description": "Cuando se registren con tu enlace, ganas puntos automáticamente"
-    },
-    "step3": {
-      "title": "Usa tus puntos",
-      "description": "Acumula puntos y canjéalos por descuentos en la suscripción Premium"
-    },
+    "step1": { "title": "Comparte tu enlace", "description": "Envía tu enlace único a amigos que buscan hogar o tienen propiedades" },
+    "step2": { "title": "Amigo se registra", "description": "Cuando se registren con tu enlace, ganas puntos automáticamente" },
+    "step3": { "title": "Usa tus puntos", "description": "Acumula puntos y canjéalos por descuentos en la suscripción Premium" },
     "cta": "Empezar a Invitar",
     "terms": "Cada referido válido = 50 puntos. 500 puntos = 1 mes gratis de Premium."
   },
-  "features": {
-    "title": "¿Por qué RentReverse?",
-    "subtitle": "Una forma más inteligente, rápida y transparente de alquilar",
-    "forTenants": {
-      "title": "Para Inquilinos",
-      "feature1": {
-        "title": "Tú Controlas",
-        "description": "Publica lo que necesitas y recibe ofertas de propietarios que coinciden con tus criterios."
-      },
-      "feature2": {
-        "title": "Propietarios Verificados",
-        "description": "Solo propietarios verificados pueden contactarte. Sin estafas, sin anuncios falsos."
-      },
-      "feature3": {
-        "title": "Trust Score",
-        "description": "Construye tu perfil con verificaciones y destaca ante los propietarios."
-      }
-    },
-    "forLandlords": {
-      "title": "Para Propietarios",
-      "feature1": {
-        "title": "Inquilinos Pre-Verificados",
-        "description": "Explora inquilinos con ingresos, empleo y referencias verificadas."
-      },
-      "feature2": {
-        "title": "Ahorra Tiempo",
-        "description": "Sin más visitas vacías. Conecta con inquilinos listos para alquilar."
-      },
-      "feature3": {
-        "title": "Match Inteligente",
-        "description": "Nuestro algoritmo te muestra inquilinos que coinciden perfectamente con tu propiedad."
-      }
-    }
-  },
-  "howItWorks": {
-    "title": "Cómo Funciona",
-    "subtitle": "Comienza en 3 simples pasos",
-    "hero": {
-      "title": "Cómo Funciona RentReverse",
-      "subtitle": "Un proceso simple y transparente para que inquilinos y propietarios se encuentren"
-    },
-    "tenant": {
-      "title": "Para Inquilinos",
-      "subtitle": "Cómo encontrar tu hogar perfecto",
-      "step1": {
-        "title": "Crea Tu Solicitud",
-        "description": "Cuéntanos lo que buscas: ubicación, presupuesto, tamaño y cuándo necesitas mudarte."
-      },
-      "step2": {
-        "title": "Verifícate",
-        "description": "Añade verificaciones (ingresos, empleo, ID) para aumentar tu Trust Score."
-      },
-      "step3": {
-        "title": "Recibe Ofertas",
-        "description": "Los propietarios te enviarán ofertas de propiedades que coincidan con tus criterios."
-      },
-      "step4": {
-        "title": "Encuentra Tu Hogar",
-        "description": "Acepta una oferta, conecta con el propietario y múdate a tu nuevo hogar."
-      }
-    },
-    "landlord": {
-      "title": "Para Propietarios",
-      "subtitle": "Cómo encontrar inquilinos de calidad",
-      "step1": {
-        "title": "Explora Inquilinos",
-        "description": "Busca inquilinos pre-verificados buscando propiedades como la tuya."
-      },
-      "step2": {
-        "title": "Revisa Trust Scores",
-        "description": "Revisa perfiles detallados con verificación de ingresos, referencias e historial."
-      },
-      "step3": {
-        "title": "Envía Ofertas",
-        "description": "¿Encontraste un buen match? Envía una oferta personalizada con tu propiedad."
-      },
-      "step4": {
-        "title": "Cierra el Trato",
-        "description": "Cuando acepten, intercambien contactos y finalicen el contrato de alquiler."
-      }
-    },
-    "cta": {
-      "title": "¿Listo para Comenzar?",
-      "subtitle": "Únete a miles de inquilinos y propietarios que ya usan RentReverse",
-      "getStarted": "Crear Cuenta Gratis",
-      "seePricing": "Ver Precios"
-    }
-  },
-  "cta": {
-    "getStarted": "Comenzar",
-    "learnMore": "Saber Más",
-    "startFree": "Empezar Gratis",
-    "createAccount": "Crear Cuenta",
-    "seeHowItWorks": "Ver Cómo Funciona"
-  },
-  "trust": {
-    "title": "Confianza de miles",
-    "tenants": "Inquilinos Activos",
-    "landlords": "Propietarios Verificados",
-    "matches": "Matches Exitosos",
-    "cities": "Ciudades Cubiertas"
-  },
-  "footer": {
-    "description": "El marketplace de alquiler inverso donde inquilinos publican necesidades y propietarios los encuentran.",
-    "product": "Producto",
-    "company": "Empresa",
-    "legal": "Legal",
-    "terms": "Términos de Servicio",
-    "privacy": "Política de Privacidad",
-    "cookies": "Política de Cookies",
-    "copyright": "© {{year}} RentReverse. Todos los derechos reservados."
-  },
-  "auth": {
-    "loginTitle": "Bienvenido de nuevo",
-    "loginSubtitle": "Inicia sesión en tu cuenta",
-    "signupTitle": "Crea tu cuenta",
-    "signupSubtitle": "Únete a miles encontrando su match perfecto",
-    "email": "Correo electrónico",
-    "password": "Contraseña",
-    "confirmPassword": "Confirmar contraseña",
-    "forgotPassword": "¿Olvidaste tu contraseña?",
-    "noAccount": "¿No tienes cuenta?",
-    "hasAccount": "¿Ya tienes cuenta?",
-    "orContinueWith": "O continúa con",
-    "google": "Continuar con Google",
-    "success": "Éxito",
-    "error": "Error",
-    "loginSuccess": "¡Bienvenido de nuevo! Redirigiendo...",
-    "signupSuccess": "¡Cuenta creada! Redirigiendo para completar tu perfil...",
-    "passwordMismatch": "Las contraseñas no coinciden"
-  },
-  "roles": {
-    "tenant": "Inquilino",
-    "landlord": "Propietario",
-    "selectRole": "Soy...",
-    "tenantDescription": "Busco un lugar para alquilar",
-    "landlordDescription": "Tengo propiedades para alquilar"
-  },
-  "pricing": {
-    "hero": {
-      "title": "Precios Simples y Transparentes",
-      "subtitle": "Comienza gratis, mejora cuando lo necesites"
-    },
-    "popular": "Más Popular",
-    "period": {
-      "month": "mes",
-      "forever": "siempre"
-    },
-    "cta": {
-      "getStarted": "Comenzar Gratis",
-      "upgrade": "Mejorar Ahora",
-      "contact": "Contactar Ventas"
-    },
-    "tenant": {
-      "title": "Para Inquilinos",
-      "subtitle": "Encuentra tu hogar perfecto",
-      "free": {
-        "name": "Gratis",
-        "description": "Perfecto para empezar",
-        "feature1": "2 solicitudes de vivienda activas",
-        "feature2": "Perfil básico con verificaciones",
-        "feature3": "Recibe ofertas ilimitadas",
-        "feature4": "Visibilidad prioritaria",
-        "feature5": "Detalles del Trust Score"
-      },
-      "premium": {
-        "name": "Premium",
-        "description": "Para buscadores serios",
-        "feature1": "5 solicitudes de vivienda activas",
-        "feature2": "Visibilidad mejorada del perfil",
-        "feature3": "Recibe ofertas ilimitadas",
-        "feature4": "Prioridad en búsquedas",
-        "feature5": "Detalles del Trust Score"
-      }
-    },
-    "landlord": {
-      "title": "Para Propietarios",
-      "subtitle": "Encuentra inquilinos de calidad más rápido",
-      "free": {
-        "name": "Gratis",
-        "description": "Pruébalo",
-        "feature1": "1 propiedad listada",
-        "feature2": "5 ofertas al mes",
-        "feature3": "Búsqueda básica de inquilinos",
-        "feature4": "Filtros avanzados",
-        "feature5": "Soporte prioritario"
-      },
-      "pro": {
-        "name": "Pro",
-        "description": "Para propietarios activos",
-        "feature1": "Hasta 10 propiedades listadas",
-        "feature2": "50 ofertas al mes",
-        "feature3": "Búsqueda avanzada de inquilinos",
-        "feature4": "Todos los filtros y Trust Score",
-        "feature5": "Soporte por email"
-      },
-      "business": {
-        "name": "Business",
-        "description": "Para gestores de propiedades",
-        "feature1": "Propiedades ilimitadas",
-        "feature2": "Ofertas ilimitadas",
-        "feature3": "Acceso total a inquilinos",
-        "feature4": "Acceso API e integraciones",
-        "feature5": "Gestor de cuenta dedicado"
-      }
-    },
-    "faq": {
-      "title": "¿Tienes preguntas?",
-      "subtitle": "Nuestro equipo está aquí para ayudarte a elegir el plan correcto",
-      "cta": "Contáctanos"
-    }
-  }
+  "features": { "title": "¿Por qué RentReverse?", "subtitle": "Una forma más inteligente, rápida y transparente de alquilar", "forTenants": { "title": "Para Inquilinos", "feature1": { "title": "Tú Controlas", "description": "Publica lo que necesitas y recibe ofertas de propietarios que coinciden con tus criterios." }, "feature2": { "title": "Propietarios Verificados", "description": "Solo propietarios verificados pueden contactarte. Sin estafas, sin anuncios falsos." }, "feature3": { "title": "Trust Score", "description": "Construye tu perfil con verificaciones y destaca ante los propietarios." } }, "forLandlords": { "title": "Para Propietarios", "feature1": { "title": "Inquilinos Pre-Verificados", "description": "Explora inquilinos con ingresos, empleo y referencias verificadas." }, "feature2": { "title": "Ahorra Tiempo", "description": "Sin más visitas vacías. Conecta con inquilinos listos para alquilar." }, "feature3": { "title": "Match Inteligente", "description": "Nuestro algoritmo te muestra inquilinos que coinciden perfectamente con tu propiedad." } } },
+  "howItWorks": { "title": "Cómo Funciona", "subtitle": "Comienza en 3 simples pasos", "hero": { "title": "Cómo Funciona RentReverse", "subtitle": "Un proceso simple y transparente para que inquilinos y propietarios se encuentren" }, "tenant": { "title": "Para Inquilinos", "subtitle": "Cómo encontrar tu hogar perfecto", "step1": { "title": "Crea Tu Solicitud", "description": "Cuéntanos lo que buscas: ubicación, presupuesto, tamaño y cuándo necesitas mudarte." }, "step2": { "title": "Verifícate", "description": "Añade verificaciones (ingresos, empleo, ID) para aumentar tu Trust Score." }, "step3": { "title": "Recibe Ofertas", "description": "Los propietarios te enviarán ofertas de propiedades que coincidan con tus criterios." }, "step4": { "title": "Encuentra Tu Hogar", "description": "Acepta una oferta, conecta con el propietario y múdate a tu nuevo hogar." } }, "landlord": { "title": "Para Propietarios", "subtitle": "Cómo encontrar inquilinos de calidad", "step1": { "title": "Explora Inquilinos", "description": "Busca inquilinos pre-verificados buscando propiedades como la tuya." }, "step2": { "title": "Revisa Trust Scores", "description": "Revisa perfiles detallados con verificación de ingresos, referencias e historial." }, "step3": { "title": "Envía Ofertas", "description": "¿Encontraste un buen match? Envía una oferta personalizada con tu propiedad." }, "step4": { "title": "Cierra el Trato", "description": "Cuando acepten, intercambien contactos y finalicen el contrato de alquiler." } }, "cta": { "title": "¿Listo para Comenzar?", "subtitle": "Únete a miles de inquilinos y propietarios que ya usan RentReverse", "getStarted": "Crear Cuenta Gratis", "seePricing": "Ver Precios" } },
+  "cta": { "getStarted": "Comenzar", "learnMore": "Saber Más", "startFree": "Empezar Gratis", "createAccount": "Crear Cuenta", "seeHowItWorks": "Ver Cómo Funciona" },
+  "trust": { "title": "Confianza de miles", "tenants": "Inquilinos Activos", "landlords": "Propietarios Verificados", "matches": "Matches Exitosos", "cities": "Ciudades Cubiertas" },
+  "footer": { "description": "El marketplace de alquiler inverso donde inquilinos publican necesidades y propietarios los encuentran.", "product": "Producto", "company": "Empresa", "legal": "Legal", "terms": "Términos de Servicio", "privacy": "Política de Privacidad", "cookies": "Política de Cookies", "copyright": "© {{year}} RentReverse. Todos los derechos reservados." },
+  "auth": { "loginTitle": "Bienvenido de nuevo", "loginSubtitle": "Inicia sesión en tu cuenta", "signupTitle": "Crea tu cuenta", "signupSubtitle": "Únete a miles encontrando su match perfecto", "email": "Correo electrónico", "password": "Contraseña", "confirmPassword": "Confirmar contraseña", "forgotPassword": "¿Olvidaste tu contraseña?", "noAccount": "¿No tienes cuenta?", "hasAccount": "¿Ya tienes cuenta?", "orContinueWith": "O continúa con", "google": "Continuar con Google", "success": "Éxito", "error": "Error", "loginSuccess": "¡Bienvenido de nuevo! Redirigiendo...", "signupSuccess": "¡Cuenta creada! Redirigiendo para completar tu perfil...", "passwordMismatch": "Las contraseñas no coinciden" },
+  "roles": { "tenant": "Inquilino", "landlord": "Propietario", "selectRole": "Soy...", "tenantDescription": "Busco un lugar para alquilar", "landlordDescription": "Tengo propiedades para alquilar" },
+  "pricing": { "hero": { "title": "Precios Simples y Transparentes", "subtitle": "Comienza gratis, mejora cuando lo necesites" }, "popular": "Más Popular", "period": { "month": "mes", "forever": "siempre" }, "cta": { "getStarted": "Comenzar Gratis", "upgrade": "Mejorar Ahora", "contact": "Contactar Ventas" }, "tenant": { "title": "Para Inquilinos", "subtitle": "Encuentra tu hogar perfecto", "free": { "name": "Gratis", "description": "Perfecto para empezar", "feature1": "2 solicitudes activas", "feature2": "Perfil básico", "feature3": "Ofertas ilimitadas", "feature4": "Visibilidad prioritaria", "feature5": "Trust Score" }, "premium": { "name": "Premium", "description": "Para buscadores serios", "feature1": "5 solicitudes activas", "feature2": "Visibilidad mejorada", "feature3": "Ofertas ilimitadas", "feature4": "Prioridad en búsquedas", "feature5": "Trust Score" } }, "landlord": { "title": "Para Propietarios", "subtitle": "Encuentra inquilinos de calidad", "free": { "name": "Gratis", "description": "Pruébalo", "feature1": "1 propiedad", "feature2": "5 ofertas/mes", "feature3": "Búsqueda básica", "feature4": "Filtros avanzados", "feature5": "Soporte" }, "pro": { "name": "Pro", "description": "Para propietarios activos", "feature1": "10 propiedades", "feature2": "50 ofertas/mes", "feature3": "Búsqueda avanzada", "feature4": "Todos los filtros", "feature5": "Email" }, "business": { "name": "Business", "description": "Para gestores", "feature1": "Ilimitadas", "feature2": "Ilimitadas", "feature3": "Acceso total", "feature4": "API", "feature5": "Gestor dedicado" } }, "faq": { "title": "¿Preguntas?", "subtitle": "Nuestro equipo está aquí para ayudarte", "cta": "Contáctanos" } },
+  "onboarding": { "welcome": "¡Bienvenido a RentReverse!", "chooseRole": "¿Cómo quieres usar la plataforma?", "success": "Éxito", "roleSelected": "¡Perfil seleccionado!", "continue": "Continuar", "complete": "¡Perfil Completo!", "finish": "Finalizar", "tenantCompleteDesc": "Tu perfil de inquilino está listo.", "landlordCompleteDesc": "Tu perfil de propietario está listo.", "tenant": { "title": "Soy Inquilino", "description": "Busco un lugar para alquilar", "benefit1": "Crea tu solicitud", "benefit2": "Recibe ofertas verificadas", "benefit3": "Compara propiedades", "benefit4": "Gana puntos" }, "landlord": { "title": "Soy Propietario", "description": "Tengo propiedades", "benefit1": "Inquilinos verificados", "benefit2": "Envía ofertas directas", "benefit3": "Ahorra tiempo", "benefit4": "Gestión simplificada" }, "steps": { "personal": { "title": "Info Personal", "description": "Cuéntanos sobre ti" }, "location": { "title": "Ubicación", "description": "¿Dónde quieres vivir?" }, "preferences": { "title": "Preferencias", "description": "Presupuesto y más" }, "lifestyle": { "title": "Estilo de Vida", "description": "Info adicional" } }, "landlordSteps": { "personal": { "title": "Info Personal", "description": "Cuéntanos sobre ti" }, "business": { "title": "Negocio", "description": "¿Particular o empresa?" }, "verification": { "title": "Verificación", "description": "¿Cuántas propiedades?" } }, "form": { "fullName": "Nombre Completo", "fullNamePlaceholder": "Juan García", "phone": "Teléfono", "profession": "Profesión", "professionPlaceholder": "Ingeniero", "preferredLocations": "Ubicaciones Preferidas", "preferredLocationsPlaceholder": "Madrid, Barcelona", "preferredLocationsHint": "Separa con comas", "monthlyIncome": "Ingreso Mensual (€)", "maxBudget": "Presupuesto Máximo (€)", "moveInDate": "Fecha de Entrada", "hasPets": "Tengo Mascotas", "hasPetsDesc": "Perros, gatos u otros", "isSmoker": "Soy Fumador", "isSmokerDesc": "Ayuda a mejores matches", "isCompany": "Soy Empresa", "isCompanyDesc": "Gestiona propiedades como empresa", "companyName": "Nombre Empresa", "companyNamePlaceholder": "Inmobiliaria García", "taxId": "NIF/CIF", "propertiesCount": "Número de Propiedades", "propertiesCountHint": "¿Cuántas propiedades gestionas?", "nextSteps": "Próximos Pasos", "nextStep1": "Añade tus propiedades", "nextStep2": "Configura preferencias", "nextStep3": "¡Recibe candidaturas!" } },
+  "dashboard": { "welcome": "Hola", "tenantAccount": "Cuenta de Inquilino", "landlordAccount": "Cuenta de Propietario", "yourPoints": "Tus Puntos", "pointsEquivalent": "Equivale a {{months}} mes(es) gratis", "yourReferralCode": "Tu Código de Referido", "shareCode": "Compartir Código", "shareText": "¡Únete a RentReverse!", "linkCopied": "¡Link copiado!", "referrals": "Referidos", "referralsDesc": "Amigos que invitaste", "completedReferrals": "{{count}} completados", "quickActions": "Acciones Rápidas", "tenantQuickActionsDesc": "¿Qué quieres hacer hoy?", "landlordQuickActionsDesc": "Gestiona tus propiedades", "browseProperties": "Explorar Propiedades", "redeemPoints": "Canjear Puntos", "editProfile": "Editar Perfil", "addProperty": "Añadir Propiedad", "myProperties": "Mis Propiedades" }
 }

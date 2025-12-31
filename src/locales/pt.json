@@ -23,7 +23,8 @@
     "yes": "Sim",
     "no": "Não",
     "or": "ou",
-    "and": "e"
+    "and": "e",
+    "copied": "Copiado!"
   },
   "nav": {
     "home": "Início",
@@ -277,5 +278,114 @@
       "subtitle": "A nossa equipa está aqui para ajudar a escolher o plano certo",
       "cta": "Contacte-nos"
     }
+  },
+  "onboarding": {
+    "welcome": "Bem-vindo ao RentReverse!",
+    "chooseRole": "Como pretende usar a plataforma?",
+    "success": "Sucesso",
+    "roleSelected": "Perfil selecionado com sucesso!",
+    "continue": "Continuar",
+    "complete": "Perfil Completo!",
+    "finish": "Finalizar",
+    "tenantCompleteDesc": "O seu perfil de inquilino está pronto. Agora pode começar a receber ofertas!",
+    "landlordCompleteDesc": "O seu perfil de proprietário está pronto. Agora pode começar a encontrar inquilinos!",
+    "tenant": {
+      "title": "Sou Inquilino",
+      "description": "Procuro um lugar para arrendar",
+      "benefit1": "Crie o seu pedido de arrendamento",
+      "benefit2": "Receba ofertas de proprietários verificados",
+      "benefit3": "Compare imóveis sem sair de casa",
+      "benefit4": "Acumule pontos através de indicações"
+    },
+    "landlord": {
+      "title": "Sou Proprietário",
+      "description": "Tenho imóveis para arrendar",
+      "benefit1": "Aceda a inquilinos pré-verificados",
+      "benefit2": "Envie ofertas diretamente aos interessados",
+      "benefit3": "Poupe tempo com visitas desnecessárias",
+      "benefit4": "Gestão simplificada dos seus imóveis"
+    },
+    "steps": {
+      "personal": {
+        "title": "Informações Pessoais",
+        "description": "Conte-nos um pouco sobre si"
+      },
+      "location": {
+        "title": "Preferências de Localização",
+        "description": "Onde gostaria de viver?"
+      },
+      "preferences": {
+        "title": "Orçamento e Preferências",
+        "description": "Ajude-nos a encontrar o imóvel ideal"
+      },
+      "lifestyle": {
+        "title": "Estilo de Vida",
+        "description": "Algumas informações adicionais"
+      }
+    },
+    "landlordSteps": {
+      "personal": {
+        "title": "Informações Pessoais",
+        "description": "Conte-nos um pouco sobre si"
+      },
+      "business": {
+        "title": "Informações do Negócio",
+        "description": "Particular ou empresa?"
+      },
+      "verification": {
+        "title": "Verificação",
+        "description": "Quantos imóveis pretende gerir?"
+      }
+    },
+    "form": {
+      "fullName": "Nome Completo",
+      "fullNamePlaceholder": "João Silva",
+      "phone": "Telefone",
+      "profession": "Profissão",
+      "professionPlaceholder": "Engenheiro de Software",
+      "preferredLocations": "Localizações Preferidas",
+      "preferredLocationsPlaceholder": "Lisboa, Porto, Braga",
+      "preferredLocationsHint": "Separe as localizações por vírgula",
+      "monthlyIncome": "Rendimento Mensal (€)",
+      "maxBudget": "Orçamento Máximo Renda (€)",
+      "moveInDate": "Data Prevista de Entrada",
+      "hasPets": "Tenho Animais de Estimação",
+      "hasPetsDesc": "Cães, gatos ou outros animais",
+      "isSmoker": "Sou Fumador",
+      "isSmokerDesc": "Esta informação ajuda proprietários a fazer melhores matches",
+      "isCompany": "Sou Empresa",
+      "isCompanyDesc": "Marque se gere imóveis através de uma empresa",
+      "companyName": "Nome da Empresa",
+      "companyNamePlaceholder": "Imobiliária Silva, Lda",
+      "taxId": "NIF/NIPC",
+      "propertiesCount": "Número de Imóveis",
+      "propertiesCountHint": "Quantos imóveis pretende gerir na plataforma?",
+      "nextSteps": "Próximos Passos",
+      "nextStep1": "Adicione os seus imóveis à plataforma",
+      "nextStep2": "Configure as suas preferências de inquilinos",
+      "nextStep3": "Comece a receber candidaturas!"
+    }
+  },
+  "dashboard": {
+    "welcome": "Olá",
+    "tenantAccount": "Conta de Inquilino",
+    "landlordAccount": "Conta de Proprietário",
+    "yourPoints": "Os Seus Pontos",
+    "pointsEquivalent": "Equivale a {{months}} mês(es) grátis",
+    "yourReferralCode": "O Seu Código de Indicação",
+    "shareCode": "Partilhar Código",
+    "shareText": "Junta-te ao RentReverse e encontra o teu lar ideal!",
+    "linkCopied": "Link copiado para a área de transferência!",
+    "referrals": "Indicações",
+    "referralsDesc": "Amigos que indicou",
+    "completedReferrals": "{{count}} completadas",
+    "quickActions": "Ações Rápidas",
+    "tenantQuickActionsDesc": "O que gostaria de fazer hoje?",
+    "landlordQuickActionsDesc": "Gerir os seus imóveis e inquilinos",
+    "browseProperties": "Explorar Imóveis",
+    "redeemPoints": "Trocar Pontos",
+    "editProfile": "Editar Perfil",
+    "addProperty": "Adicionar Imóvel",
+    "myProperties": "Meus Imóveis"
   }
 }
