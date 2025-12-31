@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { Search, MapPin, Bed, Bath, Euro, Home, Filter, X } from 'lucide-react';
+import { Search, MapPin, Bed, Bath, Euro, Home, Filter, X, ArrowUpDown } from 'lucide-react';
 import { Layout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -48,6 +48,7 @@ export default function ExploreProperties() {
   const [maxPrice, setMaxPrice] = useState(5000);
   const [minBedrooms, setMinBedrooms] = useState<string>('any');
   const [propertyType, setPropertyType] = useState<string>('any');
+  const [sortBy, setSortBy] = useState<string>('newest');
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const { data: properties, isLoading } = useQuery({
@@ -71,11 +72,11 @@ export default function ExploreProperties() {
     return uniqueCities.sort();
   }, [properties]);
 
-  // Filter properties based on criteria
+  // Filter and sort properties based on criteria
   const filteredProperties = useMemo(() => {
     if (!properties) return [];
 
-    return properties.filter((property) => {
+    const filtered = properties.filter((property) => {
       // City filter
       if (searchCity && !property.city.toLowerCase().includes(searchCity.toLowerCase())) {
         return false;
@@ -101,7 +102,27 @@ export default function ExploreProperties() {
 
       return true;
     });
-  }, [properties, searchCity, minPrice, maxPrice, minBedrooms, propertyType]);
+
+    // Sort properties
+    return [...filtered].sort((a, b) => {
+      switch (sortBy) {
+        case 'price-asc':
+          return a.rent_amount - b.rent_amount;
+        case 'price-desc':
+          return b.rent_amount - a.rent_amount;
+        case 'newest':
+          return new Date(b.available_from || 0).getTime() - new Date(a.available_from || 0).getTime();
+        case 'oldest':
+          return new Date(a.available_from || 0).getTime() - new Date(b.available_from || 0).getTime();
+        case 'bedrooms':
+          return (b.bedrooms || 0) - (a.bedrooms || 0);
+        case 'area':
+          return (b.area_sqm || 0) - (a.area_sqm || 0);
+        default:
+          return 0;
+      }
+    });
+  }, [properties, searchCity, minPrice, maxPrice, minBedrooms, propertyType, sortBy]);
 
   const clearFilters = () => {
     setSearchCity('');
@@ -248,13 +269,32 @@ export default function ExploreProperties() {
               </Sheet>
             </div>
 
-            {/* Results Count */}
-            <div className="mb-4 text-sm text-muted-foreground">
-              {isLoading ? (
-                t('common.loading')
-              ) : (
-                t('explore.resultsCount', { count: filteredProperties.length })
-              )}
+            {/* Results Count and Sort */}
+            <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <span className="text-sm text-muted-foreground">
+                {isLoading ? (
+                  t('common.loading')
+                ) : (
+                  t('explore.resultsCount', { count: filteredProperties.length })
+                )}
+              </span>
+              
+              <div className="flex items-center gap-2">
+                <ArrowUpDown className="h-4 w-4 text-muted-foreground" />
+                <Select value={sortBy} onValueChange={setSortBy}>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder={t('explore.sortBy')} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="newest">{t('explore.sortNewest')}</SelectItem>
+                    <SelectItem value="oldest">{t('explore.sortOldest')}</SelectItem>
+                    <SelectItem value="price-asc">{t('explore.sortPriceAsc')}</SelectItem>
+                    <SelectItem value="price-desc">{t('explore.sortPriceDesc')}</SelectItem>
+                    <SelectItem value="bedrooms">{t('explore.sortBedrooms')}</SelectItem>
+                    <SelectItem value="area">{t('explore.sortArea')}</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
             {/* Properties Grid */}
