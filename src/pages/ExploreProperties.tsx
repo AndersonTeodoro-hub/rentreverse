@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { Search, MapPin, Bed, Bath, Euro, Home, Filter, X, ArrowUpDown, Heart } from 'lucide-react';
+import { Search, MapPin, Bed, Bath, Euro, Home, Filter, X, ArrowUpDown, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Layout } from '@/components/layout';
 import { useAuth } from '@/hooks/useAuth';
 import { useSavedProperties } from '@/hooks/useSavedProperties';
@@ -54,6 +54,8 @@ export default function ExploreProperties() {
   const [propertyType, setPropertyType] = useState<string>('any');
   const [sortBy, setSortBy] = useState<string>('newest');
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 12;
 
   const { data: properties, isLoading } = useQuery({
     queryKey: ['explore-properties'],
@@ -128,15 +130,30 @@ export default function ExploreProperties() {
     });
   }, [properties, searchCity, minPrice, maxPrice, minBedrooms, propertyType, sortBy]);
 
+  // Pagination logic
+  const totalPages = Math.ceil(filteredProperties.length / ITEMS_PER_PAGE);
+  const paginatedProperties = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProperties.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredProperties, currentPage]);
+
+  // Reset to page 1 when filters change
   const clearFilters = () => {
     setSearchCity('');
     setMinPrice(0);
     setMaxPrice(5000);
     setMinBedrooms('any');
     setPropertyType('any');
+    setCurrentPage(1);
   };
 
   const hasActiveFilters = searchCity || minPrice > 0 || maxPrice < 5000 || minBedrooms !== 'any' || propertyType !== 'any';
+
+  // Reset page when filters change
+  const handleFilterChange = (setter: (value: any) => void, value: any) => {
+    setter(value);
+    setCurrentPage(1);
+  };
 
   const FiltersContent = () => (
     <div className="space-y-6">
@@ -148,7 +165,7 @@ export default function ExploreProperties() {
           <Input
             placeholder={t('explore.cityPlaceholder')}
             value={searchCity}
-            onChange={(e) => setSearchCity(e.target.value)}
+            onChange={(e) => handleFilterChange(setSearchCity, e.target.value)}
             className="pl-10"
           />
         </div>
@@ -163,6 +180,7 @@ export default function ExploreProperties() {
             onValueChange={([min, max]) => {
               setMinPrice(min);
               setMaxPrice(max);
+              setCurrentPage(1);
             }}
             max={5000}
             min={0}
@@ -179,7 +197,7 @@ export default function ExploreProperties() {
       {/* Bedrooms */}
       <div className="space-y-2">
         <label className="text-sm font-medium">{t('explore.bedrooms')}</label>
-        <Select value={minBedrooms} onValueChange={setMinBedrooms}>
+        <Select value={minBedrooms} onValueChange={(v) => handleFilterChange(setMinBedrooms, v)}>
           <SelectTrigger>
             <SelectValue placeholder={t('explore.anyBedrooms')} />
           </SelectTrigger>
@@ -196,7 +214,7 @@ export default function ExploreProperties() {
       {/* Property Type */}
       <div className="space-y-2">
         <label className="text-sm font-medium">{t('explore.propertyType')}</label>
-        <Select value={propertyType} onValueChange={setPropertyType}>
+        <Select value={propertyType} onValueChange={(v) => handleFilterChange(setPropertyType, v)}>
           <SelectTrigger>
             <SelectValue placeholder={t('explore.anyType')} />
           </SelectTrigger>
@@ -327,8 +345,9 @@ export default function ExploreProperties() {
                 )}
               </Card>
             ) : (
+              <>
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {filteredProperties.map((property) => (
+                {paginatedProperties.map((property) => (
                   <div key={property.id} className="relative">
                     {/* Favorite Button */}
                     {user && (
@@ -418,6 +437,55 @@ export default function ExploreProperties() {
                 </div>
                 ))}
               </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-2 mt-8">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </Button>
+                  
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1)
+                      .filter((page) => {
+                        // Show first, last, current, and adjacent pages
+                        if (page === 1 || page === totalPages) return true;
+                        if (Math.abs(page - currentPage) <= 1) return true;
+                        return false;
+                      })
+                      .map((page, idx, arr) => (
+                        <>
+                          {idx > 0 && arr[idx - 1] !== page - 1 && (
+                            <span key={`ellipsis-${page}`} className="px-2 text-muted-foreground">...</span>
+                          )}
+                          <Button
+                            key={page}
+                            variant={currentPage === page ? 'default' : 'outline'}
+                            size="icon"
+                            onClick={() => setCurrentPage(page)}
+                          >
+                            {page}
+                          </Button>
+                        </>
+                      ))}
+                  </div>
+
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                    disabled={currentPage === totalPages}
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
+              </>
             )}
           </div>
         </div>
