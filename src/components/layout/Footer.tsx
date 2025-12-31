@@ -1,13 +1,12 @@
-import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-export const Footer = forwardRef<HTMLElement>((_, ref) => {
+export function Footer() {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer ref={ref} className="border-t border-border bg-muted/30">
+    <footer className="border-t border-border bg-muted/30">
       <div className="container py-12">
         <div className="grid gap-8 md:grid-cols-4">
           {/* Brand */}
@@ -112,6 +111,4 @@ export const Footer = forwardRef<HTMLElement>((_, ref) => {
       </div>
     </footer>
   );
-});
-
-Footer.displayName = 'Footer';
+}
