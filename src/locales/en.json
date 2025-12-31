@@ -592,6 +592,13 @@
     "saveError": "Error saving property",
     "removeError": "Error removing from favorites",
     "save": "Save to favorites",
-    "remove": "Remove from favorites"
+    "remove": "Remove from favorites",
+    "title": "My Favorites",
+    "subtitle": "Properties you saved for later",
+    "empty": "No favorites yet",
+    "emptyDesc": "Explore properties and save your favorites to easily find them here.",
+    "exploreNow": "Explore Properties",
+    "loginRequired": "Login to view favorites",
+    "loginRequiredDesc": "You need to log in to save and view your favorite properties."
   }
 }
