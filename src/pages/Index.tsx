@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Home, Building2, Shield, Clock, Users, CheckCircle } from 'lucide-react';
+import { ArrowRight, Home, Building2, CheckCircle, Share2, Gift, Users, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Layout } from '@/components/layout';
 
@@ -31,6 +31,27 @@ const Index = () => {
                   <Building2 className="h-5 w-5" />
                   {t('hero.forLandlords')}
                 </Link>
+              </Button>
+            </div>
+            <div className="mt-6">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="gap-2 text-muted-foreground hover:text-foreground"
+                onClick={() => {
+                  if (navigator.share) {
+                    navigator.share({
+                      title: t('common.appName'),
+                      text: t('common.tagline'),
+                      url: window.location.origin,
+                    });
+                  } else {
+                    navigator.clipboard.writeText(window.location.origin);
+                  }
+                }}
+              >
+                <Share2 className="h-4 w-4" />
+                {t('hero.shareApp')}
               </Button>
             </div>
           </div>
@@ -93,6 +114,73 @@ const Index = () => {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Referral Program Section */}
+      <section className="py-20 lg:py-28 bg-gradient-to-br from-accent/30 via-background to-accent/20">
+        <div className="container">
+          <div className="mx-auto max-w-4xl">
+            <div className="rounded-3xl border border-primary/20 bg-card p-8 lg:p-12 card-shadow relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 rounded-full translate-y-1/2 -translate-x-1/2" />
+              
+              <div className="relative z-10">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <Gift className="h-8 w-8 text-primary" />
+                  <span className="text-sm font-semibold text-primary uppercase tracking-wider">
+                    {t('referral.badge')}
+                  </span>
+                </div>
+                
+                <h2 className="text-3xl font-bold text-foreground text-center sm:text-4xl">
+                  {t('referral.title')}
+                </h2>
+                <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
+                  {t('referral.subtitle')}
+                </p>
+
+                <div className="mt-10 grid gap-6 sm:grid-cols-3">
+                  <div className="flex flex-col items-center text-center p-4">
+                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                      <Share2 className="h-7 w-7 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-foreground">{t('referral.step1.title')}</h3>
+                    <p className="text-sm text-muted-foreground mt-1">{t('referral.step1.description')}</p>
+                  </div>
+                  
+                  <div className="flex flex-col items-center text-center p-4">
+                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                      <Users className="h-7 w-7 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-foreground">{t('referral.step2.title')}</h3>
+                    <p className="text-sm text-muted-foreground mt-1">{t('referral.step2.description')}</p>
+                  </div>
+                  
+                  <div className="flex flex-col items-center text-center p-4">
+                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                      <Star className="h-7 w-7 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-foreground">{t('referral.step3.title')}</h3>
+                    <p className="text-sm text-muted-foreground mt-1">{t('referral.step3.description')}</p>
+                  </div>
+                </div>
+
+                <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Button size="lg" asChild className="gap-2">
+                    <Link to="/auth?mode=signup">
+                      <Gift className="h-5 w-5" />
+                      {t('referral.cta')}
+                    </Link>
+                  </Button>
+                </div>
+                
+                <p className="mt-6 text-center text-sm text-muted-foreground">
+                  {t('referral.terms')}
+                </p>
               </div>
             </div>
           </div>

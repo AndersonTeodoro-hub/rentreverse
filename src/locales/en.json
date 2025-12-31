@@ -44,7 +44,27 @@
     "forTenants": "I'm looking for a home",
     "forLandlords": "I have a property",
     "tenantsDescription": "Create your profile and let verified landlords come to you with offers that match your needs.",
-    "landlordsDescription": "Browse pre-verified tenants actively looking for properties like yours. No more empty viewings."
+    "landlordsDescription": "Browse pre-verified tenants actively looking for properties like yours. No more empty viewings.",
+    "shareApp": "Share with friends"
+  },
+  "referral": {
+    "badge": "Referral Program",
+    "title": "Refer friends and earn points",
+    "subtitle": "Every friend who signs up with your link earns you points. Use points as discounts on your subscription!",
+    "step1": {
+      "title": "Share your link",
+      "description": "Send your unique link to friends looking for a home or with properties"
+    },
+    "step2": {
+      "title": "Friend signs up",
+      "description": "When they register with your link, you automatically earn points"
+    },
+    "step3": {
+      "title": "Use your points",
+      "description": "Accumulate points and redeem for discounts on Premium subscription"
+    },
+    "cta": "Start Referring",
+    "terms": "Each valid referral = 50 points. 500 points = 1 free month of Premium."
   },
   "features": {
     "title": "Why RentReverse?",
