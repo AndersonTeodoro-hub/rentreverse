@@ -37,7 +37,8 @@
     "dashboard": "Dashboard",
     "profile": "Profile",
     "settings": "Settings",
-    "logout": "Log out"
+    "logout": "Log out",
+    "exploreProperties": "Explore Properties"
   },
   "hero": {
     "title": "The Reverse Way to Rent",
@@ -550,5 +551,32 @@
     "offerResponseDesc": "{{name}} responded to your offer",
     "offerResponseGeneric": "A tenant responded to your offer",
     "viewDetails": "View Details"
+  },
+  "explore": {
+    "title": "Explore Properties",
+    "subtitle": "Find the perfect property for you",
+    "filters": "Filters",
+    "cityLabel": "City",
+    "cityPlaceholder": "Search by city...",
+    "priceRange": "Price Range (€/month)",
+    "bedrooms": "Bedrooms",
+    "anyBedrooms": "Any",
+    "propertyType": "Property Type",
+    "anyType": "Any type",
+    "clearFilters": "Clear Filters",
+    "active": "Active",
+    "resultsCount": "{{count}} properties found",
+    "noResults": "No properties found",
+    "noResultsDesc": "Try adjusting your filters to see more results"
+  },
+  "property": {
+    "types": {
+      "apartment": "Apartment",
+      "house": "House",
+      "studio": "Studio",
+      "room": "Room"
+    },
+    "petsAllowed": "Pets allowed",
+    "smokingAllowed": "Smoking allowed"
   }
 }

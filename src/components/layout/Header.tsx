@@ -36,6 +36,12 @@ export function Header() {
             {t('nav.home')}
           </Link>
           <Link
+            to="/explore-properties"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {t('nav.exploreProperties')}
+          </Link>
+          <Link
             to="/how-it-works"
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
@@ -127,6 +133,13 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               {t('nav.home')}
+            </Link>
+            <Link
+              to="/explore-properties"
+              className="text-sm font-medium text-muted-foreground py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {t('nav.exploreProperties')}
             </Link>
             <Link
               to="/how-it-works"

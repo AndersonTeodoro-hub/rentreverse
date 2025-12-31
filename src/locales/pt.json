@@ -37,7 +37,8 @@
     "dashboard": "Painel",
     "profile": "Perfil",
     "settings": "Definições",
-    "logout": "Sair"
+    "logout": "Sair",
+    "exploreProperties": "Explorar Imóveis"
   },
   "hero": {
     "title": "A Forma Inversa de Arrendar",
@@ -550,5 +551,32 @@
     "offerResponseDesc": "{{name}} respondeu à sua oferta",
     "offerResponseGeneric": "Um inquilino respondeu à sua oferta",
     "viewDetails": "Ver Detalhes"
+  },
+  "explore": {
+    "title": "Explorar Imóveis",
+    "subtitle": "Encontre o imóvel perfeito para si",
+    "filters": "Filtros",
+    "cityLabel": "Cidade",
+    "cityPlaceholder": "Pesquisar por cidade...",
+    "priceRange": "Faixa de Preço (€/mês)",
+    "bedrooms": "Quartos",
+    "anyBedrooms": "Qualquer",
+    "propertyType": "Tipo de Imóvel",
+    "anyType": "Qualquer tipo",
+    "clearFilters": "Limpar Filtros",
+    "active": "Ativo",
+    "resultsCount": "{{count}} imóveis encontrados",
+    "noResults": "Nenhum imóvel encontrado",
+    "noResultsDesc": "Tente ajustar os filtros para ver mais resultados"
+  },
+  "property": {
+    "types": {
+      "apartment": "Apartamento",
+      "house": "Casa",
+      "studio": "Estúdio",
+      "room": "Quarto"
+    },
+    "petsAllowed": "Aceita animais",
+    "smokingAllowed": "Permite fumar"
   }
 }
