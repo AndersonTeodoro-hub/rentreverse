@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Home, Building2, Gift, Settings, LogOut, Share2 } from "lucide-react";
+import { Home, Building2, Gift, Settings, LogOut, Share2, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Layout } from "@/components/layout";
@@ -9,6 +9,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import TrustScoreBadge from "@/components/TrustScoreBadge";
 
 const Dashboard = () => {
   const { t } = useTranslation();
@@ -74,6 +75,23 @@ const Dashboard = () => {
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
+        .eq('user_id', user.id)
+        .maybeSingle();
+      
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!user,
+  });
+
+  // Fetch trust score
+  const { data: trustScore } = useQuery({
+    queryKey: ['trust-score', user?.id],
+    queryFn: async () => {
+      if (!user) return null;
+      const { data, error } = await supabase
+        .from('trust_scores')
+        .select('total_score')
         .eq('user_id', user.id)
         .maybeSingle();
       
@@ -169,7 +187,23 @@ const Dashboard = () => {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="grid md:grid-cols-4 gap-6 mb-8">
+            {/* Trust Score Card */}
+            <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => navigate('/verifications')}>
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-primary" />
+                  Trust Score
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <TrustScoreBadge score={trustScore?.total_score || 0} size="lg" />
+                <Button variant="link" className="p-0 h-auto mt-2 text-xs">
+                  {t('dashboard.verifyProfile')} →
+                </Button>
+              </CardContent>
+            </Card>
+
             {/* Points Card */}
             <Card className="bg-gradient-to-br from-primary/10 to-primary/5">
               <CardHeader className="pb-2">

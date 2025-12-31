@@ -386,6 +386,70 @@
     "redeemPoints": "Redeem Points",
     "editProfile": "Edit Profile",
     "addProperty": "Add Property",
-    "myProperties": "My Properties"
+    "myProperties": "My Properties",
+    "verifyProfile": "Verify Profile"
+  },
+  "trustScore": {
+    "title": "Trust Score",
+    "description": "Your trust level on the platform",
+    "outOf100": "out of 100 points",
+    "verifications": "Verifications",
+    "identity": "Identity Verification",
+    "income": "Income Proof",
+    "employment": "Employment Proof",
+    "address": "Address Proof",
+    "references": "References",
+    "referencesCount": "{{count}} verified reference(s)",
+    "points": "pts"
+  },
+  "verifications": {
+    "title": "Profile Verifications",
+    "subtitle": "Boost your Trust Score with verifications",
+    "documents": "Documents",
+    "documentsDesc": "Upload documents to verify your identity and information",
+    "references": "Personal References",
+    "referencesDesc": "Add references from previous landlords or employers",
+    "upload": "Upload",
+    "reupload": "Reupload",
+    "uploadDocument": "Upload Document",
+    "uploadDocumentDesc": "Upload a document to verify {{type}}",
+    "dragDrop": "Drag and drop or click to select",
+    "acceptedFormats": "Accepted formats: PDF, JPG, PNG (max 10MB)",
+    "documentUploaded": "Document Uploaded",
+    "documentUploadedDesc": "Your document will be reviewed soon",
+    "addReference": "Add Reference",
+    "addReferenceDesc": "Add contact information for a reference",
+    "refName": "Reference Name",
+    "refNamePlaceholder": "John Smith",
+    "refEmail": "Email",
+    "refPhone": "Phone (optional)",
+    "relationship": "Relationship Type",
+    "selectRelationship": "Select...",
+    "relationships": {
+      "previous_landlord": "Previous Landlord",
+      "employer": "Employer",
+      "colleague": "Colleague",
+      "personal": "Personal Reference"
+    },
+    "sendRequest": "Send Request",
+    "referenceAdded": "Reference Added",
+    "referenceAddedDesc": "An email will be sent for verification",
+    "noReferences": "No references added yet",
+    "types": {
+      "identity": "Identity Document",
+      "identityDesc": "ID card, Passport or Driver's License",
+      "income": "Income Proof",
+      "incomeDesc": "Tax returns, pay slips",
+      "employment": "Employment Proof",
+      "employmentDesc": "Employer declaration letter",
+      "address": "Address Proof",
+      "addressDesc": "Utility bill, bank statement"
+    },
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "expired": "Expired"
+    }
   }
 }

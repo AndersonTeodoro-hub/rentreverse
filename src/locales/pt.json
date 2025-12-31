@@ -386,6 +386,70 @@
     "redeemPoints": "Trocar Pontos",
     "editProfile": "Editar Perfil",
     "addProperty": "Adicionar Imóvel",
-    "myProperties": "Meus Imóveis"
+    "myProperties": "Meus Imóveis",
+    "verifyProfile": "Verificar Perfil"
+  },
+  "trustScore": {
+    "title": "Trust Score",
+    "description": "O seu nível de confiança na plataforma",
+    "outOf100": "de 100 pontos",
+    "verifications": "Verificações",
+    "identity": "Verificação de Identidade",
+    "income": "Comprovativo de Rendimentos",
+    "employment": "Comprovativo de Emprego",
+    "address": "Comprovativo de Morada",
+    "references": "Referências",
+    "referencesCount": "{{count}} referência(s) verificada(s)",
+    "points": "pts"
+  },
+  "verifications": {
+    "title": "Verificações de Perfil",
+    "subtitle": "Aumente o seu Trust Score com verificações",
+    "documents": "Documentos",
+    "documentsDesc": "Envie documentos para verificar a sua identidade e informações",
+    "references": "Referências Pessoais",
+    "referencesDesc": "Adicione referências de proprietários anteriores ou empregadores",
+    "upload": "Enviar",
+    "reupload": "Reenviar",
+    "uploadDocument": "Enviar Documento",
+    "uploadDocumentDesc": "Envie um documento para verificar {{type}}",
+    "dragDrop": "Arraste e solte ou clique para selecionar",
+    "acceptedFormats": "Formatos aceites: PDF, JPG, PNG (máx. 10MB)",
+    "documentUploaded": "Documento Enviado",
+    "documentUploadedDesc": "O seu documento será analisado em breve",
+    "addReference": "Adicionar Referência",
+    "addReferenceDesc": "Adicione informações de contacto de uma referência",
+    "refName": "Nome da Referência",
+    "refNamePlaceholder": "João Silva",
+    "refEmail": "Email",
+    "refPhone": "Telefone (opcional)",
+    "relationship": "Tipo de Relação",
+    "selectRelationship": "Selecione...",
+    "relationships": {
+      "previous_landlord": "Proprietário Anterior",
+      "employer": "Empregador",
+      "colleague": "Colega de Trabalho",
+      "personal": "Referência Pessoal"
+    },
+    "sendRequest": "Enviar Pedido",
+    "referenceAdded": "Referência Adicionada",
+    "referenceAddedDesc": "Um email será enviado para verificação",
+    "noReferences": "Ainda não adicionou referências",
+    "types": {
+      "identity": "Documento de Identidade",
+      "identityDesc": "CC, Passaporte ou Carta de Condução",
+      "income": "Comprovativo de Rendimentos",
+      "incomeDesc": "Declaração IRS, recibos de vencimento",
+      "employment": "Comprovativo de Emprego",
+      "employmentDesc": "Declaração da entidade empregadora",
+      "address": "Comprovativo de Morada",
+      "addressDesc": "Fatura de serviços, extrato bancário"
+    },
+    "status": {
+      "pending": "Pendente",
+      "approved": "Aprovado",
+      "rejected": "Rejeitado",
+      "expired": "Expirado"
+    }
   }
 }
