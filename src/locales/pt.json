@@ -454,5 +454,28 @@
       "rejected": "Rejeitado",
       "expired": "Expirado"
     }
+  },
+  "property": {
+    "notFound": "Imóvel não encontrado",
+    "linkCopied": "Link copiado para a área de transferência!",
+    "area": "Área",
+    "availableFrom": "Disponível a partir de",
+    "description": "Descrição",
+    "noDescription": "Sem descrição disponível.",
+    "features": "Características",
+    "noPets": "Animais não permitidos",
+    "noSmoking": "Não fumadores",
+    "rentDescription": "Renda mensal",
+    "landlord": "Proprietário",
+    "owner": "Proprietário",
+    "contactLandlord": "Contactar Proprietário",
+    "loginToContact": "Entrar para Contactar",
+    "editProperty": "Editar Imóvel"
+  },
+  "offers": {
+    "contactLandlord": "Contactar Proprietário",
+    "sendInterest": "Demonstre o seu interesse neste imóvel",
+    "selectRequest": "Selecione o seu pedido",
+    "selectRequestPlaceholder": "Escolha um dos seus pedidos ativos..."
   }
 }

@@ -454,5 +454,28 @@
       "rejected": "Rejected",
       "expired": "Expired"
     }
+  },
+  "property": {
+    "notFound": "Property not found",
+    "linkCopied": "Link copied to clipboard!",
+    "area": "Area",
+    "availableFrom": "Available from",
+    "description": "Description",
+    "noDescription": "No description available.",
+    "features": "Features",
+    "noPets": "No pets allowed",
+    "noSmoking": "No smoking",
+    "rentDescription": "Monthly rent",
+    "landlord": "Landlord",
+    "owner": "Owner",
+    "contactLandlord": "Contact Landlord",
+    "loginToContact": "Login to Contact",
+    "editProperty": "Edit Property"
+  },
+  "offers": {
+    "contactLandlord": "Contact Landlord",
+    "sendInterest": "Show your interest in this property",
+    "selectRequest": "Select your request",
+    "selectRequestPlaceholder": "Choose one of your active requests..."
   }
 }

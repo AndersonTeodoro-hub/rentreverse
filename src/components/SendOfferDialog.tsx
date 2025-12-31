@@ -21,24 +21,36 @@ interface TenantInfo {
   } | null;
 }
 
+interface PropertyContext {
+  propertyId: string;
+  landlordId: string;
+  tenantRequests: { id: string; title: string }[];
+}
+
 interface SendOfferDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  tenant: TenantInfo | null;
+  tenant?: TenantInfo | null;
+  propertyContext?: PropertyContext | null;
 }
 
-const SendOfferDialog = ({ open, onOpenChange, tenant }: SendOfferDialogProps) => {
+const SendOfferDialog = ({ open, onOpenChange, tenant, propertyContext }: SendOfferDialogProps) => {
   const { t } = useTranslation();
   const { user } = useAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   
   const [selectedProperty, setSelectedProperty] = useState('');
+  const [selectedRequest, setSelectedRequest] = useState('');
   const [proposedRent, setProposedRent] = useState('');
   const [proposedMoveIn, setProposedMoveIn] = useState('');
   const [message, setMessage] = useState('');
   const [contactPhone, setContactPhone] = useState('');
   const [contactEmail, setContactEmail] = useState('');
+
+  // Mode: landlord sending to tenant OR tenant contacting landlord
+  const isLandlordMode = !!tenant;
+  const isTenantMode = !!propertyContext;
 
   // Fetch landlord's properties
   const { data: properties } = useQuery({
@@ -54,29 +66,51 @@ const SendOfferDialog = ({ open, onOpenChange, tenant }: SendOfferDialogProps) =
       if (error) throw error;
       return data || [];
     },
-    enabled: !!user && open,
+    enabled: !!user && open && isLandlordMode,
   });
 
   // Send offer mutation
   const sendOfferMutation = useMutation({
     mutationFn: async () => {
-      if (!user || !tenant || !selectedProperty) throw new Error('Missing data');
+      if (!user) throw new Error('Not authenticated');
       
-      const { error } = await supabase
-        .from('offers')
-        .insert({
-          property_id: selectedProperty,
-          landlord_id: user.id,
-          tenant_id: tenant.user_id,
-          tenant_request_id: tenant.request_id,
-          proposed_rent: proposedRent ? parseFloat(proposedRent) : null,
-          proposed_move_in: proposedMoveIn || null,
-          message: message || null,
-          landlord_phone: contactPhone || null,
-          landlord_email: contactEmail || user.email,
-        });
-      
-      if (error) throw error;
+      if (isLandlordMode) {
+        // Landlord sending offer to tenant
+        if (!tenant || !selectedProperty) throw new Error('Missing data');
+        
+        const { error } = await supabase
+          .from('offers')
+          .insert({
+            property_id: selectedProperty,
+            landlord_id: user.id,
+            tenant_id: tenant.user_id,
+            tenant_request_id: tenant.request_id,
+            proposed_rent: proposedRent ? parseFloat(proposedRent) : null,
+            proposed_move_in: proposedMoveIn || null,
+            message: message || null,
+            landlord_phone: contactPhone || null,
+            landlord_email: contactEmail || user.email,
+          });
+        
+        if (error) throw error;
+      } else if (isTenantMode) {
+        // Tenant contacting landlord about property
+        if (!propertyContext || !selectedRequest) throw new Error('Missing data');
+        
+        const { error } = await supabase
+          .from('offers')
+          .insert({
+            property_id: propertyContext.propertyId,
+            landlord_id: propertyContext.landlordId,
+            tenant_id: user.id,
+            tenant_request_id: selectedRequest,
+            proposed_rent: proposedRent ? parseFloat(proposedRent) : null,
+            proposed_move_in: proposedMoveIn || null,
+            message: message || null,
+          });
+        
+        if (error) throw error;
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['sent-offers'] });
@@ -98,6 +132,7 @@ const SendOfferDialog = ({ open, onOpenChange, tenant }: SendOfferDialogProps) =
 
   const resetForm = () => {
     setSelectedProperty('');
+    setSelectedRequest('');
     setProposedRent('');
     setProposedMoveIn('');
     setMessage('');
@@ -105,7 +140,7 @@ const SendOfferDialog = ({ open, onOpenChange, tenant }: SendOfferDialogProps) =
     setContactEmail('');
   };
 
-  if (!tenant) return null;
+  if (!tenant && !propertyContext) return null;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -113,38 +148,62 @@ const SendOfferDialog = ({ open, onOpenChange, tenant }: SendOfferDialogProps) =
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Send className="w-5 h-5" />
-            {t('offers.sendOffer')}
+            {isLandlordMode ? t('offers.sendOffer') : t('offers.contactLandlord')}
           </DialogTitle>
           <DialogDescription>
-            {t('offers.sendOfferTo', { name: tenant.profile?.full_name || t('browseTenants.anonymous') })}
+            {isLandlordMode 
+              ? t('offers.sendOfferTo', { name: tenant?.profile?.full_name || t('browseTenants.anonymous') })
+              : t('offers.sendInterest')
+            }
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4 py-4">
-          {/* Property Selection */}
-          <div className="space-y-2">
-            <Label>{t('offers.selectProperty')} *</Label>
-            <Select value={selectedProperty} onValueChange={setSelectedProperty}>
-              <SelectTrigger>
-                <SelectValue placeholder={t('offers.selectPropertyPlaceholder')} />
-              </SelectTrigger>
-              <SelectContent>
-                {properties?.map((property) => (
-                  <SelectItem key={property.id} value={property.id}>
-                    <div className="flex items-center gap-2">
-                      <Home className="w-4 h-4" />
-                      <span>{property.title} - {property.city} (€{property.rent_amount})</span>
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {properties?.length === 0 && (
-              <p className="text-sm text-muted-foreground">
-                {t('offers.noProperties')}
-              </p>
-            )}
-          </div>
+          {/* Property Selection (for landlord mode) */}
+          {isLandlordMode && (
+            <div className="space-y-2">
+              <Label>{t('offers.selectProperty')} *</Label>
+              <Select value={selectedProperty} onValueChange={setSelectedProperty}>
+                <SelectTrigger>
+                  <SelectValue placeholder={t('offers.selectPropertyPlaceholder')} />
+                </SelectTrigger>
+                <SelectContent>
+                  {properties?.map((property) => (
+                    <SelectItem key={property.id} value={property.id}>
+                      <div className="flex items-center gap-2">
+                        <Home className="w-4 h-4" />
+                        <span>{property.title} - {property.city} (€{property.rent_amount})</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {properties?.length === 0 && (
+                <p className="text-sm text-muted-foreground">
+                  {t('offers.noProperties')}
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Request Selection (for tenant mode) */}
+          {isTenantMode && propertyContext && (
+            <div className="space-y-2">
+              <Label>{t('offers.selectRequest')} *</Label>
+              <Select value={selectedRequest} onValueChange={setSelectedRequest}>
+                <SelectTrigger>
+                  <SelectValue placeholder={t('offers.selectRequestPlaceholder')} />
+                </SelectTrigger>
+                <SelectContent>
+                  {propertyContext.tenantRequests.map((request) => (
+                    <SelectItem key={request.id} value={request.id}>
+                      {request.title}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
 
           {/* Proposed Rent */}
           <div className="space-y-2">
@@ -186,35 +245,37 @@ const SendOfferDialog = ({ open, onOpenChange, tenant }: SendOfferDialogProps) =
             />
           </div>
 
-          {/* Contact Info */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label>{t('offers.phone')}</Label>
-              <div className="relative">
-                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                <Input
-                  type="tel"
-                  value={contactPhone}
-                  onChange={(e) => setContactPhone(e.target.value)}
-                  placeholder="+351..."
-                  className="pl-10"
-                />
+          {/* Contact Info (only for landlord mode) */}
+          {isLandlordMode && (
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>{t('offers.phone')}</Label>
+                <div className="relative">
+                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                  <Input
+                    type="tel"
+                    value={contactPhone}
+                    onChange={(e) => setContactPhone(e.target.value)}
+                    placeholder="+351..."
+                    className="pl-10"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label>{t('offers.email')}</Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                  <Input
+                    type="email"
+                    value={contactEmail}
+                    onChange={(e) => setContactEmail(e.target.value)}
+                    placeholder={user?.email || ''}
+                    className="pl-10"
+                  />
+                </div>
               </div>
             </div>
-            <div className="space-y-2">
-              <Label>{t('offers.email')}</Label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                <Input
-                  type="email"
-                  value={contactEmail}
-                  onChange={(e) => setContactEmail(e.target.value)}
-                  placeholder={user?.email || ''}
-                  className="pl-10"
-                />
-              </div>
-            </div>
-          </div>
+          )}
         </div>
 
         <DialogFooter>
@@ -223,7 +284,7 @@ const SendOfferDialog = ({ open, onOpenChange, tenant }: SendOfferDialogProps) =
           </Button>
           <Button 
             onClick={() => sendOfferMutation.mutate()}
-            disabled={!selectedProperty || sendOfferMutation.isPending}
+            disabled={(isLandlordMode && !selectedProperty) || (isTenantMode && !selectedRequest) || sendOfferMutation.isPending}
           >
             {sendOfferMutation.isPending ? (
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
