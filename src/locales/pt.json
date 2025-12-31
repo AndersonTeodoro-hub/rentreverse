@@ -585,5 +585,13 @@
     },
     "petsAllowed": "Aceita animais",
     "smokingAllowed": "Permite fumar"
+  },
+  "favorites": {
+    "saved": "Imóvel guardado nos favoritos",
+    "removed": "Imóvel removido dos favoritos",
+    "saveError": "Erro ao guardar imóvel",
+    "removeError": "Erro ao remover dos favoritos",
+    "save": "Guardar nos favoritos",
+    "remove": "Remover dos favoritos"
   }
 }

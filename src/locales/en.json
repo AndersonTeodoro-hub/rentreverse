@@ -585,5 +585,13 @@
     },
     "petsAllowed": "Pets allowed",
     "smokingAllowed": "Smoking allowed"
+  },
+  "favorites": {
+    "saved": "Property saved to favorites",
+    "removed": "Property removed from favorites",
+    "saveError": "Error saving property",
+    "removeError": "Error removing from favorites",
+    "save": "Save to favorites",
+    "remove": "Remove from favorites"
   }
 }
