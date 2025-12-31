@@ -567,7 +567,14 @@
     "active": "Active",
     "resultsCount": "{{count}} properties found",
     "noResults": "No properties found",
-    "noResultsDesc": "Try adjusting your filters to see more results"
+    "noResultsDesc": "Try adjusting your filters to see more results",
+    "sortBy": "Sort by",
+    "sortNewest": "Newest first",
+    "sortOldest": "Oldest first",
+    "sortPriceAsc": "Price: low to high",
+    "sortPriceDesc": "Price: high to low",
+    "sortBedrooms": "Most bedrooms",
+    "sortArea": "Largest area"
   },
   "property": {
     "types": {

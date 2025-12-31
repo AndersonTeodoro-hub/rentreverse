@@ -567,7 +567,14 @@
     "active": "Ativo",
     "resultsCount": "{{count}} imóveis encontrados",
     "noResults": "Nenhum imóvel encontrado",
-    "noResultsDesc": "Tente ajustar os filtros para ver mais resultados"
+    "noResultsDesc": "Tente ajustar os filtros para ver mais resultados",
+    "sortBy": "Ordenar por",
+    "sortNewest": "Mais recentes",
+    "sortOldest": "Mais antigos",
+    "sortPriceAsc": "Preço: menor para maior",
+    "sortPriceDesc": "Preço: maior para menor",
+    "sortBedrooms": "Mais quartos",
+    "sortArea": "Maior área"
   },
   "property": {
     "types": {
