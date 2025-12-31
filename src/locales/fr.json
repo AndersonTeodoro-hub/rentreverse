@@ -178,5 +178,79 @@
     "selectRole": "Je suis...",
     "tenantDescription": "Je cherche un logement à louer",
     "landlordDescription": "J'ai des biens à louer"
+  },
+  "pricing": {
+    "hero": {
+      "title": "Tarifs Simples et Transparents",
+      "subtitle": "Commencez gratuitement, passez à l'offre supérieure quand vous en avez besoin"
+    },
+    "popular": "Plus Populaire",
+    "period": {
+      "month": "mois",
+      "forever": "toujours"
+    },
+    "cta": {
+      "getStarted": "Commencer Gratuitement",
+      "upgrade": "Passer à l'Offre Supérieure",
+      "contact": "Contacter les Ventes"
+    },
+    "tenant": {
+      "title": "Pour les Locataires",
+      "subtitle": "Trouvez votre logement parfait",
+      "free": {
+        "name": "Gratuit",
+        "description": "Parfait pour commencer",
+        "feature1": "2 demandes de logement actives",
+        "feature2": "Profil de base avec vérifications",
+        "feature3": "Recevez des offres illimitées",
+        "feature4": "Visibilité prioritaire",
+        "feature5": "Détails du Trust Score"
+      },
+      "premium": {
+        "name": "Premium",
+        "description": "Pour les chercheurs sérieux",
+        "feature1": "5 demandes de logement actives",
+        "feature2": "Visibilité améliorée du profil",
+        "feature3": "Recevez des offres illimitées",
+        "feature4": "Priorité dans les recherches",
+        "feature5": "Détails du Trust Score"
+      }
+    },
+    "landlord": {
+      "title": "Pour les Propriétaires",
+      "subtitle": "Trouvez des locataires de qualité plus rapidement",
+      "free": {
+        "name": "Gratuit",
+        "description": "Essayez-le",
+        "feature1": "1 bien listé",
+        "feature2": "5 offres par mois",
+        "feature3": "Recherche de base des locataires",
+        "feature4": "Filtres avancés",
+        "feature5": "Support prioritaire"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "Pour les propriétaires actifs",
+        "feature1": "Jusqu'à 10 biens listés",
+        "feature2": "50 offres par mois",
+        "feature3": "Recherche avancée des locataires",
+        "feature4": "Tous les filtres et Trust Score",
+        "feature5": "Support par email"
+      },
+      "business": {
+        "name": "Business",
+        "description": "Pour les gestionnaires immobiliers",
+        "feature1": "Biens illimités",
+        "feature2": "Offres illimitées",
+        "feature3": "Accès total aux locataires",
+        "feature4": "Accès API et intégrations",
+        "feature5": "Gestionnaire de compte dédié"
+      }
+    },
+    "faq": {
+      "title": "Des questions ?",
+      "subtitle": "Notre équipe est là pour vous aider à choisir le bon plan",
+      "cta": "Contactez-nous"
+    }
   }
 }
