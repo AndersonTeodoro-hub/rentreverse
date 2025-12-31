@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { 
   Building2, Plus, Edit, Trash2, MapPin, Euro, Bed, 
-  Bath, Maximize, Calendar, PawPrint, Cigarette, MoreVertical
+  Bath, Maximize, Calendar, PawPrint, Cigarette, MoreVertical,
+  Upload, X, Image as ImageIcon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -85,6 +86,9 @@ const MyProperties = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingProperty, setEditingProperty] = useState<Property | null>(null);
   const [formData, setFormData] = useState<PropertyFormData>(emptyForm);
+  const [uploadedImages, setUploadedImages] = useState<string[]>([]);
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -132,6 +136,7 @@ const MyProperties = () => {
         available_from: data.available_from || null,
         pets_allowed: data.pets_allowed,
         smoking_allowed: data.smoking_allowed,
+        images: uploadedImages.length > 0 ? uploadedImages : null,
       };
 
       if (editingProperty) {
@@ -152,6 +157,7 @@ const MyProperties = () => {
       setDialogOpen(false);
       setEditingProperty(null);
       setFormData(emptyForm);
+      setUploadedImages([]);
       toast({
         title: editingProperty ? t('properties.updated') : t('properties.created'),
         description: editingProperty ? t('properties.updatedDesc') : t('properties.createdDesc'),
@@ -215,13 +221,97 @@ const MyProperties = () => {
       pets_allowed: property.pets_allowed,
       smoking_allowed: property.smoking_allowed,
     });
+    setUploadedImages(property.images || []);
     setDialogOpen(true);
   };
 
   const handleAdd = () => {
     setEditingProperty(null);
     setFormData(emptyForm);
+    setUploadedImages([]);
     setDialogOpen(true);
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0 || !user) return;
+
+    setIsUploading(true);
+    const newImages: string[] = [];
+
+    try {
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        
+        // Validate file type
+        if (!file.type.startsWith('image/')) {
+          toast({
+            title: t('common.error'),
+            description: t('properties.invalidImageType'),
+            variant: "destructive",
+          });
+          continue;
+        }
+
+        // Validate file size (max 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+          toast({
+            title: t('common.error'),
+            description: t('properties.imageTooLarge'),
+            variant: "destructive",
+          });
+          continue;
+        }
+
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${user.id}/${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('properties')
+          .upload(fileName, file);
+
+        if (uploadError) {
+          console.error('Upload error:', uploadError);
+          continue;
+        }
+
+        const { data: urlData } = supabase.storage
+          .from('properties')
+          .getPublicUrl(fileName);
+
+        newImages.push(urlData.publicUrl);
+      }
+
+      if (newImages.length > 0) {
+        setUploadedImages(prev => [...prev, ...newImages]);
+        toast({
+          title: t('properties.imagesUploaded'),
+          description: t('properties.imagesUploadedDesc', { count: newImages.length }),
+        });
+      }
+    } catch (error) {
+      console.error('Error uploading images:', error);
+      toast({
+        title: t('common.error'),
+        description: t('properties.uploadError'),
+        variant: "destructive",
+      });
+    } finally {
+      setIsUploading(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    }
+  };
+
+  const removeImage = async (imageUrl: string) => {
+    // Extract file path from URL
+    const urlParts = imageUrl.split('/properties/');
+    if (urlParts.length > 1) {
+      const filePath = urlParts[1];
+      await supabase.storage.from('properties').remove([filePath]);
+    }
+    setUploadedImages(prev => prev.filter(img => img !== imageUrl));
   };
 
   const getStatusBadge = (status: PropertyStatus) => {
@@ -273,9 +363,17 @@ const MyProperties = () => {
           {properties && properties.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {properties.map((property) => (
-                <Card key={property.id} className="overflow-hidden">
-                  <div className="h-40 bg-muted flex items-center justify-center">
-                    <Building2 className="w-12 h-12 text-muted-foreground" />
+                <Card key={property.id} className="overflow-hidden cursor-pointer hover:shadow-lg transition-shadow" onClick={() => navigate(`/property/${property.id}`)}>
+                  <div className="h-40 bg-muted flex items-center justify-center overflow-hidden">
+                    {property.images && property.images.length > 0 ? (
+                      <img 
+                        src={property.images[0]} 
+                        alt={property.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <Building2 className="w-12 h-12 text-muted-foreground" />
+                    )}
                   </div>
                   <CardHeader className="pb-2">
                     <div className="flex items-start justify-between">
@@ -492,6 +590,67 @@ const MyProperties = () => {
                   placeholder={t('properties.form.descriptionPlaceholder')}
                   rows={3}
                 />
+              </div>
+
+              {/* Image Upload Section */}
+              <div className="space-y-3 col-span-2">
+                <Label>{t('properties.form.images')}</Label>
+                <div className="border-2 border-dashed rounded-lg p-4">
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleImageUpload}
+                    accept="image/*"
+                    multiple
+                    className="hidden"
+                  />
+                  
+                  {/* Uploaded Images Grid */}
+                  {uploadedImages.length > 0 && (
+                    <div className="grid grid-cols-3 gap-2 mb-4">
+                      {uploadedImages.map((imageUrl, idx) => (
+                        <div key={idx} className="relative group aspect-video">
+                          <img
+                            src={imageUrl}
+                            alt={`Property ${idx + 1}`}
+                            className="w-full h-full object-cover rounded-md"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeImage(imageUrl)}
+                            className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <X className="w-3 h-3" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Upload Button */}
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={isUploading}
+                  >
+                    {isUploading ? (
+                      <div className="flex items-center gap-2">
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary" />
+                        {t('properties.uploading')}
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2">
+                        <Upload className="w-4 h-4" />
+                        {t('properties.form.addImages')}
+                      </div>
+                    )}
+                  </Button>
+                  <p className="text-xs text-muted-foreground text-center mt-2">
+                    {t('properties.form.imagesHint')}
+                  </p>
+                </div>
               </div>
 
               <div className="flex items-center justify-between p-3 border rounded-lg">
