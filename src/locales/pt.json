@@ -83,33 +83,55 @@
   "howItWorks": {
     "title": "Como Funciona",
     "subtitle": "Comece em 3 passos simples",
+    "hero": {
+      "title": "Como o RentReverse Funciona",
+      "subtitle": "Um processo simples e transparente para inquilinos e proprietários se encontrarem"
+    },
     "tenant": {
+      "title": "Para Inquilinos",
+      "subtitle": "Como encontrar a sua casa perfeita",
       "step1": {
-        "title": "Crie o Seu Perfil",
-        "description": "Diga-nos sobre si, o seu orçamento e o que procura."
+        "title": "Crie o Seu Pedido",
+        "description": "Diga-nos o que procura: localização, orçamento, tamanho e quando precisa de mudar."
       },
       "step2": {
         "title": "Verifique-se",
-        "description": "Adicione verificações para aumentar o seu Trust Score e destacar-se."
+        "description": "Adicione verificações (rendimentos, emprego, ID) para aumentar o seu Trust Score."
       },
       "step3": {
         "title": "Receba Ofertas",
-        "description": "Proprietários enviarão ofertas que correspondem às suas necessidades."
+        "description": "Proprietários enviarão ofertas de imóveis que correspondem aos seus critérios."
+      },
+      "step4": {
+        "title": "Encontre a Sua Casa",
+        "description": "Aceite uma oferta, conecte-se com o proprietário e mude-se para a sua nova casa."
       }
     },
     "landlord": {
+      "title": "Para Proprietários",
+      "subtitle": "Como encontrar inquilinos de qualidade",
       "step1": {
-        "title": "Adicione o Seu Imóvel",
-        "description": "Liste os detalhes, fotos e condições de arrendamento do seu imóvel."
+        "title": "Navegue por Inquilinos",
+        "description": "Pesquise inquilinos pré-verificados à procura de imóveis como o seu."
       },
       "step2": {
-        "title": "Navegue por Inquilinos",
-        "description": "Pesquise inquilinos verificados à procura de imóveis como o seu."
+        "title": "Verifique Trust Scores",
+        "description": "Reveja perfis detalhados com verificação de rendimentos, referências e histórico."
       },
       "step3": {
         "title": "Envie Ofertas",
-        "description": "Encontrou um match? Envie uma oferta e conecte-se diretamente."
+        "description": "Encontrou um bom match? Envie uma oferta personalizada com o seu imóvel."
+      },
+      "step4": {
+        "title": "Feche o Negócio",
+        "description": "Quando aceitarem, troquem contactos e finalizem o contrato de arrendamento."
       }
+    },
+    "cta": {
+      "title": "Pronto para Começar?",
+      "subtitle": "Junte-se a milhares de inquilinos e proprietários já a usar o RentReverse",
+      "getStarted": "Criar Conta Grátis",
+      "seePricing": "Ver Preços"
     }
   },
   "cta": {
