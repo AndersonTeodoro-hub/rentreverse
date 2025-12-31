@@ -44,7 +44,27 @@
     "forTenants": "Je cherche un logement",
     "forLandlords": "J'ai un bien",
     "tenantsDescription": "Créez votre profil et laissez des propriétaires vérifiés vous contacter avec des offres correspondant à vos besoins.",
-    "landlordsDescription": "Parcourez des locataires pré-vérifiés à la recherche de biens comme le vôtre. Fini les visites inutiles."
+    "landlordsDescription": "Parcourez des locataires pré-vérifiés à la recherche de biens comme le vôtre. Fini les visites inutiles.",
+    "shareApp": "Partager avec des amis"
+  },
+  "referral": {
+    "badge": "Programme de Parrainage",
+    "title": "Parrainez des amis et gagnez des points",
+    "subtitle": "Chaque ami qui s'inscrit avec votre lien vous rapporte des points. Utilisez les points comme réduction sur votre abonnement !",
+    "step1": {
+      "title": "Partagez votre lien",
+      "description": "Envoyez votre lien unique à des amis cherchant un logement ou ayant des biens"
+    },
+    "step2": {
+      "title": "L'ami s'inscrit",
+      "description": "Quand ils s'inscrivent avec votre lien, vous gagnez automatiquement des points"
+    },
+    "step3": {
+      "title": "Utilisez vos points",
+      "description": "Accumulez des points et échangez-les contre des réductions sur l'abonnement Premium"
+    },
+    "cta": "Commencer à Parrainer",
+    "terms": "Chaque parrainage valide = 50 points. 500 points = 1 mois gratuit de Premium."
   },
   "features": {
     "title": "Pourquoi RentReverse ?",

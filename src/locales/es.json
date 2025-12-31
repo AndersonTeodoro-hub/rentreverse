@@ -44,7 +44,27 @@
     "forTenants": "Busco un hogar",
     "forLandlords": "Tengo una propiedad",
     "tenantsDescription": "Crea tu perfil y deja que propietarios verificados te contacten con ofertas que coinciden con tus necesidades.",
-    "landlordsDescription": "Explora inquilinos pre-verificados buscando propiedades como la tuya. Sin visitas vacías."
+    "landlordsDescription": "Explora inquilinos pre-verificados buscando propiedades como la tuya. Sin visitas vacías.",
+    "shareApp": "Compartir con amigos"
+  },
+  "referral": {
+    "badge": "Programa de Referidos",
+    "title": "Invita amigos y gana puntos",
+    "subtitle": "Cada amigo que se registre con tu enlace te genera puntos. ¡Usa los puntos como descuento en tu suscripción!",
+    "step1": {
+      "title": "Comparte tu enlace",
+      "description": "Envía tu enlace único a amigos que buscan hogar o tienen propiedades"
+    },
+    "step2": {
+      "title": "Amigo se registra",
+      "description": "Cuando se registren con tu enlace, ganas puntos automáticamente"
+    },
+    "step3": {
+      "title": "Usa tus puntos",
+      "description": "Acumula puntos y canjéalos por descuentos en la suscripción Premium"
+    },
+    "cta": "Empezar a Invitar",
+    "terms": "Cada referido válido = 50 puntos. 500 puntos = 1 mes gratis de Premium."
   },
   "features": {
     "title": "¿Por qué RentReverse?",
