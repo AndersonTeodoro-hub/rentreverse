@@ -539,5 +539,16 @@
       "addImages": "Adicionar Fotografias",
       "imagesHint": "JPG, PNG ou WEBP. Máximo 5MB por imagem."
     }
+  },
+  "notifications": {
+    "newOffer": "Nova Oferta Recebida!",
+    "newOfferDesc": "Recebeu uma oferta para: {{property}}",
+    "newOfferGeneric": "Recebeu uma nova oferta de um proprietário",
+    "viewOffer": "Ver Oferta",
+    "offerAccepted": "Oferta Aceite!",
+    "offerRejected": "Oferta Recusada",
+    "offerResponseDesc": "{{name}} respondeu à sua oferta",
+    "offerResponseGeneric": "Um inquilino respondeu à sua oferta",
+    "viewDetails": "Ver Detalhes"
   }
 }
