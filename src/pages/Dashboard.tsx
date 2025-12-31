@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Home, Building2, Gift, Settings, LogOut, Share2, Shield } from "lucide-react";
+import { Home, Building2, Gift, Settings, LogOut, Share2, Shield, Users, FileText, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Layout } from "@/components/layout";
@@ -272,12 +272,24 @@ const Dashboard = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
                 {userRole === 'tenant' ? (
                   <>
-                    <Button variant="outline" className="h-auto py-4 flex-col gap-2">
-                      <Home className="w-6 h-6" />
-                      <span>{t('dashboard.browseProperties')}</span>
+                    <Button 
+                      variant="outline" 
+                      className="h-auto py-4 flex-col gap-2"
+                      onClick={() => navigate('/my-requests')}
+                    >
+                      <FileText className="w-6 h-6" />
+                      <span>{t('dashboard.myRequests')}</span>
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="h-auto py-4 flex-col gap-2"
+                      onClick={() => navigate('/my-offers')}
+                    >
+                      <Send className="w-6 h-6" />
+                      <span>{t('dashboard.myOffers')}</span>
                     </Button>
                     <Button variant="outline" className="h-auto py-4 flex-col gap-2">
                       <Gift className="w-6 h-6" />
@@ -290,13 +302,29 @@ const Dashboard = () => {
                   </>
                 ) : (
                   <>
-                    <Button variant="outline" className="h-auto py-4 flex-col gap-2">
+                    <Button 
+                      variant="outline" 
+                      className="h-auto py-4 flex-col gap-2"
+                      onClick={() => navigate('/my-properties')}
+                    >
                       <Building2 className="w-6 h-6" />
-                      <span>{t('dashboard.addProperty')}</span>
-                    </Button>
-                    <Button variant="outline" className="h-auto py-4 flex-col gap-2">
-                      <Home className="w-6 h-6" />
                       <span>{t('dashboard.myProperties')}</span>
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="h-auto py-4 flex-col gap-2"
+                      onClick={() => navigate('/browse-tenants')}
+                    >
+                      <Users className="w-6 h-6" />
+                      <span>{t('dashboard.browseTenants')}</span>
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="h-auto py-4 flex-col gap-2"
+                      onClick={() => navigate('/my-offers')}
+                    >
+                      <Send className="w-6 h-6" />
+                      <span>{t('dashboard.myOffers')}</span>
                     </Button>
                     <Button variant="outline" className="h-auto py-4 flex-col gap-2">
                       <Settings className="w-6 h-6" />
