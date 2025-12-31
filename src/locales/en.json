@@ -23,7 +23,8 @@
     "yes": "Yes",
     "no": "No",
     "or": "or",
-    "and": "and"
+    "and": "and",
+    "copied": "Copied!"
   },
   "nav": {
     "home": "Home",
@@ -277,5 +278,114 @@
       "subtitle": "Our team is here to help you choose the right plan",
       "cta": "Contact Us"
     }
+  },
+  "onboarding": {
+    "welcome": "Welcome to RentReverse!",
+    "chooseRole": "How would you like to use the platform?",
+    "success": "Success",
+    "roleSelected": "Profile selected successfully!",
+    "continue": "Continue",
+    "complete": "Profile Complete!",
+    "finish": "Finish",
+    "tenantCompleteDesc": "Your tenant profile is ready. You can now start receiving offers!",
+    "landlordCompleteDesc": "Your landlord profile is ready. You can now start finding tenants!",
+    "tenant": {
+      "title": "I'm a Tenant",
+      "description": "I'm looking for a place to rent",
+      "benefit1": "Create your rental request",
+      "benefit2": "Receive offers from verified landlords",
+      "benefit3": "Compare properties from home",
+      "benefit4": "Earn points through referrals"
+    },
+    "landlord": {
+      "title": "I'm a Landlord",
+      "description": "I have properties to rent out",
+      "benefit1": "Access pre-verified tenants",
+      "benefit2": "Send offers directly to interested parties",
+      "benefit3": "Save time with unnecessary viewings",
+      "benefit4": "Simplified property management"
+    },
+    "steps": {
+      "personal": {
+        "title": "Personal Information",
+        "description": "Tell us a bit about yourself"
+      },
+      "location": {
+        "title": "Location Preferences",
+        "description": "Where would you like to live?"
+      },
+      "preferences": {
+        "title": "Budget & Preferences",
+        "description": "Help us find the ideal property"
+      },
+      "lifestyle": {
+        "title": "Lifestyle",
+        "description": "Some additional information"
+      }
+    },
+    "landlordSteps": {
+      "personal": {
+        "title": "Personal Information",
+        "description": "Tell us a bit about yourself"
+      },
+      "business": {
+        "title": "Business Information",
+        "description": "Individual or company?"
+      },
+      "verification": {
+        "title": "Verification",
+        "description": "How many properties do you manage?"
+      }
+    },
+    "form": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "John Smith",
+      "phone": "Phone",
+      "profession": "Profession",
+      "professionPlaceholder": "Software Engineer",
+      "preferredLocations": "Preferred Locations",
+      "preferredLocationsPlaceholder": "London, Manchester, Bristol",
+      "preferredLocationsHint": "Separate locations with commas",
+      "monthlyIncome": "Monthly Income (€)",
+      "maxBudget": "Maximum Rent Budget (€)",
+      "moveInDate": "Expected Move-in Date",
+      "hasPets": "I Have Pets",
+      "hasPetsDesc": "Dogs, cats, or other animals",
+      "isSmoker": "I'm a Smoker",
+      "isSmokerDesc": "This information helps landlords make better matches",
+      "isCompany": "I'm a Company",
+      "isCompanyDesc": "Check if you manage properties through a company",
+      "companyName": "Company Name",
+      "companyNamePlaceholder": "Smith Properties Ltd",
+      "taxId": "Tax ID",
+      "propertiesCount": "Number of Properties",
+      "propertiesCountHint": "How many properties do you plan to manage?",
+      "nextSteps": "Next Steps",
+      "nextStep1": "Add your properties to the platform",
+      "nextStep2": "Configure your tenant preferences",
+      "nextStep3": "Start receiving applications!"
+    }
+  },
+  "dashboard": {
+    "welcome": "Hello",
+    "tenantAccount": "Tenant Account",
+    "landlordAccount": "Landlord Account",
+    "yourPoints": "Your Points",
+    "pointsEquivalent": "Equals {{months}} free month(s)",
+    "yourReferralCode": "Your Referral Code",
+    "shareCode": "Share Code",
+    "shareText": "Join RentReverse and find your ideal home!",
+    "linkCopied": "Link copied to clipboard!",
+    "referrals": "Referrals",
+    "referralsDesc": "Friends you've referred",
+    "completedReferrals": "{{count}} completed",
+    "quickActions": "Quick Actions",
+    "tenantQuickActionsDesc": "What would you like to do today?",
+    "landlordQuickActionsDesc": "Manage your properties and tenants",
+    "browseProperties": "Browse Properties",
+    "redeemPoints": "Redeem Points",
+    "editProfile": "Edit Profile",
+    "addProperty": "Add Property",
+    "myProperties": "My Properties"
   }
 }
