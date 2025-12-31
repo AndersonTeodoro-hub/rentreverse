@@ -173,6 +173,48 @@ export type Database = {
         }
         Relationships: []
       }
+      trust_scores: {
+        Row: {
+          address_verified: boolean | null
+          created_at: string
+          employment_verified: boolean | null
+          id: string
+          identity_verified: boolean | null
+          income_verified: boolean | null
+          last_calculated_at: string | null
+          reference_count: number | null
+          total_score: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          address_verified?: boolean | null
+          created_at?: string
+          employment_verified?: boolean | null
+          id?: string
+          identity_verified?: boolean | null
+          income_verified?: boolean | null
+          last_calculated_at?: string | null
+          reference_count?: number | null
+          total_score?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          address_verified?: boolean | null
+          created_at?: string
+          employment_verified?: boolean | null
+          id?: string
+          identity_verified?: boolean | null
+          income_verified?: boolean | null
+          last_calculated_at?: string | null
+          reference_count?: number | null
+          total_score?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_points: {
         Row: {
           created_at: string
@@ -200,6 +242,45 @@ export type Database = {
         }
         Relationships: []
       }
+      user_references: {
+        Row: {
+          created_at: string
+          id: string
+          reference_email: string
+          reference_name: string
+          reference_phone: string | null
+          relationship: string
+          status: Database["public"]["Enums"]["verification_status"]
+          user_id: string
+          verification_token: string | null
+          verified_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          reference_email: string
+          reference_name: string
+          reference_phone?: string | null
+          relationship: string
+          status?: Database["public"]["Enums"]["verification_status"]
+          user_id: string
+          verification_token?: string | null
+          verified_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          reference_email?: string
+          reference_name?: string
+          reference_phone?: string | null
+          relationship?: string
+          status?: Database["public"]["Enums"]["verification_status"]
+          user_id?: string
+          verification_token?: string | null
+          verified_at?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -221,11 +302,54 @@ export type Database = {
         }
         Relationships: []
       }
+      user_verifications: {
+        Row: {
+          created_at: string
+          document_url: string | null
+          expires_at: string | null
+          id: string
+          notes: string | null
+          points_awarded: number | null
+          status: Database["public"]["Enums"]["verification_status"]
+          type: Database["public"]["Enums"]["verification_type"]
+          updated_at: string
+          user_id: string
+          verified_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          document_url?: string | null
+          expires_at?: string | null
+          id?: string
+          notes?: string | null
+          points_awarded?: number | null
+          status?: Database["public"]["Enums"]["verification_status"]
+          type: Database["public"]["Enums"]["verification_type"]
+          updated_at?: string
+          user_id: string
+          verified_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          document_url?: string | null
+          expires_at?: string | null
+          id?: string
+          notes?: string | null
+          points_awarded?: number | null
+          status?: Database["public"]["Enums"]["verification_status"]
+          type?: Database["public"]["Enums"]["verification_type"]
+          updated_at?: string
+          user_id?: string
+          verified_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      calculate_trust_score: { Args: { _user_id: string }; Returns: number }
       generate_referral_code: { Args: never; Returns: string }
       get_user_role: {
         Args: { _user_id: string }
@@ -241,6 +365,13 @@ export type Database = {
     }
     Enums: {
       app_role: "tenant" | "landlord"
+      verification_status: "pending" | "approved" | "rejected" | "expired"
+      verification_type:
+        | "identity"
+        | "income"
+        | "employment"
+        | "reference"
+        | "address"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -369,6 +500,14 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["tenant", "landlord"],
+      verification_status: ["pending", "approved", "rejected", "expired"],
+      verification_type: [
+        "identity",
+        "income",
+        "employment",
+        "reference",
+        "address",
+      ],
     },
   },
 } as const
