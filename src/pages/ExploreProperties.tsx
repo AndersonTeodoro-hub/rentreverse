@@ -2,8 +2,10 @@ import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { Search, MapPin, Bed, Bath, Euro, Home, Filter, X, ArrowUpDown } from 'lucide-react';
+import { Search, MapPin, Bed, Bath, Euro, Home, Filter, X, ArrowUpDown, Heart } from 'lucide-react';
 import { Layout } from '@/components/layout';
+import { useAuth } from '@/hooks/useAuth';
+import { useSavedProperties } from '@/hooks/useSavedProperties';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
@@ -43,6 +45,8 @@ interface Property {
 
 export default function ExploreProperties() {
   const { t } = useTranslation();
+  const { user } = useAuth();
+  const { isSaved, toggleSave, isSaving } = useSavedProperties();
   const [searchCity, setSearchCity] = useState('');
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(5000);
@@ -325,25 +329,47 @@ export default function ExploreProperties() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {filteredProperties.map((property) => (
-                  <Link key={property.id} to={`/property/${property.id}`}>
-                    <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full">
-                      {/* Image */}
-                      <div className="relative h-48 bg-muted">
-                        {property.images && property.images.length > 0 ? (
-                          <img
-                            src={property.images[0]}
-                            alt={property.title}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div className="flex items-center justify-center h-full">
-                            <Home className="h-12 w-12 text-muted-foreground" />
-                          </div>
-                        )}
-                        <Badge className="absolute top-3 right-3 bg-primary">
-                          €{property.rent_amount}/mês
-                        </Badge>
-                      </div>
+                  <div key={property.id} className="relative">
+                    {/* Favorite Button */}
+                    {user && (
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          toggleSave(property.id);
+                        }}
+                        disabled={isSaving}
+                        className="absolute top-3 left-3 z-10 p-2 bg-background/80 backdrop-blur-sm rounded-full hover:bg-background transition-colors"
+                        aria-label={isSaved(property.id) ? t('favorites.remove') : t('favorites.save')}
+                      >
+                        <Heart
+                          className={`h-5 w-5 transition-colors ${
+                            isSaved(property.id)
+                              ? 'fill-red-500 text-red-500'
+                              : 'text-muted-foreground hover:text-red-500'
+                          }`}
+                        />
+                      </button>
+                    )}
+                    <Link to={`/property/${property.id}`}>
+                      <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full">
+                        {/* Image */}
+                        <div className="relative h-48 bg-muted">
+                          {property.images && property.images.length > 0 ? (
+                            <img
+                              src={property.images[0]}
+                              alt={property.title}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div className="flex items-center justify-center h-full">
+                              <Home className="h-12 w-12 text-muted-foreground" />
+                            </div>
+                          )}
+                          <Badge className="absolute top-3 right-3 bg-primary">
+                            €{property.rent_amount}/mês
+                          </Badge>
+                        </div>
 
                       <CardContent className="pt-4">
                         <h3 className="font-semibold text-lg mb-1 line-clamp-1">
@@ -389,6 +415,7 @@ export default function ExploreProperties() {
                       </CardFooter>
                     </Card>
                   </Link>
+                </div>
                 ))}
               </div>
             )}
