@@ -600,5 +600,21 @@
     "exploreNow": "Explore Properties",
     "loginRequired": "Login to view favorites",
     "loginRequiredDesc": "You need to log in to save and view your favorite properties."
+  },
+  "priceAlerts": {
+    "title": "Price Alerts",
+    "subtitle": "Price change notifications for your favorite properties",
+    "empty": "No price alerts",
+    "emptyDesc": "When the price of a favorite property changes, you'll be notified here.",
+    "viewFavorites": "View Favorites",
+    "loginRequired": "Login to view alerts",
+    "loginRequiredDesc": "You need to log in to view price alerts.",
+    "markAllRead": "Mark all as read",
+    "new": "New",
+    "unknownProperty": "Property"
+  },
+  "nav": {
+    "priceAlerts": "Price Alerts",
+    "favorites": "Favorites"
   }
 }
