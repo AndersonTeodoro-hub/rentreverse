@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import appI18n from '@/i18n';
 import { Menu, X, Bell, Heart, TrendingDown, MessageCircle, ShoppingBag } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -10,7 +11,7 @@ import { useNotificationCount } from '@/hooks/useNotificationCount';
 import { Badge } from '@/components/ui/badge';
 
 export function Header() {
-  const { t, ready } = useTranslation();
+  const { t, ready } = useTranslation('translation', { i18n: appI18n });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // Wait for translations to be ready

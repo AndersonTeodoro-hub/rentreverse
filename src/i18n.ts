@@ -43,4 +43,10 @@ i18n
     returnNull: false,
   });
 
+// Ensure bundles are present and hot-reload friendly (avoids showing keys like "nav.home")
+i18n.addResourceBundle('en', 'translation', en, true, true);
+i18n.addResourceBundle('pt', 'translation', pt, true, true);
+i18n.addResourceBundle('es', 'translation', es, true, true);
+i18n.addResourceBundle('fr', 'translation', fr, true, true);
+
 export default i18n;
