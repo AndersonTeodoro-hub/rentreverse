@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Bell, Heart, TrendingDown, MessageCircle, ShoppingBag } from 'lucide-react';
+import { Menu, X, Bell, Heart, TrendingDown, MessageCircle, ShoppingBag, Users } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { LanguageSelector } from '@/components/LanguageSelector';
@@ -13,7 +13,7 @@ import { Badge } from '@/components/ui/badge';
 export function Header() {
   const { t, ready } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, userRole } = useAuth();
   const { unreadCount } = useNotificationCount();
   const navigate = useNavigate();
 
@@ -22,13 +22,22 @@ export function Header() {
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
-  const navItems = [
+  const baseNavItems = [
     { to: '/', label: t('nav.home') },
     { to: '/explore-properties', label: t('nav.exploreProperties') },
     { to: '/how-it-works', label: t('nav.howItWorks') },
     { to: '/pricing', label: t('nav.pricing') },
     { to: '/services', label: t('nav.services'), icon: ShoppingBag },
   ];
+
+  // Add "Browse Tenants" for landlords
+  const navItems = userRole === 'landlord' 
+    ? [
+        ...baseNavItems.slice(0, 2),
+        { to: '/browse-tenants', label: t('nav.browseTenants'), icon: Users },
+        ...baseNavItems.slice(2)
+      ]
+    : baseNavItems;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-card/80 backdrop-blur-xl supports-[backdrop-filter]:bg-card/70 shadow-[0_1px_3px_0_hsl(var(--foreground)/0.03)]">
