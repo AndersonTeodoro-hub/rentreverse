@@ -70,64 +70,64 @@
   }
 
   .dark {
-    /* Primary Green - Lighter for dark mode */
-    --primary: 152 50% 50%;
-    --primary-foreground: 0 0% 10%;
+    /* Primary Green - Vibrante e luminoso para dark mode */
+    --primary: 152 65% 45%;
+    --primary-foreground: 0 0% 5%;
     
-    /* Secondary */
-    --secondary: 45 90% 55%;
-    --secondary-foreground: 0 0% 10%;
+    /* Secondary - Dourado intenso */
+    --secondary: 45 95% 50%;
+    --secondary-foreground: 0 0% 5%;
     
-    /* Background & Surface - Dark with green undertone */
-    --background: 160 10% 7%;
-    --foreground: 0 0% 95%;
+    /* Background & Surface - Verde escuro profundo premium */
+    --background: 155 25% 8%;
+    --foreground: 150 15% 95%;
     
-    /* Cards */
-    --card: 160 10% 11%;
-    --card-foreground: 0 0% 95%;
+    /* Cards - Verde escuro elevado */
+    --card: 155 20% 12%;
+    --card-foreground: 150 15% 95%;
     
     /* Popover */
-    --popover: 160 10% 9%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 155 22% 10%;
+    --popover-foreground: 150 15% 95%;
     
-    /* Muted */
-    --muted: 160 10% 16%;
-    --muted-foreground: 150 8% 55%;
+    /* Muted - Verde médio escuro */
+    --muted: 155 18% 18%;
+    --muted-foreground: 150 12% 60%;
     
-    /* Accent */
-    --accent: 152 30% 18%;
-    --accent-foreground: 152 50% 70%;
+    /* Accent - Verde brilhante para highlights */
+    --accent: 152 40% 20%;
+    --accent-foreground: 152 60% 70%;
     
     /* Destructive */
-    --destructive: 0 70% 45%;
+    --destructive: 0 75% 50%;
     --destructive-foreground: 0 0% 100%;
     
-    /* Borders */
-    --border: 160 10% 18%;
-    --input: 160 10% 18%;
-    --ring: 152 50% 50%;
+    /* Borders - Verde sutil */
+    --border: 152 15% 22%;
+    --input: 152 15% 22%;
+    --ring: 152 65% 45%;
     
-    /* Success */
-    --success: 152 50% 45%;
-    --success-foreground: 0 0% 100%;
+    /* Success - Verde luminoso */
+    --success: 152 60% 50%;
+    --success-foreground: 0 0% 5%;
     
     /* Warning */
-    --warning: 45 90% 55%;
-    --warning-foreground: 0 0% 10%;
+    --warning: 45 95% 50%;
+    --warning-foreground: 0 0% 5%;
     
     /* Info */
-    --info: 199 80% 55%;
-    --info-foreground: 0 0% 100%;
+    --info: 199 85% 55%;
+    --info-foreground: 0 0% 5%;
 
-    /* Sidebar */
-    --sidebar-background: 160 10% 9%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 152 50% 50%;
-    --sidebar-primary-foreground: 0 0% 10%;
-    --sidebar-accent: 152 30% 18%;
-    --sidebar-accent-foreground: 152 50% 70%;
-    --sidebar-border: 160 10% 16%;
-    --sidebar-ring: 152 50% 50%;
+    /* Sidebar - Verde escuro harmonizado */
+    --sidebar-background: 155 22% 10%;
+    --sidebar-foreground: 150 12% 90%;
+    --sidebar-primary: 152 65% 45%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 152 40% 20%;
+    --sidebar-accent-foreground: 152 60% 70%;
+    --sidebar-border: 152 15% 20%;
+    --sidebar-ring: 152 65% 45%;
   }
 }
 
@@ -216,7 +216,7 @@
     );
   }
 
-  /* Premium app background with mesh gradient effect */
+  /* Premium app background with mesh gradient effect - Light mode */
   .bg-app-premium {
     background: 
       radial-gradient(ellipse 100% 80% at 20% -20%, hsl(152 45% 65% / 0.35) 0%, transparent 55%),
@@ -225,7 +225,17 @@
       linear-gradient(180deg, hsl(145 35% 88%) 0%, hsl(148 30% 85%) 50%, hsl(150 32% 83%) 100%);
   }
 
-  /* Mesh gradient for hero sections */
+  /* Dark mode premium background */
+  .dark .bg-app-premium {
+    background: 
+      radial-gradient(ellipse 100% 80% at 15% -15%, hsl(152 50% 35% / 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse 90% 70% at 90% 110%, hsl(152 45% 30% / 0.35) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 60% at 50% 50%, hsl(155 30% 25% / 0.3) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 40% at 70% 20%, hsl(152 55% 40% / 0.15) 0%, transparent 45%),
+      linear-gradient(180deg, hsl(155 25% 8%) 0%, hsl(155 22% 10%) 50%, hsl(155 20% 12%) 100%);
+  }
+
+  /* Mesh gradient for hero sections - Light mode */
   .bg-mesh-gradient {
     background: 
       radial-gradient(at 30% 10%, hsl(152 50% 55% / 0.25) 0px, transparent 45%),
@@ -234,6 +244,17 @@
       radial-gradient(at 90% 80%, hsl(152 45% 58% / 0.18) 0px, transparent 45%),
       radial-gradient(at 50% 100%, hsl(148 38% 62% / 0.2) 0px, transparent 50%),
       linear-gradient(180deg, hsl(145 35% 88%) 0%, hsl(150 32% 83%) 100%);
+  }
+
+  /* Dark mode mesh gradient */
+  .dark .bg-mesh-gradient {
+    background: 
+      radial-gradient(at 25% 5%, hsl(152 60% 40% / 0.35) 0px, transparent 40%),
+      radial-gradient(at 80% 10%, hsl(145 50% 35% / 0.3) 0px, transparent 40%),
+      radial-gradient(at 5% 55%, hsl(150 45% 38% / 0.28) 0px, transparent 45%),
+      radial-gradient(at 95% 75%, hsl(152 55% 42% / 0.25) 0px, transparent 40%),
+      radial-gradient(at 50% 95%, hsl(148 50% 35% / 0.3) 0px, transparent 45%),
+      linear-gradient(180deg, hsl(155 25% 8%) 0%, hsl(155 20% 12%) 100%);
   }
 
   /* Subtle noise texture overlay */
@@ -245,5 +266,29 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 0;
+  }
+
+  .dark .bg-noise-texture::before {
+    opacity: 0.03;
+  }
+
+  /* Dark mode card shadows */
+  .dark .card-shadow {
+    box-shadow: 0 1px 3px 0 hsl(0 0% 0% / 0.3),
+                0 4px 12px -2px hsl(0 0% 0% / 0.4),
+                0 0 0 1px hsl(152 40% 30% / 0.15);
+  }
+
+  .dark .card-shadow-lg {
+    box-shadow: 0 4px 8px -2px hsl(0 0% 0% / 0.35),
+                0 12px 28px -6px hsl(0 0% 0% / 0.45),
+                0 0 0 1px hsl(152 40% 35% / 0.12);
+  }
+
+  .dark .card-shadow-premium {
+    box-shadow: 0 2px 6px -1px hsl(0 0% 0% / 0.35),
+                0 10px 24px -6px hsl(0 0% 0% / 0.45),
+                0 20px 40px -10px hsl(152 50% 30% / 0.2),
+                0 0 0 1px hsl(152 50% 40% / 0.15);
   }
 }
