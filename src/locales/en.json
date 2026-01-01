@@ -633,6 +633,26 @@
     "favorites": "Favorites",
     "messages": "Messages"
   },
+  "matching": {
+    "analyzing": "Analyzing tenants...",
+    "findingBestMatches": "Finding the best matches for your property",
+    "errorTitle": "Analysis Error",
+    "errorDescription": "Could not analyze tenants. Please try again.",
+    "noMatches": "No Matches",
+    "noMatchesDescription": "No active tenant requests found to analyze.",
+    "aiSuggestions": "AI Suggestions",
+    "matches": "matches",
+    "compatibilityScore": "Compatibility Score",
+    "budgetUpTo": "Up to",
+    "aiRecommendation": "💡 AI Recommendation",
+    "positiveFactors": "Positive Factors",
+    "concerns": "Concerns",
+    "hasPets": "Has pets",
+    "smoker": "Smoker",
+    "sendOffer": "Send Offer",
+    "getSuggestions": "Get AI Suggestions",
+    "selectPropertyFirst": "Select a property to see tenant suggestions"
+  },
   "aiVerification": {
     "title": "AI Verification",
     "description": "Automatic document analysis using artificial intelligence",

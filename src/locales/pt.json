@@ -633,6 +633,26 @@
     "favorites": "Favoritos",
     "messages": "Mensagens"
   },
+  "matching": {
+    "analyzing": "A analisar inquilinos...",
+    "findingBestMatches": "A encontrar os melhores matches para o seu imóvel",
+    "errorTitle": "Erro na análise",
+    "errorDescription": "Não foi possível analisar os inquilinos. Tente novamente.",
+    "noMatches": "Sem correspondências",
+    "noMatchesDescription": "Não foram encontrados pedidos de inquilinos ativos para analisar.",
+    "aiSuggestions": "Sugestões IA",
+    "matches": "matches",
+    "compatibilityScore": "Pontuação de compatibilidade",
+    "budgetUpTo": "Até",
+    "aiRecommendation": "💡 Recomendação IA",
+    "positiveFactors": "Fatores positivos",
+    "concerns": "Pontos de atenção",
+    "hasPets": "Tem animais",
+    "smoker": "Fumador",
+    "sendOffer": "Enviar Oferta",
+    "getSuggestions": "Obter Sugestões IA",
+    "selectPropertyFirst": "Selecione um imóvel para ver sugestões de inquilinos"
+  },
   "aiVerification": {
     "title": "Verificação com IA",
     "description": "Análise automática de documentos usando inteligência artificial",
