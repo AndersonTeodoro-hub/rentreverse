@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
     mode === "development" && componentTagger(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "robots.txt"],
+      includeAssets: ["favicon.ico", "robots.txt", "og-image.png", "screenshot-wide.png", "screenshot-mobile.png", "favicon-32x32.png", "favicon-16x16.png"],
       manifest: {
         name: "RentReverse - Arrendamento Invertido",
         short_name: "RentReverse",
