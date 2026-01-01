@@ -15,7 +15,7 @@
     --secondary-foreground: 0 0% 10%;
     
     /* Background & Surface - Verde Névoa Premium */
-    --background: 150 15% 98%;
+    --background: 150 20% 94%;
     --foreground: 210 11% 15%;
     
     /* Cards & Elevated surfaces - Pure white for contrast */
@@ -27,7 +27,7 @@
     --popover-foreground: 210 11% 15%;
     
     /* Muted elements - Harmonized with background */
-    --muted: 150 12% 95%;
+    --muted: 150 15% 90%;
     --muted-foreground: 210 11% 45%;
     
     /* Accent - Light green for highlights */
@@ -200,9 +200,9 @@
   .bg-premium-gradient {
     background: linear-gradient(
       180deg,
-      hsl(var(--accent) / 0.4) 0%,
-      hsl(var(--background)) 50%,
-      hsl(var(--accent) / 0.2) 100%
+      hsl(var(--accent) / 0.6) 0%,
+      hsl(var(--background)) 40%,
+      hsl(var(--accent) / 0.3) 100%
     );
   }
 
@@ -211,8 +211,39 @@
     background: linear-gradient(
       180deg,
       hsl(var(--background)) 0%,
-      hsl(var(--muted) / 0.5) 50%,
+      hsl(var(--muted) / 0.6) 50%,
       hsl(var(--background)) 100%
     );
+  }
+
+  /* Premium app background with mesh gradient effect */
+  .bg-app-premium {
+    background: 
+      radial-gradient(ellipse 80% 50% at 20% -10%, hsl(var(--primary) / 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, hsl(var(--success) / 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 30% at 50% 50%, hsl(var(--accent) / 0.15) 0%, transparent 70%),
+      hsl(var(--background));
+  }
+
+  /* Mesh gradient for hero sections */
+  .bg-mesh-gradient {
+    background: 
+      radial-gradient(at 40% 20%, hsl(var(--primary) / 0.12) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsl(var(--success) / 0.08) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsl(var(--accent) / 0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 100%, hsl(var(--primary) / 0.06) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsl(var(--success) / 0.08) 0px, transparent 50%),
+      hsl(var(--background));
+  }
+
+  /* Subtle noise texture overlay */
+  .bg-noise-texture::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.015;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
   }
 }
