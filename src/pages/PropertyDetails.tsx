@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { 
   Building2, MapPin, Euro, Bed, Bath, Maximize, Calendar,
   PawPrint, Cigarette, ChevronLeft, ChevronRight, ArrowLeft,
-  Send, Heart, Share2
+  Send, Heart, Share2, View
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,6 +17,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import SendOfferDialog from "@/components/SendOfferDialog";
 import { StartChatButton } from "@/components/chat/StartChatButton";
+import { VirtualTourEmbed } from "@/components/VirtualTourEmbed";
 
 const PropertyDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -213,6 +214,17 @@ const PropertyDetails = () => {
 
           {/* Action buttons */}
           <div className="absolute top-4 right-4 flex gap-2">
+            {/* Virtual Tour Button */}
+            {property.virtual_tour_type && property.virtual_tour_type !== 'none' && (
+              <VirtualTourEmbed
+                embedUrl={property.virtual_tour_url}
+                images360={property.virtual_tour_images}
+                tourType={property.virtual_tour_type as 'embed' | 'images'}
+                propertyId={property.id}
+                propertyTitle={property.title}
+                compact
+              />
+            )}
             <Button
               variant="secondary"
               size="icon"
@@ -312,6 +324,28 @@ const PropertyDetails = () => {
                   </Card>
                 )}
               </div>
+
+              <Separator />
+
+              {/* Virtual Tour Section */}
+              {property.virtual_tour_type && property.virtual_tour_type !== 'none' && (
+                <>
+                  <div>
+                    <h2 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                      <View className="h-5 w-5" />
+                      Visita Virtual 360°
+                    </h2>
+                    <VirtualTourEmbed
+                      embedUrl={property.virtual_tour_url}
+                      images360={property.virtual_tour_images}
+                      tourType={property.virtual_tour_type as 'embed' | 'images'}
+                      propertyId={property.id}
+                      propertyTitle={property.title}
+                    />
+                  </div>
+                  <Separator />
+                </>
+              )}
 
               <Separator />
 

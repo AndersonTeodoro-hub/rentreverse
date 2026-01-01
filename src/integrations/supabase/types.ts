@@ -484,6 +484,9 @@ export type Database = {
           title: string
           updated_at: string
           user_id: string
+          virtual_tour_images: string[] | null
+          virtual_tour_type: string | null
+          virtual_tour_url: string | null
         }
         Insert: {
           address: string
@@ -506,6 +509,9 @@ export type Database = {
           title: string
           updated_at?: string
           user_id: string
+          virtual_tour_images?: string[] | null
+          virtual_tour_type?: string | null
+          virtual_tour_url?: string | null
         }
         Update: {
           address?: string
@@ -528,6 +534,9 @@ export type Database = {
           title?: string
           updated_at?: string
           user_id?: string
+          virtual_tour_images?: string[] | null
+          virtual_tour_type?: string | null
+          virtual_tour_url?: string | null
         }
         Relationships: []
       }
@@ -1085,6 +1094,47 @@ export type Database = {
           verified_at?: string | null
         }
         Relationships: []
+      }
+      virtual_tour_views: {
+        Row: {
+          created_at: string
+          device_type: string | null
+          id: string
+          images_viewed: number | null
+          property_id: string
+          source: string | null
+          user_id: string | null
+          view_duration_seconds: number | null
+        }
+        Insert: {
+          created_at?: string
+          device_type?: string | null
+          id?: string
+          images_viewed?: number | null
+          property_id: string
+          source?: string | null
+          user_id?: string | null
+          view_duration_seconds?: number | null
+        }
+        Update: {
+          created_at?: string
+          device_type?: string | null
+          id?: string
+          images_viewed?: number | null
+          property_id?: string
+          source?: string | null
+          user_id?: string | null
+          view_duration_seconds?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "virtual_tour_views_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
