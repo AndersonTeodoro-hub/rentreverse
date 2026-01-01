@@ -9,10 +9,11 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { FileText, PenTool, Clock, CheckCircle, XCircle, AlertTriangle, Calendar, Download } from 'lucide-react';
+import { FileText, PenTool, Clock, CheckCircle, XCircle, AlertTriangle, Calendar, Download, Star, MessageSquare } from 'lucide-react';
 import { toast } from 'sonner';
-import { format } from 'date-fns';
+import { format, isPast } from 'date-fns';
 import ContractSignature from './ContractSignature';
+import { WriteReviewDialog } from './WriteReviewDialog';
 
 interface Contract {
   id: string;
@@ -45,6 +46,8 @@ const ContractManager = () => {
   const queryClient = useQueryClient();
   const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
   const [signDialogOpen, setSignDialogOpen] = useState(false);
+  const [reviewDialogOpen, setReviewDialogOpen] = useState(false);
+  const [reviewTarget, setReviewTarget] = useState<{ contractId: string; userId: string; name: string } | null>(null);
 
   const { data: contracts, isLoading } = useQuery({
     queryKey: ['contracts', user?.id],
@@ -131,6 +134,44 @@ const ContractManager = () => {
     if (contract.status !== 'signed' || !contract.renewal_reminder_date) return false;
     const reminderDate = new Date(contract.renewal_reminder_date);
     return reminderDate <= new Date();
+  };
+
+  const canReview = (contract: Contract) => {
+    // Can review if contract is signed/completed and end date has passed
+    return contract.status === 'signed' && isPast(new Date(contract.end_date));
+  };
+
+  const openReviewDialog = async (contract: Contract) => {
+    // Get the other party's info
+    const isLandlord = user?.id === contract.landlord_id;
+    const targetUserId = isLandlord ? contract.tenant_id : contract.landlord_id;
+    
+    // Check if already reviewed
+    const { data: existing } = await supabase
+      .from('rental_reviews')
+      .select('id')
+      .eq('contract_id', contract.id)
+      .eq('reviewer_id', user?.id)
+      .maybeSingle();
+    
+    if (existing) {
+      toast.info('Já avaliou esta pessoa para este contrato');
+      return;
+    }
+
+    // Get target name
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('full_name')
+      .eq('user_id', targetUserId)
+      .maybeSingle();
+
+    setReviewTarget({
+      contractId: contract.id,
+      userId: targetUserId,
+      name: profile?.full_name || 'Utilizador',
+    });
+    setReviewDialogOpen(true);
   };
 
   const handleDownload = (contract: Contract) => {
@@ -268,16 +309,39 @@ const ContractManager = () => {
                   )}
 
                   {contract.status === 'signed' && (
-                    <Button variant="outline" size="sm" onClick={() => handleDownload(contract)}>
-                      <Download className="h-4 w-4 mr-2" />
-                      {t('contracts.download')}
-                    </Button>
+                    <>
+                      <Button variant="outline" size="sm" onClick={() => handleDownload(contract)}>
+                        <Download className="h-4 w-4 mr-2" />
+                        {t('contracts.download')}
+                      </Button>
+                      {canReview(contract) && (
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => openReviewDialog(contract)}
+                        >
+                          <Star className="h-4 w-4 mr-2" />
+                          Avaliar
+                        </Button>
+                      )}
+                    </>
                   )}
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
+      )}
+      {/* Review Dialog */}
+      {reviewTarget && (
+        <WriteReviewDialog
+          open={reviewDialogOpen}
+          onOpenChange={setReviewDialogOpen}
+          contractId={reviewTarget.contractId}
+          reviewedId={reviewTarget.userId}
+          reviewedName={reviewTarget.name}
+          reviewerRole={userRole as 'landlord' | 'tenant'}
+        />
       )}
     </div>
   );
