@@ -4,6 +4,7 @@ import { Menu, X, Bell, Heart, TrendingDown, MessageCircle, ShoppingBag } from '
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { LanguageSelector } from '@/components/LanguageSelector';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { useAuth } from '@/hooks/useAuth';
 import { useNotificationCount } from '@/hooks/useNotificationCount';
 import { Badge } from '@/components/ui/badge';
@@ -64,6 +65,7 @@ export function Header() {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           <LanguageSelector />
           {user ? (
             <>
@@ -125,6 +127,7 @@ export function Header() {
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center gap-2">
+          <ThemeToggle />
           <LanguageSelector />
           {user && (
             <Button
