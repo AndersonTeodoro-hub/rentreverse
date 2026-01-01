@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Home, Building2, Gift, Settings, LogOut, Share2, Shield, Users, FileText, Send, ScrollText, ShieldCheck } from "lucide-react";
+import { Home, Building2, Gift, Settings, LogOut, Share2, Shield, Users, FileText, Send, ScrollText, ShieldCheck, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Layout } from "@/components/layout";
@@ -291,9 +291,13 @@ const Dashboard = () => {
                       <Send className="w-6 h-6" />
                       <span>{t('dashboard.myOffers')}</span>
                     </Button>
-                    <Button variant="outline" className="h-auto py-4 flex-col gap-2">
-                      <Gift className="w-6 h-6" />
-                      <span>{t('dashboard.redeemPoints')}</span>
+                    <Button 
+                      variant="outline" 
+                      className="h-auto py-4 flex-col gap-2"
+                      onClick={() => navigate('/services')}
+                    >
+                      <ShoppingBag className="w-6 h-6" />
+                      <span>Serviços</span>
                     </Button>
                     <Button variant="outline" className="h-auto py-4 flex-col gap-2">
                       <Settings className="w-6 h-6" />
@@ -341,6 +345,14 @@ const Dashboard = () => {
                     >
                       <ShieldCheck className="w-6 h-6 text-primary" />
                       <span>{t('rentGuarantee.title')}</span>
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="h-auto py-4 flex-col gap-2"
+                      onClick={() => navigate('/services')}
+                    >
+                      <ShoppingBag className="w-6 h-6" />
+                      <span>Serviços</span>
                     </Button>
                   </>
                 )}

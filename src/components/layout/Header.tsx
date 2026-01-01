@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Bell, Heart, TrendingDown, MessageCircle } from 'lucide-react';
+import { Menu, X, Bell, Heart, TrendingDown, MessageCircle, ShoppingBag } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { LanguageSelector } from '@/components/LanguageSelector';
@@ -52,6 +52,13 @@ export function Header() {
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
             {t('nav.pricing')}
+          </Link>
+          <Link
+            to="/services"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
+          >
+            <ShoppingBag className="h-4 w-4" />
+            Serviços
           </Link>
         </nav>
 
@@ -178,6 +185,14 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               {t('nav.pricing')}
+            </Link>
+            <Link
+              to="/services"
+              className="text-sm font-medium text-muted-foreground py-2 flex items-center gap-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <ShoppingBag className="h-4 w-4" />
+              Serviços
             </Link>
             <div className="flex flex-col gap-2 pt-3 border-t border-border">
               <Button variant="outline" asChild className="w-full">

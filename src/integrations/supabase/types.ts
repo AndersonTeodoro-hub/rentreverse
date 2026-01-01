@@ -715,6 +715,119 @@ export type Database = {
         }
         Relationships: []
       }
+      service_clicks: {
+        Row: {
+          clicked_at: string
+          commission_earned: number | null
+          converted: boolean | null
+          converted_at: string | null
+          id: string
+          provider_id: string
+          referrer: string | null
+          source_page: string | null
+          user_id: string | null
+        }
+        Insert: {
+          clicked_at?: string
+          commission_earned?: number | null
+          converted?: boolean | null
+          converted_at?: string | null
+          id?: string
+          provider_id: string
+          referrer?: string | null
+          source_page?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          clicked_at?: string
+          commission_earned?: number | null
+          converted?: boolean | null
+          converted_at?: string | null
+          id?: string
+          provider_id?: string
+          referrer?: string | null
+          source_page?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_clicks_provider_id_fkey"
+            columns: ["provider_id"]
+            isOneToOne: false
+            referencedRelation: "service_providers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      service_providers: {
+        Row: {
+          affiliate_code: string | null
+          affiliate_url: string
+          category: Database["public"]["Enums"]["service_category"]
+          commission_type: string | null
+          commission_value: number | null
+          created_at: string
+          description: string | null
+          discount_percentage: number | null
+          featured: boolean | null
+          id: string
+          logo_url: string | null
+          name: string
+          offer_description: string | null
+          offer_title: string | null
+          priority: number | null
+          rating: number | null
+          reviews_count: number | null
+          status: Database["public"]["Enums"]["service_status"]
+          subcategory: string | null
+          updated_at: string
+        }
+        Insert: {
+          affiliate_code?: string | null
+          affiliate_url: string
+          category: Database["public"]["Enums"]["service_category"]
+          commission_type?: string | null
+          commission_value?: number | null
+          created_at?: string
+          description?: string | null
+          discount_percentage?: number | null
+          featured?: boolean | null
+          id?: string
+          logo_url?: string | null
+          name: string
+          offer_description?: string | null
+          offer_title?: string | null
+          priority?: number | null
+          rating?: number | null
+          reviews_count?: number | null
+          status?: Database["public"]["Enums"]["service_status"]
+          subcategory?: string | null
+          updated_at?: string
+        }
+        Update: {
+          affiliate_code?: string | null
+          affiliate_url?: string
+          category?: Database["public"]["Enums"]["service_category"]
+          commission_type?: string | null
+          commission_value?: number | null
+          created_at?: string
+          description?: string | null
+          discount_percentage?: number | null
+          featured?: boolean | null
+          id?: string
+          logo_url?: string | null
+          name?: string
+          offer_description?: string | null
+          offer_title?: string | null
+          priority?: number | null
+          rating?: number | null
+          reviews_count?: number | null
+          status?: Database["public"]["Enums"]["service_status"]
+          subcategory?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       tenant_profiles: {
         Row: {
           created_at: string
@@ -1014,6 +1127,8 @@ export type Database = {
         | "expired"
         | "cancelled"
       property_status: "active" | "rented" | "inactive"
+      service_category: "moving" | "cleaning" | "insurance" | "utilities"
+      service_status: "active" | "inactive" | "pending"
       verification_status: "pending" | "approved" | "rejected" | "expired"
       verification_type:
         | "identity"
@@ -1160,6 +1275,8 @@ export const Constants = {
       ],
       offer_status: ["pending", "accepted", "rejected", "expired", "cancelled"],
       property_status: ["active", "rented", "inactive"],
+      service_category: ["moving", "cleaning", "insurance", "utilities"],
+      service_status: ["active", "inactive", "pending"],
       verification_status: ["pending", "approved", "rejected", "expired"],
       verification_type: [
         "identity",
