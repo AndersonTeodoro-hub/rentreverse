@@ -14,6 +14,136 @@ export type Database = {
   }
   public: {
     Tables: {
+      contract_templates: {
+        Row: {
+          content: string
+          country_code: string
+          country_name: string
+          created_at: string
+          id: string
+          is_active: boolean | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content: string
+          country_code: string
+          country_name: string
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          country_code?: string
+          country_name?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      contracts: {
+        Row: {
+          content: string
+          created_at: string
+          deposit_amount: number | null
+          end_date: string
+          id: string
+          landlord_id: string
+          landlord_ip: string | null
+          landlord_signature: string | null
+          landlord_signed_at: string | null
+          offer_id: string | null
+          property_id: string
+          renewal_reminder_date: string | null
+          renewal_reminder_sent: boolean | null
+          rent_amount: number
+          start_date: string
+          status: string
+          template_id: string | null
+          tenant_id: string
+          tenant_ip: string | null
+          tenant_signature: string | null
+          tenant_signed_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          deposit_amount?: number | null
+          end_date: string
+          id?: string
+          landlord_id: string
+          landlord_ip?: string | null
+          landlord_signature?: string | null
+          landlord_signed_at?: string | null
+          offer_id?: string | null
+          property_id: string
+          renewal_reminder_date?: string | null
+          renewal_reminder_sent?: boolean | null
+          rent_amount: number
+          start_date: string
+          status?: string
+          template_id?: string | null
+          tenant_id: string
+          tenant_ip?: string | null
+          tenant_signature?: string | null
+          tenant_signed_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          deposit_amount?: number | null
+          end_date?: string
+          id?: string
+          landlord_id?: string
+          landlord_ip?: string | null
+          landlord_signature?: string | null
+          landlord_signed_at?: string | null
+          offer_id?: string | null
+          property_id?: string
+          renewal_reminder_date?: string | null
+          renewal_reminder_sent?: boolean | null
+          rent_amount?: number
+          start_date?: string
+          status?: string
+          template_id?: string | null
+          tenant_id?: string
+          tenant_ip?: string | null
+          tenant_signature?: string | null
+          tenant_signed_at?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contracts_offer_id_fkey"
+            columns: ["offer_id"]
+            isOneToOne: false
+            referencedRelation: "offers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contracts_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contracts_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "contract_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       conversations: {
         Row: {
           created_at: string

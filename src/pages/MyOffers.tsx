@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { 
   Mail, Check, X, Clock, Home, Euro, Calendar, 
-  MessageSquare, Phone, User, ChevronDown, ChevronUp
+  MessageSquare, Phone, User, ChevronDown, ChevronUp, FileText
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,6 +17,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import CreateContractDialog from "@/components/CreateContractDialog";
 
 type OfferStatus = 'pending' | 'accepted' | 'rejected' | 'expired' | 'cancelled';
 
@@ -302,6 +303,21 @@ const MyOffers = () => {
                   <Check className="w-4 h-4 mr-1" />
                   {t('offers.accept')}
                 </Button>
+              </div>
+            )}
+
+            {/* Create contract button for accepted offers (landlord only) */}
+            {offer.status === 'accepted' && userRole === 'landlord' && (
+              <div className="pt-2">
+                <CreateContractDialog 
+                  offerId={offer.id}
+                  trigger={
+                    <Button className="w-full">
+                      <FileText className="w-4 h-4 mr-2" />
+                      {t('contracts.createContract')}
+                    </Button>
+                  }
+                />
               </div>
             )}
           </CardContent>
