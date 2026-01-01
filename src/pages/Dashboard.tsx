@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Home, Building2, Gift, Settings, LogOut, Share2, Shield, Users, FileText, Send, ScrollText } from "lucide-react";
+import { Home, Building2, Gift, Settings, LogOut, Share2, Shield, Users, FileText, Send, ScrollText, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Layout } from "@/components/layout";
@@ -333,6 +333,14 @@ const Dashboard = () => {
                     >
                       <ScrollText className="w-6 h-6" />
                       <span>{t('contracts.title')}</span>
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="h-auto py-4 flex-col gap-2 border-primary/50 bg-primary/5"
+                      onClick={() => navigate('/rent-guarantee')}
+                    >
+                      <ShieldCheck className="w-6 h-6 text-primary" />
+                      <span>{t('rentGuarantee.title')}</span>
                     </Button>
                   </>
                 )}

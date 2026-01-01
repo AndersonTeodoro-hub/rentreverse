@@ -24,6 +24,7 @@ import MyFavorites from "./pages/MyFavorites";
 import PriceAlerts from "./pages/PriceAlerts";
 import Messages from "./pages/Messages";
 import Contracts from "./pages/Contracts";
+import RentGuarantee from "./pages/RentGuarantee";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -55,6 +56,7 @@ const App = () => (
               <Route path="/price-alerts" element={<PriceAlerts />} />
               <Route path="/messages" element={<Messages />} />
               <Route path="/contracts" element={<Contracts />} />
+              <Route path="/rent-guarantee" element={<RentGuarantee />} />
               <Route path="/property/:id" element={<PropertyDetails />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

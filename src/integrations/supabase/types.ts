@@ -192,6 +192,68 @@ export type Database = {
           },
         ]
       }
+      guarantee_claims: {
+        Row: {
+          amount_approved: number | null
+          amount_claimed: number
+          claim_type: string
+          created_at: string
+          evidence_urls: string[] | null
+          guarantee_id: string
+          id: string
+          landlord_id: string
+          months_unpaid: number
+          notes: string | null
+          paid_at: string | null
+          reviewed_at: string | null
+          status: Database["public"]["Enums"]["claim_status"]
+          submitted_at: string
+          updated_at: string
+        }
+        Insert: {
+          amount_approved?: number | null
+          amount_claimed: number
+          claim_type?: string
+          created_at?: string
+          evidence_urls?: string[] | null
+          guarantee_id: string
+          id?: string
+          landlord_id: string
+          months_unpaid: number
+          notes?: string | null
+          paid_at?: string | null
+          reviewed_at?: string | null
+          status?: Database["public"]["Enums"]["claim_status"]
+          submitted_at?: string
+          updated_at?: string
+        }
+        Update: {
+          amount_approved?: number | null
+          amount_claimed?: number
+          claim_type?: string
+          created_at?: string
+          evidence_urls?: string[] | null
+          guarantee_id?: string
+          id?: string
+          landlord_id?: string
+          months_unpaid?: number
+          notes?: string | null
+          paid_at?: string | null
+          reviewed_at?: string | null
+          status?: Database["public"]["Enums"]["claim_status"]
+          submitted_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "guarantee_claims_guarantee_id_fkey"
+            columns: ["guarantee_id"]
+            isOneToOne: false
+            referencedRelation: "rent_guarantees"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       landlord_profiles: {
         Row: {
           company_name: string | null
@@ -519,6 +581,89 @@ export type Database = {
           status?: string | null
         }
         Relationships: []
+      }
+      rent_guarantees: {
+        Row: {
+          annual_premium: number
+          base_premium_rate: number
+          contract_id: string
+          coverage_end_date: string | null
+          coverage_months: number
+          coverage_start_date: string | null
+          created_at: string
+          final_premium_rate: number
+          has_open_banking: boolean | null
+          id: string
+          insurer_policy_number: string | null
+          insurer_reference: string | null
+          landlord_id: string
+          max_coverage_amount: number | null
+          monthly_rent: number
+          property_id: string
+          quote_valid_until: string | null
+          status: Database["public"]["Enums"]["guarantee_status"]
+          tenant_id: string
+          tenant_trust_score: number | null
+          trust_score_discount: number | null
+          updated_at: string
+        }
+        Insert: {
+          annual_premium: number
+          base_premium_rate?: number
+          contract_id: string
+          coverage_end_date?: string | null
+          coverage_months?: number
+          coverage_start_date?: string | null
+          created_at?: string
+          final_premium_rate: number
+          has_open_banking?: boolean | null
+          id?: string
+          insurer_policy_number?: string | null
+          insurer_reference?: string | null
+          landlord_id: string
+          max_coverage_amount?: number | null
+          monthly_rent: number
+          property_id: string
+          quote_valid_until?: string | null
+          status?: Database["public"]["Enums"]["guarantee_status"]
+          tenant_id: string
+          tenant_trust_score?: number | null
+          trust_score_discount?: number | null
+          updated_at?: string
+        }
+        Update: {
+          annual_premium?: number
+          base_premium_rate?: number
+          contract_id?: string
+          coverage_end_date?: string | null
+          coverage_months?: number
+          coverage_start_date?: string | null
+          created_at?: string
+          final_premium_rate?: number
+          has_open_banking?: boolean | null
+          id?: string
+          insurer_policy_number?: string | null
+          insurer_reference?: string | null
+          landlord_id?: string
+          max_coverage_amount?: number | null
+          monthly_rent?: number
+          property_id?: string
+          quote_valid_until?: string | null
+          status?: Database["public"]["Enums"]["guarantee_status"]
+          tenant_id?: string
+          tenant_trust_score?: number | null
+          trust_score_discount?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rent_guarantees_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       saved_properties: {
         Row: {
@@ -849,6 +994,19 @@ export type Database = {
     }
     Enums: {
       app_role: "tenant" | "landlord"
+      claim_status:
+        | "pending"
+        | "under_review"
+        | "approved"
+        | "paid"
+        | "rejected"
+      guarantee_status:
+        | "pending"
+        | "quoted"
+        | "active"
+        | "claimed"
+        | "expired"
+        | "cancelled"
       offer_status:
         | "pending"
         | "accepted"
@@ -991,6 +1149,15 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["tenant", "landlord"],
+      claim_status: ["pending", "under_review", "approved", "paid", "rejected"],
+      guarantee_status: [
+        "pending",
+        "quoted",
+        "active",
+        "claimed",
+        "expired",
+        "cancelled",
+      ],
       offer_status: ["pending", "accepted", "rejected", "expired", "cancelled"],
       property_status: ["active", "rented", "inactive"],
       verification_status: ["pending", "approved", "rejected", "expired"],
