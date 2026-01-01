@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { 
   Search, Filter, MapPin, Euro, Bed, Calendar, 
-  Heart, HeartOff, Send, ChevronRight, Users
+  Heart, HeartOff, Send, ChevronRight, Users, MessageCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +17,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import TrustScoreBadge from "@/components/TrustScoreBadge";
 import SendOfferDialog from "@/components/SendOfferDialog";
+import { StartChatButton } from "@/components/chat/StartChatButton";
 
 interface TenantWithDetails {
   user_id: string;
@@ -326,9 +327,13 @@ const BrowseTenants = () => {
                         )}
                         {isSaved ? t('browseTenants.unsave') : t('browseTenants.save')}
                       </Button>
+                      <StartChatButton 
+                        otherUserId={tenant.user_id}
+                        variant="outline"
+                        size="sm"
+                      />
                       <Button 
-                        size="sm" 
-                        className="flex-1"
+                        size="sm"
                         onClick={() => handleSendOffer(tenant)}
                       >
                         <Send className="w-4 h-4 mr-1" />

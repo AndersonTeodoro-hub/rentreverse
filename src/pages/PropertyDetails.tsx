@@ -16,6 +16,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import SendOfferDialog from "@/components/SendOfferDialog";
+import { StartChatButton } from "@/components/chat/StartChatButton";
 
 const PropertyDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -403,14 +404,22 @@ const PropertyDetails = () => {
 
                   {/* Action buttons */}
                   {user && userRole === 'tenant' && property.user_id !== user.id && (
-                    <Button 
-                      className="w-full" 
-                      size="lg"
-                      onClick={() => setOfferDialogOpen(true)}
-                    >
-                      <Send className="w-4 h-4 mr-2" />
-                      {t('property.contactLandlord')}
-                    </Button>
+                    <div className="space-y-2">
+                      <Button 
+                        className="w-full" 
+                        size="lg"
+                        onClick={() => setOfferDialogOpen(true)}
+                      >
+                        <Send className="w-4 h-4 mr-2" />
+                        {t('property.contactLandlord')}
+                      </Button>
+                      <StartChatButton 
+                        otherUserId={property.user_id}
+                        propertyId={property.id}
+                        variant="outline"
+                        className="w-full"
+                      />
+                    </div>
                   )}
 
                   {!user && (

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Bell, Heart, TrendingDown } from 'lucide-react';
+import { Menu, X, Bell, Heart, TrendingDown, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { LanguageSelector } from '@/components/LanguageSelector';
@@ -60,6 +60,14 @@ export function Header() {
           <LanguageSelector />
           {user ? (
             <>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => navigate('/messages')}
+                aria-label={t('nav.messages')}
+              >
+                <MessageCircle className="h-5 w-5" />
+              </Button>
               <Button
                 variant="ghost"
                 size="icon"

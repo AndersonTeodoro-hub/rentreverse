@@ -613,8 +613,24 @@
     "new": "New",
     "unknownProperty": "Property"
   },
+  "chat": {
+    "title": "Messages",
+    "subtitle": "Chat directly with tenants and landlords",
+    "conversations": "Conversations",
+    "noConversations": "No conversations yet",
+    "noMessages": "No messages",
+    "startConversation": "Send a message to start the conversation",
+    "selectConversation": "Select a conversation",
+    "selectConversationDesc": "Choose a conversation from the list to view messages",
+    "messagePlaceholder": "Type a message...",
+    "sendMessage": "Send Message",
+    "you": "You",
+    "unknownUser": "User",
+    "loginRequired": "Login to send messages"
+  },
   "nav": {
     "priceAlerts": "Price Alerts",
-    "favorites": "Favorites"
+    "favorites": "Favorites",
+    "messages": "Messages"
   }
 }
