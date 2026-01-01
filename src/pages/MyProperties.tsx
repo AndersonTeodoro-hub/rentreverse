@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { 
   Building2, Plus, Edit, Trash2, MapPin, Euro, Bed, 
   Bath, Maximize, Calendar, PawPrint, Cigarette, MoreVertical,
-  Upload, X, Image as ImageIcon, Sparkles
+  Upload, X, Image as ImageIcon, Sparkles, View
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,6 +23,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import AIMatchingSuggestions from "@/components/AIMatchingSuggestions";
 import SendOfferDialog from "@/components/SendOfferDialog";
+import { VirtualTourUpload } from "@/components/VirtualTourUpload";
 type PropertyStatus = 'active' | 'rented' | 'inactive';
 
 interface Property {
@@ -42,6 +43,9 @@ interface Property {
   smoking_allowed: boolean;
   status: PropertyStatus;
   images: string[] | null;
+  virtual_tour_type: string | null;
+  virtual_tour_url: string | null;
+  virtual_tour_images: string[] | null;
   created_at: string;
 }
 
@@ -93,6 +97,11 @@ const MyProperties = () => {
   const [matchingPropertyId, setMatchingPropertyId] = useState<string | null>(null);
   const [offerDialogOpen, setOfferDialogOpen] = useState(false);
   const [selectedTenantForOffer, setSelectedTenantForOffer] = useState<{id: string; userId: string; name: string} | null>(null);
+  const [virtualTourData, setVirtualTourData] = useState({
+    virtual_tour_type: 'none',
+    virtual_tour_url: null as string | null,
+    virtual_tour_images: [] as string[],
+  });
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -141,6 +150,9 @@ const MyProperties = () => {
         pets_allowed: data.pets_allowed,
         smoking_allowed: data.smoking_allowed,
         images: uploadedImages.length > 0 ? uploadedImages : null,
+        virtual_tour_type: virtualTourData.virtual_tour_type,
+        virtual_tour_url: virtualTourData.virtual_tour_url,
+        virtual_tour_images: virtualTourData.virtual_tour_images.length > 0 ? virtualTourData.virtual_tour_images : null,
       };
 
       if (editingProperty) {
@@ -162,6 +174,7 @@ const MyProperties = () => {
       setEditingProperty(null);
       setFormData(emptyForm);
       setUploadedImages([]);
+      setVirtualTourData({ virtual_tour_type: 'none', virtual_tour_url: null, virtual_tour_images: [] });
       toast({
         title: editingProperty ? t('properties.updated') : t('properties.created'),
         description: editingProperty ? t('properties.updatedDesc') : t('properties.createdDesc'),
@@ -226,6 +239,11 @@ const MyProperties = () => {
       smoking_allowed: property.smoking_allowed,
     });
     setUploadedImages(property.images || []);
+    setVirtualTourData({
+      virtual_tour_type: property.virtual_tour_type || 'none',
+      virtual_tour_url: property.virtual_tour_url,
+      virtual_tour_images: property.virtual_tour_images || [],
+    });
     setDialogOpen(true);
   };
 
@@ -233,6 +251,7 @@ const MyProperties = () => {
     setEditingProperty(null);
     setFormData(emptyForm);
     setUploadedImages([]);
+    setVirtualTourData({ virtual_tour_type: 'none', virtual_tour_url: null, virtual_tour_images: [] });
     setDialogOpen(true);
   };
 
@@ -722,6 +741,15 @@ const MyProperties = () => {
                   onCheckedChange={(v) => setFormData(prev => ({ ...prev, smoking_allowed: v }))}
                 />
               </div>
+
+              {/* Virtual Tour Section */}
+              <VirtualTourUpload
+                propertyId={editingProperty?.id}
+                currentTourType={virtualTourData.virtual_tour_type}
+                currentEmbedUrl={virtualTourData.virtual_tour_url || ''}
+                currentImages={virtualTourData.virtual_tour_images}
+                onUpdate={(data) => setVirtualTourData(data)}
+              />
             </div>
           </div>
 
