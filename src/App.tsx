@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import NotificationProvider from "@/components/NotificationProvider";
+import { OfflineIndicator } from "@/components/OfflineIndicator";
+import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 import Index from "./pages/Index";
 import HowItWorks from "./pages/HowItWorks";
 import Pricing from "./pages/Pricing";
@@ -26,6 +28,7 @@ import Messages from "./pages/Messages";
 import Contracts from "./pages/Contracts";
 import RentGuarantee from "./pages/RentGuarantee";
 import ServicesMarketplace from "./pages/ServicesMarketplace";
+import Install from "./pages/Install";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +41,7 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <NotificationProvider>
+            <OfflineIndicator />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/how-it-works" element={<HowItWorks />} />
@@ -59,10 +63,12 @@ const App = () => (
               <Route path="/contracts" element={<Contracts />} />
               <Route path="/rent-guarantee" element={<RentGuarantee />} />
               <Route path="/services" element={<ServicesMarketplace />} />
+              <Route path="/install" element={<Install />} />
               <Route path="/property/:id" element={<PropertyDetails />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <PWAInstallPrompt variant="banner" />
           </NotificationProvider>
         </AuthProvider>
       </BrowserRouter>
