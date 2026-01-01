@@ -11,3 +11,6 @@ verify_jwt = true
 
 [functions.calculate-guarantee-premium]
 verify_jwt = true
+
+[functions.analyze-tenant-risk]
+verify_jwt = true
