@@ -632,11 +632,6 @@
     "unknownUser": "User",
     "loginRequired": "Login to send messages"
   },
-  "nav": {
-    "priceAlerts": "Price Alerts",
-    "favorites": "Favorites",
-    "messages": "Messages"
-  },
   "matching": {
     "analyzing": "Analyzing tenants...",
     "findingBestMatches": "Finding the best matches for your property",
