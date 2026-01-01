@@ -38,7 +38,11 @@
     "profile": "Perfil",
     "settings": "Configuración",
     "logout": "Cerrar sesión",
-    "exploreProperties": "Explorar Propiedades"
+    "exploreProperties": "Explorar Propiedades",
+    "services": "Servicios",
+    "messages": "Mensajes",
+    "favorites": "Favoritos",
+    "priceAlerts": "Alertas de Precio"
   },
   "hero": {
     "title": "La Forma Inversa de Alquilar",
