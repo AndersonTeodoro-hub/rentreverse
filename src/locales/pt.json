@@ -282,7 +282,25 @@
     "faq": {
       "title": "Tem dúvidas?",
       "subtitle": "A nossa equipa está aqui para ajudar a escolher o plano certo",
-      "cta": "Contacte-nos"
+      "cta": "Contacte-nos",
+      "sectionTitle": "Perguntas Frequentes",
+      "sectionSubtitle": "Tudo o que precisa saber sobre os nossos planos",
+      "questions": {
+        "trustScore": "Como funciona o Trust Score?",
+        "cancel": "Posso cancelar a qualquer momento?",
+        "freePlan": "O que está incluído no plano gratuito?",
+        "verification": "Como são verificados os inquilinos?",
+        "time": "Quanto tempo até receber ofertas?",
+        "changePlan": "Posso mudar de plano depois?"
+      },
+      "answers": {
+        "trustScore": "O Trust Score é calculado com base nas suas verificações de perfil (identidade, rendimentos, emprego, referências). Quanto mais informações verificadas tiver, maior será a sua pontuação, tornando-o mais atrativo para os proprietários.",
+        "cancel": "Sim, pode cancelar a sua assinatura a qualquer momento. A sua conta permanecerá ativa até ao final do período de faturação.",
+        "freePlan": "O plano gratuito inclui criação de perfil básico, capacidade de receber ofertas e acesso às funcionalidades essenciais. Os planos Premium oferecem visibilidade melhorada e posicionamento prioritário.",
+        "verification": "Os inquilinos são verificados através do envio de documentos (ID, comprovativos de rendimentos, cartas de emprego) e referências pessoais. A nossa equipa analisa cada documento para garantir a autenticidade.",
+        "time": "A maioria dos inquilinos com perfis completos recebe as primeiras ofertas em 48-72 horas. Trust Scores mais elevados resultam tipicamente em ofertas mais rápidas e numerosas.",
+        "changePlan": "Claro! Pode fazer upgrade ou downgrade do seu plano a qualquer momento. As alterações entram em vigor no início do próximo ciclo de faturação."
+      }
     }
   },
   "onboarding": {
@@ -809,27 +827,5 @@
     "noResultsDesc": "Tente ajustar os filtros para ver mais resultados",
     "excellent": "Excelente",
     "good": "Bom"
-  },
-  "pricing": {
-    "faq": {
-      "sectionTitle": "Perguntas Frequentes",
-      "sectionSubtitle": "Tudo o que precisa saber sobre os nossos planos",
-      "questions": {
-        "trustScore": "Como funciona o Trust Score?",
-        "cancel": "Posso cancelar a qualquer momento?",
-        "freePlan": "O que está incluído no plano gratuito?",
-        "verification": "Como são verificados os inquilinos?",
-        "time": "Quanto tempo até receber ofertas?",
-        "changePlan": "Posso mudar de plano depois?"
-      },
-      "answers": {
-        "trustScore": "O Trust Score é calculado com base nas suas verificações de perfil (identidade, rendimentos, emprego, referências). Quanto mais informações verificadas tiver, maior será a sua pontuação, tornando-o mais atrativo para os proprietários.",
-        "cancel": "Sim, pode cancelar a sua assinatura a qualquer momento. A sua conta permanecerá ativa até ao final do período de faturação.",
-        "freePlan": "O plano gratuito inclui criação de perfil básico, capacidade de receber ofertas e acesso às funcionalidades essenciais. Os planos Premium oferecem visibilidade melhorada e posicionamento prioritário.",
-        "verification": "Os inquilinos são verificados através do envio de documentos (ID, comprovativos de rendimentos, cartas de emprego) e referências pessoais. A nossa equipa analisa cada documento para garantir a autenticidade.",
-        "time": "A maioria dos inquilinos com perfis completos recebe as primeiras ofertas em 48-72 horas. Trust Scores mais elevados resultam tipicamente em ofertas mais rápidas e numerosas.",
-        "changePlan": "Claro! Pode fazer upgrade ou downgrade do seu plano a qualquer momento. As alterações entram em vigor no início do próximo ciclo de faturação."
-      }
-    }
   }
 }
