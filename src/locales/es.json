@@ -42,7 +42,8 @@
     "services": "Servicios",
     "messages": "Mensajes",
     "favorites": "Favoritos",
-    "priceAlerts": "Alertas de Precio"
+    "priceAlerts": "Alertas de Precio",
+    "browseTenants": "Explorar Inquilinos"
   },
   "hero": {
     "title": "La Forma Inversa de Alquilar",
@@ -81,5 +82,43 @@
   "notifications": { "newOffer": "¡Nueva Oferta Recibida!", "newOfferDesc": "Recibiste una oferta para: {{property}}", "newOfferGeneric": "Recibiste una nueva oferta de un propietario", "viewOffer": "Ver Oferta", "offerAccepted": "¡Oferta Aceptada!", "offerRejected": "Oferta Rechazada", "offerResponseDesc": "{{name}} respondió a tu oferta", "offerResponseGeneric": "Un inquilino respondió a tu oferta", "viewDetails": "Ver Detalles" },
   "explore": { "title": "Explorar Propiedades", "subtitle": "Encuentra la propiedad perfecta para ti", "filters": "Filtros", "cityLabel": "Ciudad", "cityPlaceholder": "Buscar por ciudad...", "priceRange": "Rango de Precio (€/mes)", "bedrooms": "Habitaciones", "anyBedrooms": "Cualquiera", "propertyType": "Tipo de Propiedad", "anyType": "Cualquier tipo", "clearFilters": "Limpiar Filtros", "active": "Activo", "resultsCount": "{{count}} propiedades encontradas", "noResults": "No se encontraron propiedades", "noResultsDesc": "Intenta ajustar los filtros para ver más resultados", "sortBy": "Ordenar por", "sortNewest": "Más recientes", "sortOldest": "Más antiguos", "sortPriceAsc": "Precio: menor a mayor", "sortPriceDesc": "Precio: mayor a menor", "sortBedrooms": "Más habitaciones", "sortArea": "Mayor área" },
   "favorites": { "saved": "Propiedad guardada en favoritos", "removed": "Propiedad eliminada de favoritos", "saveError": "Error al guardar propiedad", "removeError": "Error al eliminar de favoritos", "save": "Guardar en favoritos", "remove": "Eliminar de favoritos", "title": "Mis Favoritos", "subtitle": "Propiedades que guardaste para ver después", "empty": "Aún no tienes favoritos", "emptyDesc": "Explora propiedades y guarda tus favoritas para encontrarlas fácilmente aquí.", "exploreNow": "Explorar Propiedades", "loginRequired": "Inicia sesión para ver favoritos", "loginRequiredDesc": "Necesitas iniciar sesión para guardar y ver tus propiedades favoritas." },
-  "priceAlerts": { "title": "Alertas de Precio", "subtitle": "Notificaciones de cambios de precio en tus propiedades favoritas", "empty": "Sin alertas de precio", "emptyDesc": "Cuando el precio de una propiedad favorita cambie, serás notificado aquí.", "viewFavorites": "Ver Favoritos", "loginRequired": "Inicia sesión para ver alertas", "loginRequiredDesc": "Necesitas iniciar sesión para ver alertas de precio.", "markAllRead": "Marcar todo como leído", "new": "Nuevo", "unknownProperty": "Propiedad" }
+  "priceAlerts": { "title": "Alertas de Precio", "subtitle": "Notificaciones de cambios de precio en tus propiedades favoritas", "empty": "Sin alertas de precio", "emptyDesc": "Cuando el precio de una propiedad favorita cambie, serás notificado aquí.", "viewFavorites": "Ver Favoritos", "loginRequired": "Inicia sesión para ver alertas", "loginRequiredDesc": "Necesitas iniciar sesión para ver alertas de precio.", "markAllRead": "Marcar todo como leído", "new": "Nuevo", "unknownProperty": "Propiedad" },
+  "testimonials": {
+    "title": "Lo Que Dicen Nuestros Usuarios",
+    "subtitle": "Historias reales de éxito de nuestra comunidad",
+    "tenant1": {
+      "name": "María Santos",
+      "text": "¡Recibí 3 ofertas en menos de una semana. El modelo invertido realmente funciona!"
+    },
+    "landlord1": {
+      "name": "Juan Ferreira",
+      "text": "Encontré inquilinos verificados sin perder tiempo en visitas innecesarias."
+    },
+    "tenant2": {
+      "name": "Ana Costa",
+      "text": "Mi Trust Score marcó la diferencia. Los propietarios me contactaron con excelentes ofertas."
+    }
+  },
+  "browseTenants": {
+    "title": "Explorar Inquilinos",
+    "subtitle": "Encuentra inquilinos pre-verificados buscando propiedades como la tuya",
+    "searchCity": "Buscar por ciudad...",
+    "minRent": "Presupuesto mínimo",
+    "clearFilters": "Limpiar filtros",
+    "anonymous": "Usuario Anónimo",
+    "noProfession": "Profesión no especificada",
+    "anyLocation": "Cualquier ubicación",
+    "upTo": "Hasta",
+    "flexible": "Presupuesto flexible",
+    "bedrooms": "habitaciones",
+    "hasPets": "Tiene mascotas",
+    "smoker": "Fumador",
+    "save": "Guardar",
+    "unsave": "Quitar",
+    "sendOffer": "Enviar Oferta",
+    "noResults": "No se encontraron inquilinos",
+    "noResultsDesc": "Intenta ajustar los filtros para ver más resultados",
+    "excellent": "Excelente",
+    "good": "Bueno"
+  }
 }

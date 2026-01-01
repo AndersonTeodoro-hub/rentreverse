@@ -42,7 +42,8 @@
     "services": "Services",
     "messages": "Messages",
     "favorites": "Favorites",
-    "priceAlerts": "Price Alerts"
+    "priceAlerts": "Price Alerts",
+    "browseTenants": "Browse Tenants"
   },
   "hero": {
     "title": "The Reverse Way to Rent",
@@ -716,5 +717,65 @@
     "createSuccess": "Contract created successfully!",
     "createError": "Error creating contract",
     "fillAllFields": "Please fill all fields"
+  },
+  "testimonials": {
+    "title": "What Our Users Say",
+    "subtitle": "Real success stories from our community",
+    "tenant1": {
+      "name": "Maria Santos",
+      "text": "I received 3 offers in less than a week. The inverted model really works!"
+    },
+    "landlord1": {
+      "name": "João Ferreira",
+      "text": "Found verified tenants without wasting time on unnecessary viewings."
+    },
+    "tenant2": {
+      "name": "Ana Costa",
+      "text": "My Trust Score made all the difference. Landlords contacted me with great offers."
+    }
+  },
+  "browseTenants": {
+    "title": "Browse Tenants",
+    "subtitle": "Find pre-verified tenants looking for properties like yours",
+    "searchCity": "Search by city...",
+    "minRent": "Minimum rent budget",
+    "clearFilters": "Clear filters",
+    "anonymous": "Anonymous User",
+    "noProfession": "Profession not specified",
+    "anyLocation": "Any location",
+    "upTo": "Up to",
+    "flexible": "Flexible budget",
+    "bedrooms": "bedrooms",
+    "hasPets": "Has pets",
+    "smoker": "Smoker",
+    "save": "Save",
+    "unsave": "Unsave",
+    "sendOffer": "Send Offer",
+    "noResults": "No tenants found",
+    "noResultsDesc": "Try adjusting your filters to see more results",
+    "excellent": "Excellent",
+    "good": "Good"
+  },
+  "pricing": {
+    "faq": {
+      "sectionTitle": "Frequently Asked Questions",
+      "sectionSubtitle": "Everything you need to know about our plans",
+      "questions": {
+        "trustScore": "How does the Trust Score work?",
+        "cancel": "Can I cancel at any time?",
+        "freePlan": "What's included in the free plan?",
+        "verification": "How are tenants verified?",
+        "time": "How long until I receive offers?",
+        "changePlan": "Can I change plans later?"
+      },
+      "answers": {
+        "trustScore": "The Trust Score is calculated based on your profile verifications (identity, income, employment, references). The more verified information you have, the higher your score, making you more attractive to landlords.",
+        "cancel": "Yes, you can cancel your subscription at any time. Your account will remain active until the end of the billing period.",
+        "freePlan": "The free plan includes basic profile creation, ability to receive offers, and access to essential features. Premium plans offer enhanced visibility and priority placement.",
+        "verification": "Tenants are verified through document uploads (ID, income proofs, employment letters) and personal references. Our team reviews each document to ensure authenticity.",
+        "time": "Most tenants with complete profiles receive their first offers within 48-72 hours. Higher Trust Scores typically result in faster and more offers.",
+        "changePlan": "Absolutely! You can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle."
+      }
+    }
   }
 }

@@ -256,8 +256,17 @@ const BrowseTenants = () => {
             {tenants?.map((tenant) => {
               const isSaved = savedTenants?.includes(tenant.user_id);
               
+              const hasHighScore = (tenant.trust_score?.total_score || 0) >= 80;
+              
               return (
-                <Card key={tenant.request_id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                <Card 
+                  key={tenant.request_id} 
+                  className={`overflow-hidden hover:shadow-lg transition-all ${
+                    hasHighScore 
+                      ? 'ring-2 ring-green-500/20 bg-gradient-to-br from-green-50/50 to-transparent dark:from-green-950/20' 
+                      : ''
+                  }`}
+                >
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3">
@@ -273,7 +282,15 @@ const BrowseTenants = () => {
                           </p>
                         </div>
                       </div>
-                      <TrustScoreBadge score={tenant.trust_score?.total_score || 0} size="sm" />
+                      <div className="flex flex-col items-end gap-1">
+                        <TrustScoreBadge score={tenant.trust_score?.total_score || 0} size="md" />
+                        {(tenant.trust_score?.total_score || 0) >= 80 && (
+                          <span className="text-xs text-green-600 font-medium">{t('browseTenants.excellent')}</span>
+                        )}
+                        {(tenant.trust_score?.total_score || 0) >= 50 && (tenant.trust_score?.total_score || 0) < 80 && (
+                          <span className="text-xs text-yellow-600 font-medium">{t('browseTenants.good')}</span>
+                        )}
+                      </div>
                     </div>
                     <ReputationBadges userId={tenant.user_id} size="sm" />
                   </CardHeader>

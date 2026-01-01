@@ -4,6 +4,12 @@ import { Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function Pricing() {
   const { t } = useTranslation();
@@ -182,18 +188,73 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* FAQ CTA */}
+      {/* FAQ Section */}
       <section className="py-16 md:py-24">
-        <div className="container text-center">
-          <h2 className="text-2xl font-bold text-foreground mb-4">
-            {t('pricing.faq.title')}
-          </h2>
-          <p className="text-muted-foreground mb-6">
-            {t('pricing.faq.subtitle')}
-          </p>
-          <Button variant="outline" asChild>
-            <Link to="/contact">{t('pricing.faq.cta')}</Link>
-          </Button>
+        <div className="container max-w-3xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              {t('pricing.faq.sectionTitle')}
+            </h2>
+            <p className="text-muted-foreground">
+              {t('pricing.faq.sectionSubtitle')}
+            </p>
+          </div>
+          
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            <AccordionItem value="trust-score" className="border rounded-lg px-6">
+              <AccordionTrigger className="text-left">
+                {t('pricing.faq.questions.trustScore')}
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                {t('pricing.faq.answers.trustScore')}
+              </AccordionContent>
+            </AccordionItem>
+            
+            <AccordionItem value="cancel" className="border rounded-lg px-6">
+              <AccordionTrigger className="text-left">
+                {t('pricing.faq.questions.cancel')}
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                {t('pricing.faq.answers.cancel')}
+              </AccordionContent>
+            </AccordionItem>
+            
+            <AccordionItem value="free-plan" className="border rounded-lg px-6">
+              <AccordionTrigger className="text-left">
+                {t('pricing.faq.questions.freePlan')}
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                {t('pricing.faq.answers.freePlan')}
+              </AccordionContent>
+            </AccordionItem>
+            
+            <AccordionItem value="verification" className="border rounded-lg px-6">
+              <AccordionTrigger className="text-left">
+                {t('pricing.faq.questions.verification')}
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                {t('pricing.faq.answers.verification')}
+              </AccordionContent>
+            </AccordionItem>
+            
+            <AccordionItem value="time" className="border rounded-lg px-6">
+              <AccordionTrigger className="text-left">
+                {t('pricing.faq.questions.time')}
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                {t('pricing.faq.answers.time')}
+              </AccordionContent>
+            </AccordionItem>
+            
+            <AccordionItem value="change-plan" className="border rounded-lg px-6">
+              <AccordionTrigger className="text-left">
+                {t('pricing.faq.questions.changePlan')}
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                {t('pricing.faq.answers.changePlan')}
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </section>
     </Layout>
