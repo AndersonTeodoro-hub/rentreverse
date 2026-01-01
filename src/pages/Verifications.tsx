@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { 
   Shield, Upload, FileText, Briefcase, Home, Users, 
-  Check, Clock, X, AlertCircle, ChevronRight, Trash2 
+  Check, Clock, X, AlertCircle, ChevronRight, Trash2, Brain 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +17,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import TrustScoreCard from "@/components/TrustScoreCard";
+import { AIVerificationAnalysis } from "@/components/AIVerificationAnalysis";
 
 type VerificationType = 'identity' | 'income' | 'employment' | 'address';
 type VerificationStatus = 'pending' | 'approved' | 'rejected' | 'expired';
@@ -52,6 +53,8 @@ const Verifications = () => {
   const [referenceDialogOpen, setReferenceDialogOpen] = useState(false);
   const [selectedType, setSelectedType] = useState<VerificationType | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [lastUploadedVerification, setLastUploadedVerification] = useState<{id: string; url: string; type: VerificationType} | null>(null);
+  const [showAIAnalysis, setShowAIAnalysis] = useState(false);
   
   const [referenceForm, setReferenceForm] = useState({
     name: '',
@@ -177,7 +180,7 @@ const Verifications = () => {
         .getPublicUrl(fileName);
       
       // Create verification record
-      const { error: insertError } = await supabase
+      const { data: verificationData, error: insertError } = await supabase
         .from('user_verifications')
         .upsert({
           user_id: user.id,
@@ -186,13 +189,25 @@ const Verifications = () => {
           document_url: urlData.publicUrl,
         }, {
           onConflict: 'user_id,type'
-        });
+        })
+        .select()
+        .single();
       
       if (insertError) throw insertError;
       
       queryClient.invalidateQueries({ queryKey: ['verifications'] });
       queryClient.invalidateQueries({ queryKey: ['trust-score'] });
       setUploadDialogOpen(false);
+      
+      // Set up for AI analysis
+      if (verificationData) {
+        setLastUploadedVerification({
+          id: verificationData.id,
+          url: urlData.publicUrl,
+          type: selectedType,
+        });
+        setShowAIAnalysis(true);
+      }
       
       toast({
         title: t('verifications.documentUploaded'),
@@ -264,9 +279,22 @@ const Verifications = () => {
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Trust Score Card */}
-            <div className="lg:col-span-1">
+            {/* Trust Score Card and AI Analysis */}
+            <div className="lg:col-span-1 space-y-6">
               <TrustScoreCard trustScore={trustScore} />
+              
+              {/* AI Analysis Card - shows after upload */}
+              {showAIAnalysis && lastUploadedVerification && (
+                <AIVerificationAnalysis
+                  verificationId={lastUploadedVerification.id}
+                  documentUrl={lastUploadedVerification.url}
+                  documentType={lastUploadedVerification.type}
+                  onAnalysisComplete={() => {
+                    queryClient.invalidateQueries({ queryKey: ['verifications'] });
+                    queryClient.invalidateQueries({ queryKey: ['trust-score'] });
+                  }}
+                />
+              )}
             </div>
 
             {/* Verifications */}

@@ -632,5 +632,30 @@
     "priceAlerts": "Price Alerts",
     "favorites": "Favorites",
     "messages": "Messages"
+  },
+  "aiVerification": {
+    "title": "AI Verification",
+    "description": "Automatic document analysis using artificial intelligence",
+    "startAnalysis": "Start AI Analysis",
+    "analyzing": "Analyzing document...",
+    "pleaseWait": "This may take a few seconds",
+    "analysisComplete": "Analysis Complete",
+    "approved": "Document automatically verified!",
+    "rejected": "Document did not pass automatic verification",
+    "needsReview": "Document requires manual review",
+    "statusApproved": "Automatically Approved",
+    "statusRejected": "Rejected",
+    "statusPending": "Pending Review",
+    "confidence": "Confidence Level",
+    "summary": "Analysis Summary",
+    "extractedData": "Extracted Data",
+    "fraudIndicators": "Fraud Indicators",
+    "recommendations": "Recommendations",
+    "valid": "Valid",
+    "invalid": "Invalid",
+    "reanalyze": "Reanalyze Document",
+    "rateLimitError": "Rate limit exceeded. Please try again later.",
+    "creditsError": "AI credits exhausted. Please contact support.",
+    "genericError": "Error analyzing document. Please try again."
   }
 }

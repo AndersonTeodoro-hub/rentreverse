@@ -632,5 +632,30 @@
     "priceAlerts": "Alertas de Preço",
     "favorites": "Favoritos",
     "messages": "Mensagens"
+  },
+  "aiVerification": {
+    "title": "Verificação com IA",
+    "description": "Análise automática de documentos usando inteligência artificial",
+    "startAnalysis": "Iniciar Análise com IA",
+    "analyzing": "A analisar documento...",
+    "pleaseWait": "Isto pode demorar alguns segundos",
+    "analysisComplete": "Análise Completa",
+    "approved": "Documento verificado automaticamente!",
+    "rejected": "Documento não passou na verificação automática",
+    "needsReview": "Documento requer revisão manual",
+    "statusApproved": "Aprovado Automaticamente",
+    "statusRejected": "Rejeitado",
+    "statusPending": "Aguarda Revisão",
+    "confidence": "Nível de Confiança",
+    "summary": "Resumo da Análise",
+    "extractedData": "Dados Extraídos",
+    "fraudIndicators": "Indicadores de Fraude",
+    "recommendations": "Recomendações",
+    "valid": "Válido",
+    "invalid": "Inválido",
+    "reanalyze": "Reanalisar Documento",
+    "rateLimitError": "Limite de pedidos excedido. Tente novamente mais tarde.",
+    "creditsError": "Créditos de IA esgotados. Contacte o suporte.",
+    "genericError": "Erro ao analisar documento. Tente novamente."
   }
 }
