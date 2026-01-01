@@ -27,13 +27,20 @@ i18n
       fr: { translation: fr },
     },
     fallbackLng: 'en',
+    supportedLngs: ['en', 'pt', 'es', 'fr'],
     interpolation: {
       escapeValue: false,
     },
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage'],
+      lookupLocalStorage: 'i18nextLng',
     },
+    react: {
+      useSuspense: true,
+    },
+    returnEmptyString: false,
+    returnNull: false,
   });
 
 export default i18n;

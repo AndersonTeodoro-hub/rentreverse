@@ -10,8 +10,11 @@ import { useNotificationCount } from '@/hooks/useNotificationCount';
 import { Badge } from '@/components/ui/badge';
 
 export function Header() {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  // Wait for translations to be ready
+  if (!ready) return null;
   const { user } = useAuth();
   const { unreadCount } = useNotificationCount();
   const navigate = useNavigate();
@@ -59,7 +62,7 @@ export function Header() {
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
           >
             <ShoppingBag className="h-4 w-4" />
-            Serviços
+            {t('nav.services')}
           </Link>
         </nav>
 
@@ -195,7 +198,7 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               <ShoppingBag className="h-4 w-4" />
-              Serviços
+              {t('nav.services')}
             </Link>
             <div className="flex flex-col gap-2 pt-3 border-t border-border">
               <Button variant="outline" asChild className="w-full">

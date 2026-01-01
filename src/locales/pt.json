@@ -38,7 +38,11 @@
     "profile": "Perfil",
     "settings": "Definições",
     "logout": "Sair",
-    "exploreProperties": "Explorar Imóveis"
+    "exploreProperties": "Explorar Imóveis",
+    "services": "Serviços",
+    "messages": "Mensagens",
+    "favorites": "Favoritos",
+    "priceAlerts": "Alertas de Preço"
   },
   "hero": {
     "title": "A Forma Inversa de Arrendar",

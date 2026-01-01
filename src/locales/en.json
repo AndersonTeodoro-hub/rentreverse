@@ -38,7 +38,11 @@
     "profile": "Profile",
     "settings": "Settings",
     "logout": "Log out",
-    "exploreProperties": "Explore Properties"
+    "exploreProperties": "Explore Properties",
+    "services": "Services",
+    "messages": "Messages",
+    "favorites": "Favorites",
+    "priceAlerts": "Price Alerts"
   },
   "hero": {
     "title": "The Reverse Way to Rent",
