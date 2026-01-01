@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { 
   Search, Filter, MapPin, Euro, Bed, Calendar, 
-  Heart, HeartOff, Send, ChevronRight, Users, MessageCircle
+  Heart, HeartOff, Send, ChevronRight, Users, MessageCircle, Brain
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Layout } from "@/components/layout";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -18,6 +19,7 @@ import { useToast } from "@/hooks/use-toast";
 import TrustScoreBadge from "@/components/TrustScoreBadge";
 import SendOfferDialog from "@/components/SendOfferDialog";
 import { StartChatButton } from "@/components/chat/StartChatButton";
+import { AIRiskAnalysis } from "@/components/AIRiskAnalysis";
 
 interface TenantWithDetails {
   user_id: string;
@@ -54,6 +56,7 @@ const BrowseTenants = () => {
   const [maxBudgetFilter, setMaxBudgetFilter] = useState('');
   const [selectedTenant, setSelectedTenant] = useState<TenantWithDetails | null>(null);
   const [offerDialogOpen, setOfferDialogOpen] = useState(false);
+  const [riskAnalysisTenant, setRiskAnalysisTenant] = useState<TenantWithDetails | null>(null);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -314,7 +317,7 @@ const BrowseTenants = () => {
                       )}
                     </div>
 
-                    <div className="flex gap-2 pt-2">
+                    <div className="flex flex-wrap gap-2 pt-2">
                       <Button 
                         variant="outline" 
                         size="sm"
@@ -326,6 +329,14 @@ const BrowseTenants = () => {
                           <Heart className="w-4 h-4 mr-1" />
                         )}
                         {isSaved ? t('browseTenants.unsave') : t('browseTenants.save')}
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setRiskAnalysisTenant(tenant)}
+                      >
+                        <Brain className="w-4 h-4 mr-1" />
+                        Análise IA
                       </Button>
                       <StartChatButton 
                         otherUserId={tenant.user_id}
@@ -362,6 +373,21 @@ const BrowseTenants = () => {
         onOpenChange={setOfferDialogOpen}
         tenant={selectedTenant}
       />
+
+      {/* AI Risk Analysis Dialog */}
+      <Dialog open={!!riskAnalysisTenant} onOpenChange={(open) => !open && setRiskAnalysisTenant(null)}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Brain className="h-5 w-5 text-primary" />
+              Análise de Risco - {riskAnalysisTenant?.profile?.full_name || "Inquilino"}
+            </DialogTitle>
+          </DialogHeader>
+          {riskAnalysisTenant && (
+            <AIRiskAnalysis tenantId={riskAnalysisTenant.user_id} />
+          )}
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 };
