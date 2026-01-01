@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { 
   Building2, Plus, Edit, Trash2, MapPin, Euro, Bed, 
   Bath, Maximize, Calendar, PawPrint, Cigarette, MoreVertical,
-  Upload, X, Image as ImageIcon
+  Upload, X, Image as ImageIcon, Sparkles
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,7 +21,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-
+import AIMatchingSuggestions from "@/components/AIMatchingSuggestions";
+import SendOfferDialog from "@/components/SendOfferDialog";
 type PropertyStatus = 'active' | 'rented' | 'inactive';
 
 interface Property {
@@ -89,6 +90,9 @@ const MyProperties = () => {
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [matchingPropertyId, setMatchingPropertyId] = useState<string | null>(null);
+  const [offerDialogOpen, setOfferDialogOpen] = useState(false);
+  const [selectedTenantForOffer, setSelectedTenantForOffer] = useState<{id: string; userId: string; name: string} | null>(null);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -436,7 +440,7 @@ const MyProperties = () => {
                         </div>
                       )}
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 mb-3">
                       {property.pets_allowed && (
                         <Badge variant="outline" className="text-xs">
                           <PawPrint className="w-3 h-3 mr-1" />
@@ -450,6 +454,20 @@ const MyProperties = () => {
                         </Badge>
                       )}
                     </div>
+                    {property.status === 'active' && (
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="w-full"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setMatchingPropertyId(property.id);
+                        }}
+                      >
+                        <Sparkles className="w-4 h-4 mr-2 text-primary" />
+                        {t('matching.getSuggestions')}
+                      </Button>
+                    )}
                   </CardContent>
                 </Card>
               ))}
@@ -465,6 +483,42 @@ const MyProperties = () => {
               </Button>
             </div>
           )}
+
+          {/* AI Matching Dialog */}
+          <Dialog open={!!matchingPropertyId} onOpenChange={(open) => !open && setMatchingPropertyId(null)}>
+            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-primary" />
+                  {t('matching.aiSuggestions')}
+                </DialogTitle>
+                <DialogDescription>
+                  {t('matching.findingBestMatches')}
+                </DialogDescription>
+              </DialogHeader>
+              {matchingPropertyId && (
+                <AIMatchingSuggestions 
+                  propertyId={matchingPropertyId}
+                  onSendOffer={(tenantId, userId, name) => {
+                    setSelectedTenantForOffer({ id: tenantId, userId, name });
+                    setOfferDialogOpen(true);
+                  }}
+                />
+              )}
+            </DialogContent>
+          </Dialog>
+
+          {/* Send Offer Dialog */}
+          <SendOfferDialog
+            open={offerDialogOpen}
+            onOpenChange={setOfferDialogOpen}
+            tenant={selectedTenantForOffer ? {
+              user_id: selectedTenantForOffer.userId,
+              request_id: selectedTenantForOffer.id,
+              title: '',
+              profile: { full_name: selectedTenantForOffer.name }
+            } : null}
+          />
         </div>
       </div>
 
