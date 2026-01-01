@@ -20,6 +20,7 @@ import TrustScoreBadge from "@/components/TrustScoreBadge";
 import SendOfferDialog from "@/components/SendOfferDialog";
 import { StartChatButton } from "@/components/chat/StartChatButton";
 import { AIRiskAnalysis } from "@/components/AIRiskAnalysis";
+import { ReputationBadges } from "@/components/ReputationBadges";
 
 interface TenantWithDetails {
   user_id: string;
@@ -274,6 +275,7 @@ const BrowseTenants = () => {
                       </div>
                       <TrustScoreBadge score={tenant.trust_score?.total_score || 0} size="sm" />
                     </div>
+                    <ReputationBadges userId={tenant.user_id} size="sm" />
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-sm font-medium">{tenant.title}</p>

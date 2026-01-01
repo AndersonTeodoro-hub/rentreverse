@@ -674,6 +674,80 @@ export type Database = {
           },
         ]
       }
+      rental_reviews: {
+        Row: {
+          communication_rating: number | null
+          cons: string[] | null
+          contract_id: string | null
+          created_at: string
+          cross_verified: boolean | null
+          id: string
+          is_verified: boolean | null
+          overall_rating: number
+          payment_rating: number | null
+          property_condition_rating: number | null
+          pros: string[] | null
+          respect_rating: number | null
+          review_text: string | null
+          reviewed_id: string
+          reviewer_id: string
+          reviewer_role: string
+          status: string
+          updated_at: string
+          verified_at: string | null
+        }
+        Insert: {
+          communication_rating?: number | null
+          cons?: string[] | null
+          contract_id?: string | null
+          created_at?: string
+          cross_verified?: boolean | null
+          id?: string
+          is_verified?: boolean | null
+          overall_rating: number
+          payment_rating?: number | null
+          property_condition_rating?: number | null
+          pros?: string[] | null
+          respect_rating?: number | null
+          review_text?: string | null
+          reviewed_id: string
+          reviewer_id: string
+          reviewer_role: string
+          status?: string
+          updated_at?: string
+          verified_at?: string | null
+        }
+        Update: {
+          communication_rating?: number | null
+          cons?: string[] | null
+          contract_id?: string | null
+          created_at?: string
+          cross_verified?: boolean | null
+          id?: string
+          is_verified?: boolean | null
+          overall_rating?: number
+          payment_rating?: number | null
+          property_condition_rating?: number | null
+          pros?: string[] | null
+          respect_rating?: number | null
+          review_text?: string | null
+          reviewed_id?: string
+          reviewer_id?: string
+          reviewer_role?: string
+          status?: string
+          updated_at?: string
+          verified_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rental_reviews_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       saved_properties: {
         Row: {
           created_at: string
@@ -966,6 +1040,42 @@ export type Database = {
         }
         Relationships: []
       }
+      user_badges: {
+        Row: {
+          badge_description: string | null
+          badge_name: string
+          badge_type: string
+          earned_at: string
+          expires_at: string | null
+          id: string
+          is_active: boolean | null
+          metadata: Json | null
+          user_id: string
+        }
+        Insert: {
+          badge_description?: string | null
+          badge_name: string
+          badge_type: string
+          earned_at?: string
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          metadata?: Json | null
+          user_id: string
+        }
+        Update: {
+          badge_description?: string | null
+          badge_name?: string
+          badge_type?: string
+          earned_at?: string
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          metadata?: Json | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_points: {
         Row: {
           created_at: string
@@ -1029,6 +1139,60 @@ export type Database = {
           user_id?: string
           verification_token?: string | null
           verified_at?: string | null
+        }
+        Relationships: []
+      }
+      user_reputation: {
+        Row: {
+          average_rating: number | null
+          avg_communication_rating: number | null
+          avg_payment_rating: number | null
+          avg_property_condition_rating: number | null
+          avg_respect_rating: number | null
+          completed_rentals: number | null
+          created_at: string
+          id: string
+          is_good_landlord: boolean | null
+          is_good_payer: boolean | null
+          is_verified_renter: boolean | null
+          total_months_rented: number | null
+          total_reviews: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          average_rating?: number | null
+          avg_communication_rating?: number | null
+          avg_payment_rating?: number | null
+          avg_property_condition_rating?: number | null
+          avg_respect_rating?: number | null
+          completed_rentals?: number | null
+          created_at?: string
+          id?: string
+          is_good_landlord?: boolean | null
+          is_good_payer?: boolean | null
+          is_verified_renter?: boolean | null
+          total_months_rented?: number | null
+          total_reviews?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          average_rating?: number | null
+          avg_communication_rating?: number | null
+          avg_payment_rating?: number | null
+          avg_property_condition_rating?: number | null
+          avg_respect_rating?: number | null
+          completed_rentals?: number | null
+          created_at?: string
+          id?: string
+          is_good_landlord?: boolean | null
+          is_good_payer?: boolean | null
+          is_verified_renter?: boolean | null
+          total_months_rented?: number | null
+          total_reviews?: number | null
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -1153,6 +1317,10 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      recalculate_user_reputation: {
+        Args: { _user_id: string }
+        Returns: undefined
       }
     }
     Enums: {
