@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* RentReverse Design System - Professional Green Theme */
+/* RentReverse Design System - Premium Green Theme */
 
 @layer base {
   :root {
@@ -14,11 +14,11 @@
     --secondary: 45 93% 47%;
     --secondary-foreground: 0 0% 10%;
     
-    /* Background & Surface */
-    --background: 0 0% 100%;
+    /* Background & Surface - Verde Névoa Premium */
+    --background: 150 15% 98%;
     --foreground: 210 11% 15%;
     
-    /* Cards & Elevated surfaces */
+    /* Cards & Elevated surfaces - Pure white for contrast */
     --card: 0 0% 100%;
     --card-foreground: 210 11% 15%;
     
@@ -26,8 +26,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 11% 15%;
     
-    /* Muted elements */
-    --muted: 150 10% 96%;
+    /* Muted elements - Harmonized with background */
+    --muted: 150 12% 95%;
     --muted-foreground: 210 11% 45%;
     
     /* Accent - Light green for highlights */
@@ -38,9 +38,9 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    /* Borders & inputs */
-    --border: 150 10% 88%;
-    --input: 150 10% 88%;
+    /* Borders & inputs - Sophisticated green tint */
+    --border: 150 12% 86%;
+    --input: 150 12% 86%;
     --ring: 152 57% 28%;
     
     /* Radius */
@@ -58,14 +58,14 @@
     --info: 199 89% 48%;
     --info-foreground: 0 0% 100%;
 
-    /* Sidebar */
-    --sidebar-background: 150 15% 98%;
+    /* Sidebar - Harmonized */
+    --sidebar-background: 150 18% 96%;
     --sidebar-foreground: 210 11% 25%;
     --sidebar-primary: 152 57% 28%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 152 40% 94%;
     --sidebar-accent-foreground: 152 57% 22%;
-    --sidebar-border: 150 10% 90%;
+    --sidebar-border: 150 12% 88%;
     --sidebar-ring: 152 57% 28%;
   }
 
@@ -78,21 +78,21 @@
     --secondary: 45 90% 55%;
     --secondary-foreground: 0 0% 10%;
     
-    /* Background & Surface */
-    --background: 210 15% 8%;
+    /* Background & Surface - Dark with green undertone */
+    --background: 160 10% 7%;
     --foreground: 0 0% 95%;
     
     /* Cards */
-    --card: 210 15% 12%;
+    --card: 160 10% 11%;
     --card-foreground: 0 0% 95%;
     
     /* Popover */
-    --popover: 210 15% 10%;
+    --popover: 160 10% 9%;
     --popover-foreground: 0 0% 95%;
     
     /* Muted */
-    --muted: 210 15% 18%;
-    --muted-foreground: 210 10% 60%;
+    --muted: 160 10% 16%;
+    --muted-foreground: 150 8% 55%;
     
     /* Accent */
     --accent: 152 30% 18%;
@@ -103,8 +103,8 @@
     --destructive-foreground: 0 0% 100%;
     
     /* Borders */
-    --border: 210 15% 20%;
-    --input: 210 15% 20%;
+    --border: 160 10% 18%;
+    --input: 160 10% 18%;
     --ring: 152 50% 50%;
     
     /* Success */
@@ -120,13 +120,13 @@
     --info-foreground: 0 0% 100%;
 
     /* Sidebar */
-    --sidebar-background: 210 15% 10%;
+    --sidebar-background: 160 10% 9%;
     --sidebar-foreground: 0 0% 90%;
     --sidebar-primary: 152 50% 50%;
     --sidebar-primary-foreground: 0 0% 10%;
     --sidebar-accent: 152 30% 18%;
     --sidebar-accent-foreground: 152 50% 70%;
-    --sidebar-border: 210 15% 18%;
+    --sidebar-border: 160 10% 16%;
     --sidebar-ring: 152 50% 50%;
   }
 }
@@ -158,24 +158,61 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-success;
   }
 
-  /* Glass effect */
+  /* Glass effect - Premium refinement */
   .glass {
-    @apply bg-background/80 backdrop-blur-lg border border-border/50;
+    @apply bg-card/90 backdrop-blur-xl border border-border/60;
+    box-shadow: 0 1px 2px 0 hsl(var(--foreground) / 0.03);
   }
 
   /* Smooth hover transitions */
   .hover-lift {
-    @apply transition-transform duration-200 hover:-translate-y-1;
+    @apply transition-all duration-300 ease-out;
   }
 
-  /* Card shadow */
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -8px hsl(var(--primary) / 0.15),
+                0 4px 10px -4px hsl(var(--foreground) / 0.08);
+  }
+
+  /* Card shadows - Premium multi-layer */
   .card-shadow {
-    box-shadow: 0 1px 3px 0 hsl(var(--foreground) / 0.05),
-                0 1px 2px -1px hsl(var(--foreground) / 0.05);
+    box-shadow: 0 1px 2px 0 hsl(var(--foreground) / 0.03),
+                0 2px 8px -2px hsl(var(--foreground) / 0.06),
+                0 0 0 1px hsl(var(--border) / 0.5);
   }
 
   .card-shadow-lg {
-    box-shadow: 0 10px 15px -3px hsl(var(--foreground) / 0.08),
-                0 4px 6px -4px hsl(var(--foreground) / 0.05);
+    box-shadow: 0 4px 6px -1px hsl(var(--foreground) / 0.05),
+                0 10px 20px -5px hsl(var(--foreground) / 0.08),
+                0 20px 40px -10px hsl(var(--primary) / 0.06);
+  }
+
+  /* Premium card shadow with green accent */
+  .card-shadow-premium {
+    box-shadow: 0 2px 4px -1px hsl(var(--foreground) / 0.04),
+                0 8px 16px -4px hsl(var(--foreground) / 0.06),
+                0 16px 32px -8px hsl(var(--primary) / 0.08),
+                0 0 0 1px hsl(var(--primary) / 0.05);
+  }
+
+  /* Premium gradient background for sections */
+  .bg-premium-gradient {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--accent) / 0.4) 0%,
+      hsl(var(--background)) 50%,
+      hsl(var(--accent) / 0.2) 100%
+    );
+  }
+
+  /* Subtle section divider gradient */
+  .bg-section-alt {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--background)) 0%,
+      hsl(var(--muted) / 0.5) 50%,
+      hsl(var(--background)) 100%
+    );
   }
 }

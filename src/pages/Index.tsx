@@ -10,8 +10,14 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-accent/50 to-background py-20 lg:py-32">
-        <div className="container">
+      <section className="relative overflow-hidden bg-gradient-to-b from-accent/40 via-background to-success/5 py-20 lg:py-32">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-primary/5 blur-3xl" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-success/5 blur-3xl" />
+        </div>
+        
+        <div className="container relative">
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="animate-fade-in text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               {t('hero.title')}
@@ -59,7 +65,7 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 lg:py-28">
+      <section className="py-20 lg:py-28 bg-section-alt">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
@@ -70,9 +76,9 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid gap-12 lg:grid-cols-2">
+          <div className="grid gap-8 lg:grid-cols-2">
             {/* For Tenants */}
-            <div className="rounded-2xl border border-border bg-card p-8 card-shadow">
+            <div className="rounded-2xl border border-border bg-card p-8 card-shadow-premium hover-lift">
               <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
                 <Home className="h-6 w-6 text-primary" />
                 {t('features.forTenants.title')}
@@ -95,7 +101,7 @@ const Index = () => {
             </div>
 
             {/* For Landlords */}
-            <div className="rounded-2xl border border-border bg-card p-8 card-shadow">
+            <div className="rounded-2xl border border-border bg-card p-8 card-shadow-premium hover-lift">
               <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
                 <Building2 className="h-6 w-6 text-primary" />
                 {t('features.forLandlords.title')}
@@ -121,12 +127,12 @@ const Index = () => {
       </section>
 
       {/* Referral Program Section */}
-      <section className="py-20 lg:py-28 bg-gradient-to-br from-accent/30 via-background to-accent/20">
+      <section className="py-20 lg:py-28 bg-premium-gradient">
         <div className="container">
           <div className="mx-auto max-w-4xl">
-            <div className="rounded-3xl border border-primary/20 bg-card p-8 lg:p-12 card-shadow relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 rounded-full translate-y-1/2 -translate-x-1/2" />
+            <div className="rounded-3xl border border-primary/15 bg-card p-8 lg:p-12 card-shadow-premium relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/8 to-transparent rounded-full -translate-y-1/2 translate-x-1/2" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-success/8 to-transparent rounded-full translate-y-1/2 -translate-x-1/2" />
               
               <div className="relative z-10">
                 <div className="flex items-center justify-center gap-2 mb-4">
@@ -145,7 +151,7 @@ const Index = () => {
 
                 <div className="mt-10 grid gap-6 sm:grid-cols-3">
                   <div className="flex flex-col items-center text-center p-4">
-                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center mb-4 ring-1 ring-primary/10">
                       <Share2 className="h-7 w-7 text-primary" />
                     </div>
                     <h3 className="font-semibold text-foreground">{t('referral.step1.title')}</h3>
@@ -153,7 +159,7 @@ const Index = () => {
                   </div>
                   
                   <div className="flex flex-col items-center text-center p-4">
-                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center mb-4 ring-1 ring-primary/10">
                       <Users className="h-7 w-7 text-primary" />
                     </div>
                     <h3 className="font-semibold text-foreground">{t('referral.step2.title')}</h3>
@@ -161,7 +167,7 @@ const Index = () => {
                   </div>
                   
                   <div className="flex flex-col items-center text-center p-4">
-                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center mb-4 ring-1 ring-primary/10">
                       <Star className="h-7 w-7 text-primary" />
                     </div>
                     <h3 className="font-semibold text-foreground">{t('referral.step3.title')}</h3>
