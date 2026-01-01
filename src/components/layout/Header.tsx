@@ -1,24 +1,35 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import appI18n from '@/i18n';
 import { Menu, X, Bell, Heart, TrendingDown, MessageCircle, ShoppingBag } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { LanguageSelector } from '@/components/LanguageSelector';
+
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { useAuth } from '@/hooks/useAuth';
 import { useNotificationCount } from '@/hooks/useNotificationCount';
 import { Badge } from '@/components/ui/badge';
 
 export function Header() {
-  const { t, ready } = useTranslation('translation', { i18n: appI18n });
+  const { t, ready } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
-  // Wait for translations to be ready
-  if (!ready) return null;
   const { user } = useAuth();
   const { unreadCount } = useNotificationCount();
   const navigate = useNavigate();
+
+  // Wait for translations to be ready (avoid rendering keys)
+  if (!ready) return null;
+
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  const navItems = [
+    { to: '/', label: t('nav.home') },
+    { to: '/explore-properties', label: t('nav.exploreProperties') },
+    { to: '/how-it-works', label: t('nav.howItWorks') },
+    { to: '/pricing', label: t('nav.pricing') },
+    { to: '/services', label: t('nav.services'), icon: ShoppingBag },
+  ];
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-card/80 backdrop-blur-xl supports-[backdrop-filter]:bg-card/70 shadow-[0_1px_3px_0_hsl(var(--foreground)/0.03)]">
       <div className="container flex h-16 items-center justify-between">
@@ -34,38 +45,18 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          <Link
-            to="/"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-          >
-            {t('nav.home')}
-          </Link>
-          <Link
-            to="/explore-properties"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-          >
-            {t('nav.exploreProperties')}
-          </Link>
-          <Link
-            to="/how-it-works"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-          >
-            {t('nav.howItWorks')}
-          </Link>
-          <Link
-            to="/pricing"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-          >
-            {t('nav.pricing')}
-          </Link>
-          <Link
-            to="/services"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
-          >
-            <ShoppingBag className="h-4 w-4" />
-            {t('nav.services')}
-          </Link>
+          {navItems.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
+            >
+              {'icon' in item && item.icon ? <item.icon className="h-4 w-4" /> : null}
+              {item.label}
+            </Link>
+          ))}
         </nav>
+
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-3">
@@ -131,8 +122,6 @@ export function Header() {
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center gap-2">
-          <ThemeToggle />
-          <LanguageSelector />
           {user && (
             <Button
               variant="ghost"
@@ -155,67 +144,91 @@ export function Header() {
             variant="ghost"
             size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? t('common.close') : t('common.view')}
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
+
       </div>
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-border bg-background">
           <nav className="container py-4 flex flex-col gap-3">
-            <Link
-              to="/"
-              className="text-sm font-medium text-foreground py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {t('nav.home')}
-            </Link>
-            <Link
-              to="/explore-properties"
-              className="text-sm font-medium text-muted-foreground py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {t('nav.exploreProperties')}
-            </Link>
-            <Link
-              to="/how-it-works"
-              className="text-sm font-medium text-muted-foreground py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {t('nav.howItWorks')}
-            </Link>
-            <Link
-              to="/pricing"
-              className="text-sm font-medium text-muted-foreground py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {t('nav.pricing')}
-            </Link>
-            <Link
-              to="/services"
-              className="text-sm font-medium text-muted-foreground py-2 flex items-center gap-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <ShoppingBag className="h-4 w-4" />
-              {t('nav.services')}
-            </Link>
-            <div className="flex flex-col gap-2 pt-3 border-t border-border">
-              <Button variant="outline" asChild className="w-full">
-                <Link to="/auth" onClick={() => setMobileMenuOpen(false)}>
-                  {t('nav.login')}
-                </Link>
-              </Button>
-              <Button asChild className="w-full">
-                <Link to="/auth?mode=signup" onClick={() => setMobileMenuOpen(false)}>
-                  {t('nav.signup')}
-                </Link>
-              </Button>
+            <div className="flex items-center justify-between gap-2 pb-2">
+              <ThemeToggle />
+              <LanguageSelector />
             </div>
+
+            {navItems.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="text-sm font-medium text-muted-foreground py-2 flex items-center gap-2"
+                onClick={closeMobileMenu}
+              >
+                {'icon' in item && item.icon ? <item.icon className="h-4 w-4" /> : null}
+                {item.label}
+              </Link>
+            ))}
+
+            {user ? (
+              <div className="flex flex-col gap-3 pt-3 border-t border-border">
+                <Link
+                  to="/dashboard"
+                  className="text-sm font-medium text-muted-foreground py-1"
+                  onClick={closeMobileMenu}
+                >
+                  {t('nav.dashboard')}
+                </Link>
+                <Link
+                  to="/messages"
+                  className="text-sm font-medium text-muted-foreground py-1"
+                  onClick={closeMobileMenu}
+                >
+                  {t('nav.messages')}
+                </Link>
+                <Link
+                  to="/my-favorites"
+                  className="text-sm font-medium text-muted-foreground py-1"
+                  onClick={closeMobileMenu}
+                >
+                  {t('nav.favorites')}
+                </Link>
+                <Link
+                  to="/price-alerts"
+                  className="text-sm font-medium text-muted-foreground py-1"
+                  onClick={closeMobileMenu}
+                >
+                  {t('nav.priceAlerts')}
+                </Link>
+                <Link
+                  to="/my-offers"
+                  className="text-sm font-medium text-muted-foreground py-1"
+                  onClick={closeMobileMenu}
+                >
+                  {t('dashboard.myOffers')}
+                </Link>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-2 pt-3 border-t border-border">
+                <Button variant="outline" asChild className="w-full">
+                  <Link to="/auth" onClick={closeMobileMenu}>
+                    {t('nav.login')}
+                  </Link>
+                </Button>
+                <Button asChild className="w-full">
+                  <Link to="/auth?mode=signup" onClick={closeMobileMenu}>
+                    {t('nav.signup')}
+                  </Link>
+                </Button>
+              </div>
+            )}
           </nav>
         </div>
       )}
+
     </header>
   );
 }
