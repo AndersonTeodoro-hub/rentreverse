@@ -632,11 +632,6 @@
     "unknownUser": "Utilizador",
     "loginRequired": "Inicie sessão para enviar mensagens"
   },
-  "nav": {
-    "priceAlerts": "Alertas de Preço",
-    "favorites": "Favoritos",
-    "messages": "Mensagens"
-  },
   "matching": {
     "analyzing": "A analisar inquilinos...",
     "findingBestMatches": "A encontrar os melhores matches para o seu imóvel",
