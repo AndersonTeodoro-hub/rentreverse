@@ -613,8 +613,24 @@
     "new": "Novo",
     "unknownProperty": "Imóvel"
   },
+  "chat": {
+    "title": "Mensagens",
+    "subtitle": "Converse diretamente com inquilinos e proprietários",
+    "conversations": "Conversas",
+    "noConversations": "Ainda não tem conversas",
+    "noMessages": "Sem mensagens",
+    "startConversation": "Envie uma mensagem para começar a conversa",
+    "selectConversation": "Selecione uma conversa",
+    "selectConversationDesc": "Escolha uma conversa da lista para ver as mensagens",
+    "messagePlaceholder": "Escreva uma mensagem...",
+    "sendMessage": "Enviar Mensagem",
+    "you": "Você",
+    "unknownUser": "Utilizador",
+    "loginRequired": "Inicie sessão para enviar mensagens"
+  },
   "nav": {
     "priceAlerts": "Alertas de Preço",
-    "favorites": "Favoritos"
+    "favorites": "Favoritos",
+    "messages": "Mensagens"
   }
 }
