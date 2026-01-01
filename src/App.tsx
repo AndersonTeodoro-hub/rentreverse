@@ -23,6 +23,7 @@ import ExploreProperties from "./pages/ExploreProperties";
 import MyFavorites from "./pages/MyFavorites";
 import PriceAlerts from "./pages/PriceAlerts";
 import Messages from "./pages/Messages";
+import Contracts from "./pages/Contracts";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -53,6 +54,7 @@ const App = () => (
               <Route path="/my-favorites" element={<MyFavorites />} />
               <Route path="/price-alerts" element={<PriceAlerts />} />
               <Route path="/messages" element={<Messages />} />
+              <Route path="/contracts" element={<Contracts />} />
               <Route path="/property/:id" element={<PropertyDetails />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
