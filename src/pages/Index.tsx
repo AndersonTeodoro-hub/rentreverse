@@ -19,15 +19,15 @@ const Index = () => {
         }}
       >
         {/* Overlay */}
-        <div className="absolute inset-0 bg-white/85 dark:bg-black/70" />
+        <div className="absolute inset-0 bg-black/60" />
         <div className="container relative">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left column - Text */}
             <div className="text-center lg:text-left relative z-10">
-              <h1 className="animate-fade-in text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl leading-tight">
+              <h1 className="animate-fade-in text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-tight">
                 {t('hero.title')}
               </h1>
-              <p className="mt-6 text-lg text-muted-foreground sm:text-xl max-w-xl mx-auto lg:mx-0">
+              <p className="mt-6 text-lg text-white/80 sm:text-xl max-w-xl mx-auto lg:mx-0">
                 {t('hero.subtitle')}
               </p>
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
@@ -37,7 +37,7 @@ const Index = () => {
                     {t('hero.forTenants')}
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" asChild className="w-full sm:w-auto gap-2">
+                <Button size="lg" variant="outline" asChild className="w-full sm:w-auto gap-2 bg-transparent border-white text-white hover:bg-white hover:text-black">
                   <Link to="/auth?mode=signup&role=landlord">
                     <Building2 className="h-5 w-5" />
                     {t('hero.forLandlords')}
@@ -48,7 +48,7 @@ const Index = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="gap-2 text-muted-foreground hover:text-foreground"
+                  className="gap-2 text-white/70 hover:text-white hover:bg-white/10"
                   onClick={() => {
                     if (navigator.share) {
                       navigator.share({
@@ -67,14 +67,8 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Right column - person + phone mockup */}
-            <div className="hidden lg:block relative h-[600px]">
-              <img
-                src="/hero-person.png"
-                alt=""
-                loading="lazy"
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 max-h-[580px] w-auto object-contain"
-              />
+            {/* Right column - phone mockup */}
+            <div className="hidden lg:flex items-center justify-center relative">
               <video
                 src="/hero-phone.mp4"
                 autoPlay
@@ -82,7 +76,7 @@ const Index = () => {
                 muted
                 playsInline
                 preload="auto"
-                className="absolute top-0 right-0 w-56 rounded-2xl shadow-2xl"
+                className="w-64 rounded-2xl shadow-2xl"
               />
             </div>
           </div>
