@@ -10,11 +10,20 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-white to-slate-50 dark:from-background dark:to-muted py-20 lg:py-28">
+      <section
+        className="relative overflow-hidden py-20 lg:py-28"
+        style={{
+          backgroundImage: "url('/hero-apartment.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-white/85 dark:bg-black/70" />
         <div className="container relative">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left column - Text */}
-            <div className="text-center lg:text-left">
+            <div className="text-center lg:text-left relative z-10">
               <h1 className="animate-fade-in text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl leading-tight">
                 {t('hero.title')}
               </h1>
@@ -58,8 +67,24 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Right column - placeholder */}
-            <div className="hidden lg:block" />
+            {/* Right column - person + phone mockup */}
+            <div className="hidden lg:block relative h-[600px]">
+              <img
+                src="/hero-person.png"
+                alt=""
+                loading="lazy"
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 max-h-[580px] w-auto object-contain"
+              />
+              <video
+                src="/hero-phone.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="absolute top-0 right-0 w-56 rounded-2xl shadow-2xl"
+              />
+            </div>
           </div>
         </div>
       </section>
