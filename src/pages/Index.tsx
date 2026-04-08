@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Home, Building2, CheckCircle, Share2, Gift, Users, Star, UserPlus, Search, Handshake, Shield, FileText } from 'lucide-react';
+import { ArrowRight, Home, Building2, CheckCircle, Share2, Gift, Users, Star, UserPlus, Search, Handshake, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Layout } from '@/components/layout';
 
@@ -58,45 +58,81 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Right column - Trust visual */}
+            {/* Right column - Phone mockup */}
             <div className="relative hidden lg:block">
-              <div className="space-y-4">
-                {/* Big card */}
-                <div className="rounded-2xl bg-[#1e3a5f] text-white p-6 shadow-xl">
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
-                      <Shield className="h-6 w-6 text-white" />
+              <div className="relative mx-auto max-w-sm rotate-2 transition-transform hover:rotate-0 duration-500">
+                {/* Phone mockup */}
+                <div className="rounded-[2.5rem] bg-gradient-to-br from-[#1e3a5f] via-[#1e40af] to-[#2563eb] p-5 shadow-2xl ring-1 ring-black/5">
+                  {/* Top bar */}
+                  <div className="flex items-center gap-2 px-2 pb-4">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white text-[#1e3a5f] font-bold text-sm">
+                      R
                     </div>
-                    <div>
-                      <div className="text-3xl font-bold">2.500+</div>
-                      <div className="text-sm text-white/70">inquilinos verificados</div>
+                    <span className="font-semibold text-white text-sm">RentReverse</span>
+                  </div>
+
+                  {/* Property card */}
+                  <div className="rounded-2xl bg-white p-4 shadow-lg">
+                    <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 mb-3 flex items-center justify-center">
+                      <Home className="h-12 w-12 text-slate-300" />
+                    </div>
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <h3 className="font-semibold text-slate-900 text-sm leading-tight">T2 Luminoso em Lisboa</h3>
+                      <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-medium px-2 py-0.5">
+                        <CheckCircle className="h-3 w-3" />
+                        Verificado
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-base font-bold text-slate-900">€850<span className="text-xs font-normal text-slate-500">/mês</span></span>
+                      <div className="flex items-center gap-0.5">
+                        {[1, 2, 3].map((i) => (
+                          <Star key={i} className="h-3 w-3 fill-amber-400 text-amber-400" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Proposal card */}
+                  <div className="mt-3 rounded-2xl bg-white p-3 shadow-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-100">
+                        <CheckCircle className="h-5 w-5 text-emerald-600" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-sm font-semibold text-slate-900">Proposta recebida!</div>
+                        <div className="text-xs text-slate-500 truncate">João Silva quer arrendar</div>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Trust score card */}
-                <div className="rounded-2xl bg-card border border-border p-5 card-shadow-premium">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-success" />
-                      <span className="text-sm font-medium text-foreground">Trust Score</span>
+                {/* Floating badge - top right */}
+                <div className="absolute -top-4 -right-6 rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-black/5 -rotate-3">
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#1e3a5f]">
+                      <Shield className="h-5 w-5 text-white" />
                     </div>
-                    <span className="text-lg font-bold text-foreground">92<span className="text-sm text-muted-foreground">/100</span></span>
-                  </div>
-                  <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
-                    <div className="h-full rounded-full bg-primary" style={{ width: '92%' }} />
+                    <div>
+                      <div className="text-sm font-bold text-slate-900 leading-tight">2.500+</div>
+                      <div className="text-[10px] text-slate-500">verificados</div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Contract card */}
-                <div className="rounded-2xl bg-card border border-border p-5 card-shadow-premium">
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent">
-                      <FileText className="h-5 w-5 text-primary" />
+                {/* Floating badge - bottom left */}
+                <div className="absolute -bottom-4 -left-6 rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-black/5 -rotate-3">
+                  <div className="flex items-center gap-3">
+                    <div className="relative">
+                      <svg className="h-10 w-10 -rotate-90" viewBox="0 0 36 36">
+                        <circle cx="18" cy="18" r="15" fill="none" stroke="#e2e8f0" strokeWidth="3" />
+                        <circle cx="18" cy="18" r="15" fill="none" stroke="#2563eb" strokeWidth="3" strokeDasharray="86.7 94.2" strokeLinecap="round" />
+                      </svg>
+                      <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-slate-900">92</span>
                     </div>
                     <div>
-                      <div className="text-sm font-semibold text-foreground">Contrato gerado</div>
-                      <div className="text-xs text-muted-foreground">em menos de 5 minutos</div>
+                      <div className="text-xs font-semibold text-slate-900 leading-tight">Trust Score</div>
+                      <div className="text-[10px] text-slate-500">Excelente</div>
                     </div>
                   </div>
                 </div>
