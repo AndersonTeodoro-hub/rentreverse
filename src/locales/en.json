@@ -732,6 +732,56 @@
     "step3": {
       "title": "Close the deal",
       "description": "Chat with the landlord, visit the property and sign the contract directly on the platform."
+    },
+    "hero": {
+      "title": "How RentReverse works",
+      "subtitle": "A simple and secure way to find a home or a tenant"
+    },
+    "tenant": {
+      "title": "For Tenants",
+      "subtitle": "Find your new home in 4 steps",
+      "step1": {
+        "title": "Create your profile",
+        "description": "Sign up and tell us what you're looking for: city, budget, property type"
+      },
+      "step2": {
+        "title": "Verify your documents",
+        "description": "Upload your documents to boost your Trust Score and gain credibility"
+      },
+      "step3": {
+        "title": "Receive proposals",
+        "description": "Verified landlords send you proposals for matching properties"
+      },
+      "step4": {
+        "title": "Close the deal",
+        "description": "Chat, visit and sign the contract directly on the platform"
+      }
+    },
+    "landlord": {
+      "title": "For Landlords",
+      "subtitle": "Find verified tenants in 4 steps",
+      "step1": {
+        "title": "Add your property",
+        "description": "Sign up and publish your property details with photos"
+      },
+      "step2": {
+        "title": "Discover tenants",
+        "description": "AI suggests pre-verified tenants matching your property"
+      },
+      "step3": {
+        "title": "Send proposals",
+        "description": "Pick the best candidates and send proposals directly"
+      },
+      "step4": {
+        "title": "Generate the contract",
+        "description": "The contract is generated automatically based on local laws"
+      }
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "subtitle": "Join a new way to rent",
+      "getStarted": "Create Account",
+      "seePricing": "See Pricing"
     }
   },
   "browseTenants": {

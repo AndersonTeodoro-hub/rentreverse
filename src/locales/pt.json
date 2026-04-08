@@ -804,6 +804,56 @@
     "step3": {
       "title": "Feche o contrato",
       "description": "Converse com o proprietário, visite o imóvel e assine o contrato diretamente na plataforma."
+    },
+    "hero": {
+      "title": "Como funciona o RentReverse",
+      "subtitle": "Uma forma simples e segura de encontrar casa ou inquilino"
+    },
+    "tenant": {
+      "title": "Para Inquilinos",
+      "subtitle": "Encontre o seu novo lar em 4 passos",
+      "step1": {
+        "title": "Crie o seu perfil",
+        "description": "Registe-se e preencha o que procura: cidade, orçamento, tipo de imóvel"
+      },
+      "step2": {
+        "title": "Verifique os seus documentos",
+        "description": "Carregue os seus documentos para aumentar o seu Trust Score e ganhar credibilidade"
+      },
+      "step3": {
+        "title": "Receba propostas",
+        "description": "Proprietários verificados enviam-lhe propostas de imóveis compatíveis"
+      },
+      "step4": {
+        "title": "Feche o contrato",
+        "description": "Converse, visite e assine o contrato diretamente na plataforma"
+      }
+    },
+    "landlord": {
+      "title": "Para Proprietários",
+      "subtitle": "Encontre inquilinos verificados em 4 passos",
+      "step1": {
+        "title": "Adicione o seu imóvel",
+        "description": "Registe-se e publique os detalhes do seu imóvel com fotos"
+      },
+      "step2": {
+        "title": "Descubra inquilinos",
+        "description": "A IA sugere inquilinos pré-verificados compatíveis com o seu imóvel"
+      },
+      "step3": {
+        "title": "Envie propostas",
+        "description": "Escolha os melhores candidatos e envie propostas diretamente"
+      },
+      "step4": {
+        "title": "Gere o contrato",
+        "description": "O contrato é gerado automaticamente com base nas leis locais"
+      }
+    },
+    "cta": {
+      "title": "Pronto para começar?",
+      "subtitle": "Junte-se a uma nova forma de arrendar",
+      "getStarted": "Criar Conta",
+      "seePricing": "Ver Preços"
     }
   },
   "browseTenants": {

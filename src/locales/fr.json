@@ -63,6 +63,56 @@
     "step3": {
       "title": "Concluez le contrat",
       "description": "Échangez avec le propriétaire, visitez le logement et signez le contrat directement sur la plateforme."
+    },
+    "hero": {
+      "title": "Comment fonctionne RentReverse",
+      "subtitle": "Une façon simple et sécurisée de trouver un logement ou un locataire"
+    },
+    "tenant": {
+      "title": "Pour les Locataires",
+      "subtitle": "Trouvez votre nouveau logement en 4 étapes",
+      "step1": {
+        "title": "Créez votre profil",
+        "description": "Inscrivez-vous et indiquez ce que vous cherchez : ville, budget, type de bien"
+      },
+      "step2": {
+        "title": "Vérifiez vos documents",
+        "description": "Téléchargez vos documents pour augmenter votre Trust Score et gagner en crédibilité"
+      },
+      "step3": {
+        "title": "Recevez des propositions",
+        "description": "Des propriétaires vérifiés vous envoient des propositions de biens compatibles"
+      },
+      "step4": {
+        "title": "Concluez le contrat",
+        "description": "Échangez, visitez et signez le contrat directement sur la plateforme"
+      }
+    },
+    "landlord": {
+      "title": "Pour les Propriétaires",
+      "subtitle": "Trouvez des locataires vérifiés en 4 étapes",
+      "step1": {
+        "title": "Ajoutez votre bien",
+        "description": "Inscrivez-vous et publiez les détails de votre bien avec des photos"
+      },
+      "step2": {
+        "title": "Découvrez des locataires",
+        "description": "L'IA suggère des locataires pré-vérifiés compatibles avec votre bien"
+      },
+      "step3": {
+        "title": "Envoyez des propositions",
+        "description": "Choisissez les meilleurs candidats et envoyez des propositions directement"
+      },
+      "step4": {
+        "title": "Générez le contrat",
+        "description": "Le contrat est généré automatiquement selon les lois locales"
+      }
+    },
+    "cta": {
+      "title": "Prêt à commencer ?",
+      "subtitle": "Rejoignez une nouvelle façon de louer",
+      "getStarted": "Créer un Compte",
+      "seePricing": "Voir les Tarifs"
     }
   },
   "browseTenants": {
