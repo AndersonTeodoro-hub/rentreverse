@@ -83,20 +83,20 @@
   "explore": { "title": "Explorar Propiedades", "subtitle": "Encuentra la propiedad perfecta para ti", "filters": "Filtros", "cityLabel": "Ciudad", "cityPlaceholder": "Buscar por ciudad...", "priceRange": "Rango de Precio (€/mes)", "bedrooms": "Habitaciones", "anyBedrooms": "Cualquiera", "propertyType": "Tipo de Propiedad", "anyType": "Cualquier tipo", "clearFilters": "Limpiar Filtros", "active": "Activo", "resultsCount": "{{count}} propiedades encontradas", "noResults": "No se encontraron propiedades", "noResultsDesc": "Intenta ajustar los filtros para ver más resultados", "sortBy": "Ordenar por", "sortNewest": "Más recientes", "sortOldest": "Más antiguos", "sortPriceAsc": "Precio: menor a mayor", "sortPriceDesc": "Precio: mayor a menor", "sortBedrooms": "Más habitaciones", "sortArea": "Mayor área" },
   "favorites": { "saved": "Propiedad guardada en favoritos", "removed": "Propiedad eliminada de favoritos", "saveError": "Error al guardar propiedad", "removeError": "Error al eliminar de favoritos", "save": "Guardar en favoritos", "remove": "Eliminar de favoritos", "title": "Mis Favoritos", "subtitle": "Propiedades que guardaste para ver después", "empty": "Aún no tienes favoritos", "emptyDesc": "Explora propiedades y guarda tus favoritas para encontrarlas fácilmente aquí.", "exploreNow": "Explorar Propiedades", "loginRequired": "Inicia sesión para ver favoritos", "loginRequiredDesc": "Necesitas iniciar sesión para guardar y ver tus propiedades favoritas." },
   "priceAlerts": { "title": "Alertas de Precio", "subtitle": "Notificaciones de cambios de precio en tus propiedades favoritas", "empty": "Sin alertas de precio", "emptyDesc": "Cuando el precio de una propiedad favorita cambie, serás notificado aquí.", "viewFavorites": "Ver Favoritos", "loginRequired": "Inicia sesión para ver alertas", "loginRequiredDesc": "Necesitas iniciar sesión para ver alertas de precio.", "markAllRead": "Marcar todo como leído", "new": "Nuevo", "unknownProperty": "Propiedad" },
-  "testimonials": {
-    "title": "Lo Que Dicen Nuestros Usuarios",
-    "subtitle": "Historias reales de éxito de nuestra comunidad",
-    "tenant1": {
-      "name": "María Santos",
-      "text": "¡Recibí 3 ofertas en menos de una semana. El modelo invertido realmente funciona!"
+  "howItWorks": {
+    "title": "Cómo funciona",
+    "subtitle": "Encuentra casa en 3 pasos sencillos",
+    "step1": {
+      "title": "Crea tu perfil",
+      "description": "Regístrate, sube tus documentos y dinos qué buscas. La verificación es rápida y segura."
     },
-    "landlord1": {
-      "name": "Juan Ferreira",
-      "text": "Encontré inquilinos verificados sin perder tiempo en visitas innecesarias."
+    "step2": {
+      "title": "Recibe propuestas",
+      "description": "Propietarios verificados encuentran tu perfil y te envían propuestas de inmuebles que coinciden con lo que buscas."
     },
-    "tenant2": {
-      "name": "Ana Costa",
-      "text": "Mi Trust Score marcó la diferencia. Los propietarios me contactaron con excelentes ofertas."
+    "step3": {
+      "title": "Cierra el contrato",
+      "description": "Habla con el propietario, visita el inmueble y firma el contrato directamente en la plataforma."
     }
   },
   "browseTenants": {

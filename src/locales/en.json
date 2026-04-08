@@ -718,20 +718,20 @@
     "createError": "Error creating contract",
     "fillAllFields": "Please fill all fields"
   },
-  "testimonials": {
-    "title": "What Our Users Say",
-    "subtitle": "Real success stories from our community",
-    "tenant1": {
-      "name": "Maria Santos",
-      "text": "I received 3 offers in less than a week. The inverted model really works!"
+  "howItWorks": {
+    "title": "How it works",
+    "subtitle": "Find your home in 3 simple steps",
+    "step1": {
+      "title": "Create your profile",
+      "description": "Sign up, upload your documents and tell us what you're looking for. Verification is quick and secure."
     },
-    "landlord1": {
-      "name": "João Ferreira",
-      "text": "Found verified tenants without wasting time on unnecessary viewings."
+    "step2": {
+      "title": "Receive proposals",
+      "description": "Verified landlords find your profile and send you property proposals that match what you're looking for."
     },
-    "tenant2": {
-      "name": "Ana Costa",
-      "text": "My Trust Score made all the difference. Landlords contacted me with great offers."
+    "step3": {
+      "title": "Close the deal",
+      "description": "Chat with the landlord, visit the property and sign the contract directly on the platform."
     }
   },
   "browseTenants": {

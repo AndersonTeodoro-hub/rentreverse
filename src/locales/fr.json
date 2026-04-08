@@ -49,20 +49,20 @@
   "property": { "types": { "apartment": "Appartement", "house": "Maison", "studio": "Studio", "room": "Chambre" }, "petsAllowed": "Animaux acceptés", "smokingAllowed": "Fumeurs acceptés", "notFound": "Bien non trouvé", "linkCopied": "Lien copié !", "area": "Surface", "availableFrom": "Disponible à partir de", "description": "Description", "noDescription": "Pas de description disponible.", "features": "Caractéristiques", "noPets": "Animaux non autorisés", "noSmoking": "Non fumeur", "rentDescription": "Loyer mensuel", "landlord": "Propriétaire", "owner": "Propriétaire", "contactLandlord": "Contacter le Propriétaire", "loginToContact": "Se Connecter pour Contacter", "editProperty": "Modifier le Bien" },
   "favorites": { "saved": "Bien sauvegardé dans les favoris", "removed": "Bien supprimé des favoris", "saveError": "Erreur lors de la sauvegarde", "removeError": "Erreur lors de la suppression", "save": "Sauvegarder", "remove": "Supprimer des favoris", "title": "Mes Favoris", "subtitle": "Biens que vous avez sauvegardés", "empty": "Pas encore de favoris", "emptyDesc": "Explorez les biens et sauvegardez vos favoris pour les retrouver ici.", "exploreNow": "Explorer les Biens", "loginRequired": "Connectez-vous pour voir les favoris", "loginRequiredDesc": "Vous devez vous connecter pour sauvegarder et voir vos biens favoris." },
   "priceAlerts": { "title": "Alertes de Prix", "subtitle": "Notifications de changements de prix pour vos biens favoris", "empty": "Pas d'alertes de prix", "emptyDesc": "Lorsque le prix d'un bien favori change, vous serez notifié ici.", "viewFavorites": "Voir les Favoris", "loginRequired": "Connectez-vous pour voir les alertes", "loginRequiredDesc": "Vous devez vous connecter pour voir les alertes de prix.", "markAllRead": "Tout marquer comme lu", "new": "Nouveau", "unknownProperty": "Bien" },
-  "testimonials": {
-    "title": "Ce Que Disent Nos Utilisateurs",
-    "subtitle": "Histoires de succès réelles de notre communauté",
-    "tenant1": {
-      "name": "Marie Santos",
-      "text": "J'ai reçu 3 offres en moins d'une semaine. Le modèle inversé fonctionne vraiment !"
+  "howItWorks": {
+    "title": "Comment ça marche",
+    "subtitle": "Trouvez votre logement en 3 étapes simples",
+    "step1": {
+      "title": "Créez votre profil",
+      "description": "Inscrivez-vous, téléchargez vos documents et dites-nous ce que vous cherchez. La vérification est rapide et sécurisée."
     },
-    "landlord1": {
-      "name": "Jean Ferreira",
-      "text": "J'ai trouvé des locataires vérifiés sans perdre de temps sur des visites inutiles."
+    "step2": {
+      "title": "Recevez des propositions",
+      "description": "Des propriétaires vérifiés trouvent votre profil et vous envoient des propositions de logements correspondant à vos critères."
     },
-    "tenant2": {
-      "name": "Anne Costa",
-      "text": "Mon Trust Score a fait toute la différence. Les propriétaires m'ont contactée avec d'excellentes offres."
+    "step3": {
+      "title": "Concluez le contrat",
+      "description": "Échangez avec le propriétaire, visitez le logement et signez le contrat directement sur la plateforme."
     }
   },
   "browseTenants": {

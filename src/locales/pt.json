@@ -790,20 +790,20 @@
     "guaranteeRequested": "Garantia de renda solicitada! Entraremos em contacto em breve.",
     "bankVerification": "Verificação Bancária"
   },
-  "testimonials": {
-    "title": "O Que Dizem os Nossos Utilizadores",
-    "subtitle": "Histórias reais de sucesso da nossa comunidade",
-    "tenant1": {
-      "name": "Maria Santos",
-      "text": "Recebi 3 propostas em menos de uma semana. O modelo invertido funciona mesmo!"
+  "howItWorks": {
+    "title": "Como funciona",
+    "subtitle": "Encontre casa em 3 passos simples",
+    "step1": {
+      "title": "Crie o seu perfil",
+      "description": "Registe-se, carregue os seus documentos e diga-nos o que procura. A verificação é rápida e segura."
     },
-    "landlord1": {
-      "name": "João Ferreira",
-      "text": "Encontrei inquilinos verificados sem perder tempo com visitas desnecessárias."
+    "step2": {
+      "title": "Receba propostas",
+      "description": "Proprietários verificados encontram o seu perfil e enviam-lhe propostas de imóveis que correspondem ao que procura."
     },
-    "tenant2": {
-      "name": "Ana Costa",
-      "text": "O meu Trust Score fez toda a diferença. Proprietários contactaram-me com ótimas ofertas."
+    "step3": {
+      "title": "Feche o contrato",
+      "description": "Converse com o proprietário, visite o imóvel e assine o contrato diretamente na plataforma."
     }
   },
   "browseTenants": {

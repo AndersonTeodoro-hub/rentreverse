@@ -1,9 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Home, Building2, CheckCircle, Share2, Gift, Users, Star, Quote } from 'lucide-react';
+import { ArrowRight, Home, Building2, CheckCircle, Share2, Gift, Users, Star, UserPlus, Search, Handshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Layout } from '@/components/layout';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 const Index = () => {
   const { t } = useTranslation();
@@ -127,67 +126,39 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* How It Works Section */}
       <section className="py-20 lg:py-28 bg-gradient-to-b from-background to-muted/30">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
-              {t('testimonials.title')}
+              {t('howItWorks.title')}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              {t('testimonials.subtitle')}
+              {t('howItWorks.subtitle')}
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+          <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
             {[
-              {
-                name: t('testimonials.tenant1.name'),
-                role: 'tenant',
-                initials: 'MS',
-                rating: 5,
-                text: t('testimonials.tenant1.text')
-              },
-              {
-                name: t('testimonials.landlord1.name'),
-                role: 'landlord',
-                initials: 'JF',
-                rating: 5,
-                text: t('testimonials.landlord1.text')
-              },
-              {
-                name: t('testimonials.tenant2.name'),
-                role: 'tenant',
-                initials: 'AC',
-                rating: 5,
-                text: t('testimonials.tenant2.text')
-              },
-            ].map((testimonial, index) => (
-              <div 
-                key={index} 
-                className="relative rounded-2xl border border-border bg-card p-6 card-shadow-premium hover-lift"
+              { num: 1, Icon: UserPlus, key: 'step1' },
+              { num: 2, Icon: Search, key: 'step2' },
+              { num: 3, Icon: Handshake, key: 'step3' },
+            ].map(({ num, Icon, key }) => (
+              <div
+                key={key}
+                className="relative rounded-2xl border border-border bg-card p-8 card-shadow-premium hover-lift"
               >
-                <Quote className="absolute top-4 right-4 h-8 w-8 text-primary/10" />
                 <div className="flex items-center gap-4 mb-4">
-                  <Avatar className="h-12 w-12 border-2 border-primary/20">
-                    <AvatarFallback className="bg-primary/10 text-primary font-semibold">
-                      {testimonial.initials}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
-                    <span className="text-sm text-muted-foreground">
-                      {testimonial.role === 'tenant' ? t('roles.tenant') : t('roles.landlord')}
-                    </span>
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center ring-1 ring-primary/10">
+                    <Icon className="h-7 w-7 text-primary" />
                   </div>
+                  <span className="text-4xl font-bold text-primary/30">{num}</span>
                 </div>
-                <div className="flex gap-0.5 mb-3">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                  ))}
-                </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  "{testimonial.text}"
+                <h3 className="text-xl font-semibold text-foreground mb-2">
+                  {t(`howItWorks.${key}.title`)}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {t(`howItWorks.${key}.description`)}
                 </p>
               </div>
             ))}
