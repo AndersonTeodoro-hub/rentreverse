@@ -27,12 +27,12 @@ serve(async (req) => {
   }
 
   try {
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+    const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
     const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
     const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 
-    if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY is not configured");
+    if (!GEMINI_API_KEY) {
+      throw new Error("GEMINI_API_KEY is not configured");
     }
 
     const { documentUrl, documentType, verificationId }: VerificationRequest = await req.json();
@@ -116,19 +116,7 @@ Check for fraud indicators:
 Respond in JSON format with the analysis.`,
     };
 
-    // Call Lovable AI with multimodal capabilities (Gemini supports images)
-    const aiResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
-        messages: [
-          {
-            role: "system",
-            content: systemPrompts[documentType] + `
+    const prompt = systemPrompts[documentType] + `
 
 IMPORTANT: Always respond with valid JSON in this exact structure:
 {
@@ -138,24 +126,19 @@ IMPORTANT: Always respond with valid JSON in this exact structure:
   "fraudIndicators": [ array of any suspicious findings ],
   "recommendations": [ array of suggestions for the user ],
   "summary": "Brief summary of the analysis"
-}`,
-          },
-          {
-            role: "user",
-            content: [
-              {
-                type: "text",
-                text: `Please analyze this ${documentType} document for verification. Provide detailed analysis and fraud detection.`,
-              },
-              {
-                type: "image_url",
-                image_url: {
-                  url: documentUrl,
-                },
-              },
-            ],
-          },
-        ],
+}
+
+Please analyze this ${documentType} document (URL: ${documentUrl}) for verification. Provide detailed analysis and fraud detection.`;
+
+    // Call Gemini API directly
+    const aiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0.3, maxOutputTokens: 4096 },
       }),
     });
 
@@ -181,7 +164,7 @@ IMPORTANT: Always respond with valid JSON in this exact structure:
     }
 
     const aiData = await aiResponse.json();
-    const aiContent = aiData.choices?.[0]?.message?.content;
+    const aiContent = aiData.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if (!aiContent) {
       throw new Error("No response from AI");

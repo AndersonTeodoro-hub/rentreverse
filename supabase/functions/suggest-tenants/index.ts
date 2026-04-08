@@ -63,10 +63,10 @@ serve(async (req) => {
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const lovableApiKey = Deno.env.get("LOVABLE_API_KEY");
+    const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
 
-    if (!lovableApiKey) {
-      return new Response(JSON.stringify({ error: "LOVABLE_API_KEY is not configured" }), {
+    if (!GEMINI_API_KEY) {
+      return new Response(JSON.stringify({ error: "GEMINI_API_KEY is not configured" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -177,61 +177,32 @@ ${JSON.stringify(propertyInfo, null, 2)}
 **Tenant Requests:**
 ${JSON.stringify(tenantsInfo, null, 2)}
 
-Evaluate each tenant and return rankings. Focus on practical compatibility factors.`;
+Evaluate each tenant and return rankings. Focus on practical compatibility factors.
 
-    console.log("Calling Lovable AI for tenant matching...");
+Respond ONLY with valid JSON (no markdown, no code fences) in this exact structure:
+{
+  "rankings": [
+    {
+      "tenant_id": "<tenant request id>",
+      "user_id": "<tenant user id>",
+      "compatibility_score": <number 0-100>,
+      "match_reasons": ["..."],
+      "concerns": ["..."],
+      "recommendation": "..."
+    }
+  ]
+}`;
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    console.log("Calling Gemini API for tenant matching...");
+
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${lovableApiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt },
-        ],
-        tools: [
-          {
-            type: "function",
-            function: {
-              name: "rank_tenants",
-              description: "Returns ranked list of tenants with compatibility scores",
-              parameters: {
-                type: "object",
-                properties: {
-                  rankings: {
-                    type: "array",
-                    items: {
-                      type: "object",
-                      properties: {
-                        tenant_id: { type: "string", description: "The tenant request ID" },
-                        user_id: { type: "string", description: "The tenant user ID" },
-                        compatibility_score: { type: "number", minimum: 0, maximum: 100 },
-                        match_reasons: {
-                          type: "array",
-                          items: { type: "string" },
-                        },
-                        concerns: {
-                          type: "array",
-                          items: { type: "string" },
-                        },
-                        recommendation: { type: "string" },
-                      },
-                      required: ["tenant_id", "user_id", "compatibility_score", "match_reasons", "recommendation"],
-                      additionalProperties: false,
-                    },
-                  },
-                },
-                required: ["rankings"],
-                additionalProperties: false,
-              },
-            },
-          },
-        ],
-        tool_choice: { type: "function", function: { name: "rank_tenants" } },
+        contents: [{ parts: [{ text: `${systemPrompt}\n\n${userPrompt}` }] }],
+        generationConfig: { temperature: 0.3, maxOutputTokens: 4096 },
       }),
     });
 
@@ -256,16 +227,20 @@ Evaluate each tenant and return rankings. Focus on practical compatibility facto
     const aiResult = await response.json();
     console.log("AI Response received:", JSON.stringify(aiResult).substring(0, 500));
 
-    // Extract rankings from tool call
+    // Extract rankings from Gemini text response
     let rankings = [];
-    const toolCall = aiResult.choices?.[0]?.message?.tool_calls?.[0];
-    
-    if (toolCall?.function?.arguments) {
+    const content = aiResult.candidates?.[0]?.content?.parts?.[0]?.text;
+
+    if (content) {
       try {
-        const args = JSON.parse(toolCall.function.arguments);
+        const jsonMatch = content.match(/```json\n?([\s\S]*?)\n?```/) ||
+                          content.match(/```\n?([\s\S]*?)\n?```/) ||
+                          content.match(/(\{[\s\S]*\})/);
+        const jsonString = (jsonMatch && (jsonMatch[1] || jsonMatch[0])) || content;
+        const args = JSON.parse(jsonString.trim());
         rankings = args.rankings || [];
       } catch (e) {
-        console.error("Error parsing tool call arguments:", e);
+        console.error("Error parsing Gemini response:", e);
       }
     }
 
