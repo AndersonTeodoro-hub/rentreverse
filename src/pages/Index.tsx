@@ -67,8 +67,14 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Right column - phone mockup */}
-            <div className="hidden lg:flex items-center justify-center relative">
+            {/* Right column - person + phone mockup */}
+            <div className="hidden lg:block relative h-[600px]">
+              <img
+                src="/hero-person.png"
+                alt=""
+                loading="lazy"
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 max-h-[580px] w-auto object-contain"
+              />
               <video
                 src="/hero-phone.mp4"
                 autoPlay
@@ -76,7 +82,7 @@ const Index = () => {
                 muted
                 playsInline
                 preload="auto"
-                className="w-64 rounded-2xl shadow-2xl"
+                className="absolute top-8 right-0 w-64 rounded-2xl drop-shadow-2xl"
               />
             </div>
           </div>
