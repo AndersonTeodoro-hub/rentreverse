@@ -36,7 +36,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem storageKey="rentreverse-theme">
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem storageKey="rentreverse-theme">
       <TooltipProvider>
         <Toaster />
         <Sonner />
