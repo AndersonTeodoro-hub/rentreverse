@@ -67,22 +67,13 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Right column - person + phone mockup */}
-            <div className="hidden lg:block relative h-[600px]">
+            {/* Right column - person */}
+            <div className="hidden lg:flex justify-center items-end">
               <img
                 src="/hero-person.png"
                 alt=""
                 loading="lazy"
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 max-h-[580px] w-auto object-contain"
-              />
-              <video
-                src="/hero-phone.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                className="absolute top-8 right-0 w-64 rounded-2xl drop-shadow-2xl"
+                className="max-h-[600px] w-auto object-contain"
               />
             </div>
           </div>
