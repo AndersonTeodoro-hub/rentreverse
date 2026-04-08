@@ -14,33 +14,33 @@
     --secondary: 45 93% 47%;
     --secondary-foreground: 0 0% 10%;
     
-    /* Background & Surface - Verde Névoa Premium Intenso */
-    --background: 145 35% 88%;
-    --foreground: 210 11% 15%;
-    
-    /* Cards & Elevated surfaces - Branco puro para máximo contraste */
+    /* Background & Surface - Off-white limpo */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    /* Cards & Elevated surfaces - Branco puro */
     --card: 0 0% 100%;
-    --card-foreground: 210 11% 15%;
-    
+    --card-foreground: 222 47% 11%;
+
     /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 210 11% 15%;
-    
-    /* Muted elements - Verde mais presente */
-    --muted: 148 28% 82%;
-    --muted-foreground: 210 11% 40%;
-    
-    /* Accent - Verde intenso para highlights */
-    --accent: 150 35% 85%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Muted elements - Cinza neutro suave */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Accent - Verde suave para highlights */
+    --accent: 152 50% 94%;
     --accent-foreground: 152 57% 22%;
-    
+
     /* Destructive */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    
-    /* Borders & inputs - Sophisticated green tint */
-    --border: 150 12% 86%;
-    --input: 150 12% 86%;
+
+    /* Borders & inputs - Cinza claro neutro */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
     --ring: 152 57% 28%;
     
     /* Radius */
@@ -59,13 +59,13 @@
     --info-foreground: 0 0% 100%;
 
     /* Sidebar - Harmonized */
-    --sidebar-background: 150 18% 96%;
-    --sidebar-foreground: 210 11% 25%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 20%;
     --sidebar-primary: 152 57% 28%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 152 40% 94%;
+    --sidebar-accent: 152 50% 95%;
     --sidebar-accent-foreground: 152 57% 22%;
-    --sidebar-border: 150 12% 88%;
+    --sidebar-border: 214 32% 91%;
     --sidebar-ring: 152 57% 28%;
   }
 
