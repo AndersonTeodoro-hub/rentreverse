@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    /* Primary Green - Trust, Security, Growth */
-    --primary: 152 57% 28%;
+    /* Primary Blue - Trust, Stability, Premium */
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
     
     /* Secondary - Warm accents */
@@ -30,9 +30,9 @@
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    /* Accent - Cinza neutro suave (verde apenas no foreground/destaques) */
-    --accent: 210 40% 96%;
-    --accent-foreground: 152 57% 22%;
+    /* Accent - Azul muito claro para highlights subtis */
+    --accent: 214 95% 97%;
+    --accent-foreground: 221 83% 40%;
 
     /* Destructive */
     --destructive: 0 84% 60%;
@@ -41,7 +41,7 @@
     /* Borders & inputs - Cinza claro neutro */
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 152 57% 28%;
+    --ring: 221 83% 53%;
     
     /* Radius */
     --radius: 0.625rem;
@@ -70,9 +70,9 @@
   }
 
   .dark {
-    /* Primary Green - Vibrante e luminoso para dark mode */
-    --primary: 152 65% 45%;
-    --primary-foreground: 0 0% 5%;
+    /* Primary Blue - luminoso para dark mode */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
     
     /* Secondary - Dourado intenso */
     --secondary: 45 95% 50%;

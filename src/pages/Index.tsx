@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Home, Building2, CheckCircle, Share2, Gift, Users, Star, UserPlus, Search, Handshake } from 'lucide-react';
+import { ArrowRight, Home, Building2, CheckCircle, Share2, Gift, Users, Star, UserPlus, Search, Handshake, Shield, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Layout } from '@/components/layout';
 
@@ -10,55 +10,97 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-background to-muted py-20 lg:py-32">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-primary/[0.03] dark:bg-primary/5 blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-success/[0.03] dark:bg-success/5 blur-3xl" />
-        </div>
-        
+      <section className="relative overflow-hidden bg-gradient-to-b from-white to-slate-50 dark:from-background dark:to-muted py-20 lg:py-28">
         <div className="container relative">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="animate-fade-in text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              {t('hero.title')}
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground sm:text-xl">
-              {t('hero.subtitle')}
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" asChild className="w-full sm:w-auto gap-2">
-                <Link to="/auth?mode=signup&role=tenant">
-                  <Home className="h-5 w-5" />
-                  {t('hero.forTenants')}
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto gap-2">
-                <Link to="/auth?mode=signup&role=landlord">
-                  <Building2 className="h-5 w-5" />
-                  {t('hero.forLandlords')}
-                </Link>
-              </Button>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left column - Text */}
+            <div className="text-center lg:text-left">
+              <h1 className="animate-fade-in text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl leading-tight">
+                {t('hero.title')}
+              </h1>
+              <p className="mt-6 text-lg text-muted-foreground sm:text-xl max-w-xl mx-auto lg:mx-0">
+                {t('hero.subtitle')}
+              </p>
+              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                <Button size="lg" asChild className="w-full sm:w-auto gap-2 bg-primary hover:bg-primary/90 text-primary-foreground">
+                  <Link to="/auth?mode=signup&role=tenant">
+                    <Home className="h-5 w-5" />
+                    {t('hero.forTenants')}
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" asChild className="w-full sm:w-auto gap-2">
+                  <Link to="/auth?mode=signup&role=landlord">
+                    <Building2 className="h-5 w-5" />
+                    {t('hero.forLandlords')}
+                  </Link>
+                </Button>
+              </div>
+              <div className="mt-6 flex justify-center lg:justify-start">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="gap-2 text-muted-foreground hover:text-foreground"
+                  onClick={() => {
+                    if (navigator.share) {
+                      navigator.share({
+                        title: t('common.appName'),
+                        text: t('common.tagline'),
+                        url: window.location.origin,
+                      });
+                    } else {
+                      navigator.clipboard.writeText(window.location.origin);
+                    }
+                  }}
+                >
+                  <Share2 className="h-4 w-4" />
+                  {t('hero.shareApp')}
+                </Button>
+              </div>
             </div>
-            <div className="mt-6">
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="gap-2 text-muted-foreground hover:text-foreground"
-                onClick={() => {
-                  if (navigator.share) {
-                    navigator.share({
-                      title: t('common.appName'),
-                      text: t('common.tagline'),
-                      url: window.location.origin,
-                    });
-                  } else {
-                    navigator.clipboard.writeText(window.location.origin);
-                  }
-                }}
-              >
-                <Share2 className="h-4 w-4" />
-                {t('hero.shareApp')}
-              </Button>
+
+            {/* Right column - Trust visual */}
+            <div className="relative hidden lg:block">
+              <div className="space-y-4">
+                {/* Big card */}
+                <div className="rounded-2xl bg-[#1e3a5f] text-white p-6 shadow-xl">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
+                      <Shield className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-3xl font-bold">2.500+</div>
+                      <div className="text-sm text-white/70">inquilinos verificados</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Trust score card */}
+                <div className="rounded-2xl bg-card border border-border p-5 card-shadow-premium">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-5 w-5 text-success" />
+                      <span className="text-sm font-medium text-foreground">Trust Score</span>
+                    </div>
+                    <span className="text-lg font-bold text-foreground">92<span className="text-sm text-muted-foreground">/100</span></span>
+                  </div>
+                  <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
+                    <div className="h-full rounded-full bg-primary" style={{ width: '92%' }} />
+                  </div>
+                </div>
+
+                {/* Contract card */}
+                <div className="rounded-2xl bg-card border border-border p-5 card-shadow-premium">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent">
+                      <FileText className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-foreground">Contrato gerado</div>
+                      <div className="text-xs text-muted-foreground">em menos de 5 minutos</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
