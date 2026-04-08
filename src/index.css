@@ -30,8 +30,8 @@
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    /* Accent - Verde suave para highlights */
-    --accent: 152 50% 94%;
+    /* Accent - Cinza neutro suave (verde apenas no foreground/destaques) */
+    --accent: 210 40% 96%;
     --accent-foreground: 152 57% 22%;
 
     /* Destructive */
@@ -175,54 +175,37 @@
                 0 4px 10px -4px hsl(var(--foreground) / 0.08);
   }
 
-  /* Card shadows - Premium multi-layer com alto contraste */
+  /* Card shadows - Neutras e subtis (light mode) */
   .card-shadow {
-    box-shadow: 0 1px 3px 0 hsl(152 30% 20% / 0.08),
-                0 4px 12px -2px hsl(152 30% 20% / 0.12),
-                0 0 0 1px hsl(152 30% 40% / 0.08);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04),
+                0 1px 3px 0 rgba(0, 0, 0, 0.04);
   }
 
   .card-shadow-lg {
-    box-shadow: 0 4px 8px -2px hsl(152 30% 20% / 0.1),
-                0 12px 28px -6px hsl(152 30% 20% / 0.15),
-                0 24px 48px -12px hsl(152 40% 25% / 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+                0 10px 15px -3px rgba(0, 0, 0, 0.04);
   }
 
-  /* Premium card shadow with green accent - máximo destaque */
+  /* Premium card shadow - subtil e neutra */
   .card-shadow-premium {
-    box-shadow: 0 2px 6px -1px hsl(152 30% 20% / 0.1),
-                0 10px 24px -6px hsl(152 35% 20% / 0.15),
-                0 20px 40px -10px hsl(152 40% 25% / 0.12),
-                0 0 0 1px hsl(152 40% 50% / 0.1);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04),
+                0 4px 12px -2px rgba(0, 0, 0, 0.06),
+                0 0 0 1px rgba(0, 0, 0, 0.03);
   }
 
-  /* Premium gradient background for sections */
+  /* Premium gradient background for sections - neutro em light */
   .bg-premium-gradient {
-    background: linear-gradient(
-      180deg,
-      hsl(var(--accent) / 0.6) 0%,
-      hsl(var(--background)) 40%,
-      hsl(var(--accent) / 0.3) 100%
-    );
+    background: hsl(var(--background));
   }
 
-  /* Subtle section divider gradient */
+  /* Subtle section divider - neutro */
   .bg-section-alt {
-    background: linear-gradient(
-      180deg,
-      hsl(var(--background)) 0%,
-      hsl(var(--muted) / 0.6) 50%,
-      hsl(var(--background)) 100%
-    );
+    background: hsl(var(--muted));
   }
 
-  /* Premium app background with mesh gradient effect - Light mode */
+  /* Premium app background - neutro em light mode */
   .bg-app-premium {
-    background: 
-      radial-gradient(ellipse 100% 80% at 20% -20%, hsl(152 45% 65% / 0.35) 0%, transparent 55%),
-      radial-gradient(ellipse 80% 60% at 85% 120%, hsl(152 40% 70% / 0.3) 0%, transparent 55%),
-      radial-gradient(ellipse 70% 50% at 50% 40%, hsl(145 35% 80% / 0.4) 0%, transparent 60%),
-      linear-gradient(180deg, hsl(145 35% 88%) 0%, hsl(148 30% 85%) 50%, hsl(150 32% 83%) 100%);
+    background: hsl(var(--background));
   }
 
   /* Dark mode premium background */
@@ -235,15 +218,9 @@
       linear-gradient(180deg, hsl(155 25% 8%) 0%, hsl(155 22% 10%) 50%, hsl(155 20% 12%) 100%);
   }
 
-  /* Mesh gradient for hero sections - Light mode */
+  /* Mesh gradient - neutro em light mode */
   .bg-mesh-gradient {
-    background: 
-      radial-gradient(at 30% 10%, hsl(152 50% 55% / 0.25) 0px, transparent 45%),
-      radial-gradient(at 85% 5%, hsl(145 45% 60% / 0.2) 0px, transparent 45%),
-      radial-gradient(at 10% 60%, hsl(150 40% 65% / 0.22) 0px, transparent 50%),
-      radial-gradient(at 90% 80%, hsl(152 45% 58% / 0.18) 0px, transparent 45%),
-      radial-gradient(at 50% 100%, hsl(148 38% 62% / 0.2) 0px, transparent 50%),
-      linear-gradient(180deg, hsl(145 35% 88%) 0%, hsl(150 32% 83%) 100%);
+    background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
   }
 
   /* Dark mode mesh gradient */

@@ -10,11 +10,11 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-accent/40 via-background to-success/5 py-20 lg:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-b from-background to-muted py-20 lg:py-32">
         {/* Decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-primary/5 blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-success/5 blur-3xl" />
+          <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-primary/[0.03] dark:bg-primary/5 blur-3xl" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-success/[0.03] dark:bg-success/5 blur-3xl" />
         </div>
         
         <div className="container relative">

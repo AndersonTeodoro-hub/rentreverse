@@ -40,7 +40,7 @@ export function Header() {
     : baseNavItems;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-card/80 backdrop-blur-xl supports-[backdrop-filter]:bg-card/70 shadow-[0_1px_3px_0_hsl(var(--foreground)/0.03)]">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-card dark:bg-card/80 dark:backdrop-blur-xl dark:supports-[backdrop-filter]:bg-card/70 shadow-[0_1px_2px_0_rgba(0,0,0,0.04)]">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
