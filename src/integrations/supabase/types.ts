@@ -479,6 +479,9 @@ export type Database = {
           postal_code: string | null
           property_type: string
           rent_amount: number
+          rental_category: string
+          min_stay_days: number | null
+          max_stay_days: number | null
           smoking_allowed: boolean | null
           status: Database["public"]["Enums"]["property_status"]
           title: string
@@ -504,6 +507,9 @@ export type Database = {
           postal_code?: string | null
           property_type: string
           rent_amount: number
+          rental_category?: string
+          min_stay_days?: number | null
+          max_stay_days?: number | null
           smoking_allowed?: boolean | null
           status?: Database["public"]["Enums"]["property_status"]
           title: string
@@ -529,6 +535,9 @@ export type Database = {
           postal_code?: string | null
           property_type?: string
           rent_amount?: number
+          rental_category?: string
+          min_stay_days?: number | null
+          max_stay_days?: number | null
           smoking_allowed?: boolean | null
           status?: Database["public"]["Enums"]["property_status"]
           title?: string
@@ -964,6 +973,7 @@ export type Database = {
           min_budget: number | null
           move_in_date: string | null
           preferred_cities: string[] | null
+          rental_category: string | null
           title: string
           updated_at: string
           user_id: string
@@ -978,6 +988,7 @@ export type Database = {
           min_budget?: number | null
           move_in_date?: string | null
           preferred_cities?: string[] | null
+          rental_category?: string | null
           title: string
           updated_at?: string
           user_id: string
@@ -992,6 +1003,7 @@ export type Database = {
           min_budget?: number | null
           move_in_date?: string | null
           preferred_cities?: string[] | null
+          rental_category?: string | null
           title?: string
           updated_at?: string
           user_id?: string

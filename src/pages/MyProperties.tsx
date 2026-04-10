@@ -31,6 +31,9 @@ interface Property {
   title: string;
   description: string | null;
   property_type: string;
+  rental_category: string;
+  min_stay_days: number | null;
+  max_stay_days: number | null;
   address: string;
   city: string;
   postal_code: string | null;
@@ -53,6 +56,9 @@ interface PropertyFormData {
   title: string;
   description: string;
   property_type: string;
+  rental_category: string;
+  min_stay_days: string;
+  max_stay_days: string;
   address: string;
   city: string;
   postal_code: string;
@@ -69,6 +75,9 @@ const emptyForm: PropertyFormData = {
   title: '',
   description: '',
   property_type: 'apartment',
+  rental_category: 'long_term',
+  min_stay_days: '',
+  max_stay_days: '',
   address: '',
   city: '',
   postal_code: '',
@@ -139,6 +148,9 @@ const MyProperties = () => {
         title: data.title,
         description: data.description || null,
         property_type: data.property_type,
+        rental_category: data.rental_category,
+        min_stay_days: data.min_stay_days ? parseInt(data.min_stay_days) : null,
+        max_stay_days: data.max_stay_days ? parseInt(data.max_stay_days) : null,
         address: data.address,
         city: data.city,
         postal_code: data.postal_code || null,
@@ -227,6 +239,9 @@ const MyProperties = () => {
       title: property.title,
       description: property.description || '',
       property_type: property.property_type,
+      rental_category: property.rental_category || 'long_term',
+      min_stay_days: property.min_stay_days?.toString() || '',
+      max_stay_days: property.max_stay_days?.toString() || '',
       address: property.address,
       city: property.city,
       postal_code: property.postal_code || '',
@@ -564,6 +579,20 @@ const MyProperties = () => {
                 />
               </div>
               
+              <div className="space-y-2 col-span-2">
+                <Label>{t('properties.form.rentalCategory')} *</Label>
+                <Select value={formData.rental_category} onValueChange={(v) => setFormData(prev => ({ ...prev, rental_category: v }))}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="short_stay">{t('properties.category.shortStay')}</SelectItem>
+                    <SelectItem value="temporary">{t('properties.category.temporary')}</SelectItem>
+                    <SelectItem value="long_term">{t('properties.category.longTerm')}</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
               <div className="space-y-2">
                 <Label>{t('properties.form.type')} *</Label>
                 <Select value={formData.property_type} onValueChange={(v) => setFormData(prev => ({ ...prev, property_type: v }))}>
@@ -575,6 +604,8 @@ const MyProperties = () => {
                     <SelectItem value="house">{t('properties.types.house')}</SelectItem>
                     <SelectItem value="studio">{t('properties.types.studio')}</SelectItem>
                     <SelectItem value="room">{t('properties.types.room')}</SelectItem>
+                    <SelectItem value="hostel_shared">{t('properties.types.hostelShared')}</SelectItem>
+                    <SelectItem value="hostel_private">{t('properties.types.hostelPrivate')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -652,6 +683,28 @@ const MyProperties = () => {
                   type="date"
                   value={formData.available_from}
                   onChange={(e) => setFormData(prev => ({ ...prev, available_from: e.target.value }))}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>{t('properties.form.minStayDays')}</Label>
+                <Input
+                  type="number"
+                  value={formData.min_stay_days}
+                  onChange={(e) => setFormData(prev => ({ ...prev, min_stay_days: e.target.value }))}
+                  placeholder="30"
+                  min="1"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>{t('properties.form.maxStayDays')}</Label>
+                <Input
+                  type="number"
+                  value={formData.max_stay_days}
+                  onChange={(e) => setFormData(prev => ({ ...prev, max_stay_days: e.target.value }))}
+                  placeholder="365"
+                  min="1"
                 />
               </div>
 

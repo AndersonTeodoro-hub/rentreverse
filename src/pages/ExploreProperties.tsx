@@ -37,6 +37,7 @@ interface Property {
   bathrooms: number | null;
   area_sqm: number | null;
   property_type: string;
+  rental_category: string;
   images: string[] | null;
   available_from: string | null;
   pets_allowed: boolean | null;
@@ -51,6 +52,7 @@ export default function ExploreProperties() {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(5000);
   const [minBedrooms, setMinBedrooms] = useState<string>('any');
+  const [rentalCategory, setRentalCategory] = useState<string>('any');
   const [propertyType, setPropertyType] = useState<string>('any');
   const [sortBy, setSortBy] = useState<string>('newest');
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -101,6 +103,11 @@ export default function ExploreProperties() {
         }
       }
 
+      // Rental category filter
+      if (rentalCategory !== 'any' && property.rental_category !== rentalCategory) {
+        return false;
+      }
+
       // Property type filter
       if (propertyType !== 'any' && property.property_type !== propertyType) {
         return false;
@@ -128,7 +135,7 @@ export default function ExploreProperties() {
           return 0;
       }
     });
-  }, [properties, searchCity, minPrice, maxPrice, minBedrooms, propertyType, sortBy]);
+  }, [properties, searchCity, minPrice, maxPrice, minBedrooms, rentalCategory, propertyType, sortBy]);
 
   // Pagination logic
   const totalPages = Math.ceil(filteredProperties.length / ITEMS_PER_PAGE);
@@ -143,11 +150,12 @@ export default function ExploreProperties() {
     setMinPrice(0);
     setMaxPrice(5000);
     setMinBedrooms('any');
+    setRentalCategory('any');
     setPropertyType('any');
     setCurrentPage(1);
   };
 
-  const hasActiveFilters = searchCity || minPrice > 0 || maxPrice < 5000 || minBedrooms !== 'any' || propertyType !== 'any';
+  const hasActiveFilters = searchCity || minPrice > 0 || maxPrice < 5000 || minBedrooms !== 'any' || rentalCategory !== 'any' || propertyType !== 'any';
 
   // Reset page when filters change
   const handleFilterChange = (setter: (value: any) => void, value: any) => {
@@ -211,6 +219,22 @@ export default function ExploreProperties() {
         </Select>
       </div>
 
+      {/* Rental Category */}
+      <div className="space-y-2">
+        <label className="text-sm font-medium">{t('explore.rentalCategory')}</label>
+        <Select value={rentalCategory} onValueChange={(v) => handleFilterChange(setRentalCategory, v)}>
+          <SelectTrigger>
+            <SelectValue placeholder={t('explore.anyCategory')} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="any">{t('explore.anyCategory')}</SelectItem>
+            <SelectItem value="short_stay">{t('properties.category.shortStay')}</SelectItem>
+            <SelectItem value="temporary">{t('properties.category.temporary')}</SelectItem>
+            <SelectItem value="long_term">{t('properties.category.longTerm')}</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
       {/* Property Type */}
       <div className="space-y-2">
         <label className="text-sm font-medium">{t('explore.propertyType')}</label>
@@ -224,6 +248,8 @@ export default function ExploreProperties() {
             <SelectItem value="house">{t('property.types.house')}</SelectItem>
             <SelectItem value="studio">{t('property.types.studio')}</SelectItem>
             <SelectItem value="room">{t('property.types.room')}</SelectItem>
+            <SelectItem value="hostel_shared">{t('property.types.hostelShared')}</SelectItem>
+            <SelectItem value="hostel_private">{t('property.types.hostelPrivate')}</SelectItem>
           </SelectContent>
         </Select>
       </div>
