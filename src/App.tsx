@@ -31,6 +31,7 @@ import RentGuarantee from "./pages/RentGuarantee";
 import ServicesMarketplace from "./pages/ServicesMarketplace";
 import Install from "./pages/Install";
 import Notifications from "./pages/Notifications";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -68,6 +69,7 @@ const App = () => (
                 <Route path="/services" element={<ServicesMarketplace />} />
                 <Route path="/install" element={<Install />} />
                 <Route path="/notifications" element={<Notifications />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/property/:id" element={<PropertyDetails />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />

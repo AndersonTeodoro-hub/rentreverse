@@ -168,7 +168,7 @@ const Dashboard = () => {
                 {initials}
               </div>
               <div className="flex gap-1">
-                <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => navigate('/verifications')}>
+                <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => navigate('/profile')}>
                   <Settings className="h-4 w-4" />
                 </Button>
                 <Button variant="ghost" size="icon" className="h-9 w-9" onClick={handleSignOut}>

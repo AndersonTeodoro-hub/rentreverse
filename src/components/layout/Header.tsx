@@ -1,10 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Bell, Heart, TrendingDown, MessageCircle, ShoppingBag, Users } from 'lucide-react';
+import { Menu, X, Bell, Heart, TrendingDown, MessageCircle, ShoppingBag, Users, User, Shield, LogOut } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { LanguageSelector } from '@/components/LanguageSelector';
-
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { useAuth } from '@/hooks/useAuth';
 import { useNotificationCount } from '@/hooks/useNotificationCount';
@@ -14,7 +14,7 @@ import { Badge } from '@/components/ui/badge';
 export function Header() {
   const { t, ready } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user, userRole } = useAuth();
+  const { user, userRole, signOut } = useAuth();
   const { unreadCount } = useNotificationCount();
   const { unreadCount: matchUnread } = useMatchNotifications();
   const totalUnread = unreadCount + matchUnread;
@@ -116,9 +116,31 @@ export function Header() {
                   </Badge>
                 )}
               </Button>
-              <Button variant="ghost" asChild>
+              <Button variant="ghost" size="sm" asChild>
                 <Link to="/dashboard">{t('nav.dashboard')}</Link>
               </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="h-9 w-9 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold text-sm hover:opacity-90 transition-opacity">
+                    {(user?.email?.[0] || '?').toUpperCase()}
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem onClick={() => navigate('/profile')} className="gap-2 cursor-pointer">
+                    <User className="h-4 w-4" />
+                    {t('profile.title', 'O Meu Perfil')}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate('/verifications')} className="gap-2 cursor-pointer">
+                    <Shield className="h-4 w-4" />
+                    {t('dashboard.verifications', 'Verificações')}
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={async () => { await signOut(); navigate('/'); }} className="gap-2 cursor-pointer text-destructive focus:text-destructive">
+                    <LogOut className="h-4 w-4" />
+                    {t('profile.signOut', 'Terminar sessão')}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </>
           ) : (
             <>
@@ -193,6 +215,13 @@ export function Header() {
                   onClick={closeMobileMenu}
                 >
                   {t('nav.dashboard')}
+                </Link>
+                <Link
+                  to="/profile"
+                  className="text-sm font-medium text-muted-foreground py-1"
+                  onClick={closeMobileMenu}
+                >
+                  {t('profile.title', 'O Meu Perfil')}
                 </Link>
                 <Link
                   to="/messages"
