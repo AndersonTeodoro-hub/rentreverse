@@ -123,7 +123,7 @@ const Dashboard = () => {
     );
   }
 
-  const displayName = profileData?.full_name || user?.email?.split('@')[0] || '';
+  const displayName = profileData?.full_name || 'Utilizador';
   const initials = displayName.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2);
   const availablePoints = (pointsData?.total_points || 0) - (pointsData?.used_points || 0);
   const score = trustScore?.total_score || 0;
@@ -234,13 +234,14 @@ const Dashboard = () => {
 
           {/* Quick Actions */}
           <div>
-            <h2 className="text-lg font-semibold text-foreground mb-4">{t('dashboard.quickActions')}</h2>
+            <h2 className="text-lg font-semibold text-foreground">{t('dashboard.quickActions')}</h2>
+            <p className="text-sm text-muted-foreground mb-4">Escolha uma acção para continuar</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {actions.map(({ icon: Icon, title, desc, to }) => (
                 <Link
                   key={to}
                   to={to}
-                  className="flex items-center gap-4 rounded-xl border border-border bg-card py-5 px-6 hover:shadow-md transition-all group"
+                  className="flex items-center gap-4 rounded-xl border border-border bg-card py-5 px-6 hover:shadow-md hover:scale-[1.02] transition-all group"
                 >
                   <div className="h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
                     <Icon className="h-5 w-5" />

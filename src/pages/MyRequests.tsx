@@ -128,7 +128,9 @@ const MyRequests = () => {
       setFormData(emptyForm);
       toast({
         title: editingRequest ? t('requests.updated') : t('requests.created'),
-        description: editingRequest ? t('requests.updatedDesc') : t('requests.createdDesc'),
+        description: editingRequest
+          ? t('requests.updatedDesc')
+          : t('requests.createdMatchDesc', 'O seu pedido foi criado! Vamos encontrar imóveis compatíveis.'),
       });
     },
     onError: (error: any) => {
@@ -233,7 +235,10 @@ const MyRequests = () => {
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <Badge variant={request.is_active ? 'default' : 'secondary'}>
+                          <Badge className={request.is_active
+                            ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300 border-0'
+                            : 'bg-muted text-muted-foreground border-0'
+                          }>
                             {request.is_active ? t('requests.active') : t('requests.inactive')}
                           </Badge>
                           <span className="text-xs text-muted-foreground">

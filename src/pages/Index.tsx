@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import {
-  ArrowRight, Home, Building2, CheckCircle, Share2, Gift, Users,
-  Star, UserPlus, Search, Handshake, Shield, FileText
+  ArrowRight, Home, Building2, Share2, Users,
+  UserPlus, Search, Handshake, Shield, FileText,
+  Eye, Star, UserCheck, Clock, Sparkles, CheckCircle
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Layout } from '@/components/layout';
@@ -209,12 +210,23 @@ const Index = () => {
               key={activeTab}
               className="grid gap-6 sm:grid-cols-3 animate-fade-in"
             >
-              {['feature1', 'feature2', 'feature3'].map((key) => {
+              {(activeTab === 'tenant'
+                ? [
+                    { key: 'feature1', Icon: Shield },
+                    { key: 'feature2', Icon: Eye },
+                    { key: 'feature3', Icon: Star },
+                  ]
+                : [
+                    { key: 'feature1', Icon: UserCheck },
+                    { key: 'feature2', Icon: Clock },
+                    { key: 'feature3', Icon: Sparkles },
+                  ]
+              ).map(({ key, Icon }) => {
                 const section = activeTab === 'tenant' ? 'forTenants' : 'forLandlords';
                 return (
                   <div key={key} className="rounded-xl border border-border bg-card p-6 text-center hover:shadow-md transition-shadow">
                     <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle className="h-7 w-7 text-primary" />
+                      <Icon className="h-7 w-7 text-primary" />
                     </div>
                     <h4 className="font-semibold text-foreground mb-2">
                       {t(`features.${section}.${key}.title`)}
@@ -230,59 +242,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ─── Referral Program ─── */}
-      <section className="py-20 lg:py-28 bg-background">
+      {/* ─── Trust Numbers ─── */}
+      <section className="py-16 lg:py-20 bg-muted/50">
         <div className="container">
-          <div className="mx-auto max-w-4xl">
-            <div className="rounded-3xl border border-border bg-card p-8 lg:p-12 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/8 to-transparent rounded-full -translate-y-1/2 translate-x-1/2" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-emerald-500/8 to-transparent rounded-full translate-y-1/2 -translate-x-1/2" />
-
-              <div className="relative z-10">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <Gift className="h-8 w-8 text-primary" />
-                  <span className="text-sm font-semibold text-primary uppercase tracking-wider">
-                    {t('referral.badge')}
-                  </span>
-                </div>
-
-                <h2 className="text-3xl font-bold text-foreground text-center sm:text-4xl">
-                  {t('referral.title')}
-                </h2>
-                <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
-                  {t('referral.subtitle')}
-                </p>
-
-                <div className="mt-10 grid gap-6 sm:grid-cols-3">
-                  {[
-                    { Icon: Share2, key: 'step1' },
-                    { Icon: Users, key: 'step2' },
-                    { Icon: Star, key: 'step3' },
-                  ].map(({ Icon, key }) => (
-                    <div key={key} className="flex flex-col items-center text-center p-4">
-                      <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                        <Icon className="h-7 w-7 text-primary" />
-                      </div>
-                      <h3 className="font-semibold text-foreground">{t(`referral.${key}.title`)}</h3>
-                      <p className="text-sm text-muted-foreground mt-1">{t(`referral.${key}.description`)}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-10 flex justify-center">
-                  <Button size="lg" asChild className="gap-2">
-                    <Link to="/auth?mode=signup">
-                      <Gift className="h-5 w-5" />
-                      {t('referral.cta')}
-                    </Link>
-                  </Button>
-                </div>
-
-                <p className="mt-6 text-center text-sm text-muted-foreground">
-                  {t('referral.terms')}
-                </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
+            {[
+              { value: '4', label: 'idiomas suportados' },
+              { value: '3', label: 'países cobertos' },
+              { value: '100%', label: 'verificação por IA' },
+              { value: '0€', label: 'para começar' },
+            ].map(({ value, label }) => (
+              <div key={label}>
+                <p className="text-4xl font-bold text-primary">{value}</p>
+                <p className="text-sm text-muted-foreground mt-1">{label}</p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
