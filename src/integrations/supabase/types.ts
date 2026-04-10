@@ -287,6 +287,42 @@ export type Database = {
         }
         Relationships: []
       }
+      match_notifications: {
+        Row: {
+          id: string
+          user_id: string
+          type: string
+          property_id: string | null
+          tenant_request_id: string | null
+          match_score: number | null
+          message: string | null
+          read: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          type: string
+          property_id?: string | null
+          tenant_request_id?: string | null
+          match_score?: number | null
+          message?: string | null
+          read?: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          type?: string
+          property_id?: string | null
+          tenant_request_id?: string | null
+          match_score?: number | null
+          message?: string | null
+          read?: boolean
+          created_at?: string
+        }
+        Relationships: []
+      }
       messages: {
         Row: {
           content: string
