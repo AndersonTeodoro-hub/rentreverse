@@ -631,11 +631,21 @@ const MyProperties = () => {
 
               <div className="space-y-2">
                 <Label>{t('properties.form.city')} *</Label>
-                <Input
-                  value={formData.city}
-                  onChange={(e) => setFormData(prev => ({ ...prev, city: e.target.value }))}
-                  placeholder="Lisboa"
-                />
+                <Select value={formData.city} onValueChange={(v) => setFormData(prev => ({ ...prev, city: v }))}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Lisboa" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem disabled value="pt-header" className="font-semibold text-xs text-muted-foreground">Portugal</SelectItem>
+                    {['Lisboa', 'Porto', 'Braga', 'Coimbra', 'Faro', 'Aveiro', 'Setúbal', 'Funchal', 'Viseu', 'Leiria', 'Évora', 'Cascais', 'Sintra', 'Almada', 'Amadora'].map(c => (
+                      <SelectItem key={c} value={c}>{c}</SelectItem>
+                    ))}
+                    <SelectItem disabled value="es-header" className="font-semibold text-xs text-muted-foreground">España</SelectItem>
+                    {['Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Málaga', 'Bilbao', 'Alicante', 'Zaragoza', 'Palma de Mallorca', 'Las Palmas'].map(c => (
+                      <SelectItem key={c} value={c}>{c}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="space-y-2">

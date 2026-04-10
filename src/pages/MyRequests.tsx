@@ -13,8 +13,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Layout } from "@/components/layout";
 import { useAuth } from "@/hooks/useAuth";
+
+const CITIES = [
+  { group: 'Portugal', cities: ['Lisboa', 'Porto', 'Braga', 'Coimbra', 'Faro', 'Aveiro', 'Setúbal', 'Funchal', 'Viseu', 'Leiria', 'Évora', 'Cascais', 'Sintra', 'Almada', 'Amadora'] },
+  { group: 'España', cities: ['Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Málaga', 'Bilbao', 'Alicante', 'Zaragoza', 'Palma de Mallorca', 'Las Palmas'] },
+];
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -35,7 +41,7 @@ interface TenantRequest {
 interface RequestFormData {
   title: string;
   description: string;
-  preferred_cities: string;
+  preferred_cities: string[];
   min_budget: string;
   max_budget: string;
   min_bedrooms: string;
@@ -45,7 +51,7 @@ interface RequestFormData {
 const emptyForm: RequestFormData = {
   title: '',
   description: '',
-  preferred_cities: '',
+  preferred_cities: [],
   min_budget: '',
   max_budget: '',
   min_bedrooms: '1',
@@ -98,7 +104,7 @@ const MyRequests = () => {
         user_id: user.id,
         title: data.title,
         description: data.description || null,
-        preferred_cities: data.preferred_cities ? data.preferred_cities.split(',').map(s => s.trim()) : null,
+        preferred_cities: data.preferred_cities.length > 0 ? data.preferred_cities : null,
         min_budget: data.min_budget ? parseFloat(data.min_budget) : null,
         max_budget: data.max_budget ? parseFloat(data.max_budget) : null,
         min_bedrooms: data.min_bedrooms ? parseInt(data.min_bedrooms) : null,
@@ -174,7 +180,7 @@ const MyRequests = () => {
     setFormData({
       title: request.title,
       description: request.description || '',
-      preferred_cities: request.preferred_cities?.join(', ') || '',
+      preferred_cities: request.preferred_cities || [],
       min_budget: request.min_budget?.toString() || '',
       max_budget: request.max_budget?.toString() || '',
       min_bedrooms: request.min_bedrooms?.toString() || '1',
@@ -362,12 +368,38 @@ const MyRequests = () => {
 
             <div className="space-y-2">
               <Label>{t('requests.form.cities')}</Label>
-              <Input
-                value={formData.preferred_cities}
-                onChange={(e) => setFormData(prev => ({ ...prev, preferred_cities: e.target.value }))}
-                placeholder={t('requests.form.citiesPlaceholder')}
-              />
-              <p className="text-xs text-muted-foreground">{t('requests.form.citiesHint')}</p>
+              {formData.preferred_cities.length > 0 && (
+                <div className="flex flex-wrap gap-1 mb-2">
+                  {formData.preferred_cities.map(c => (
+                    <Badge key={c} variant="secondary" className="text-xs">{c}</Badge>
+                  ))}
+                </div>
+              )}
+              <div className="border rounded-md p-3 max-h-48 overflow-y-auto space-y-3">
+                {CITIES.map(group => (
+                  <div key={group.group}>
+                    <p className="text-xs font-semibold text-muted-foreground mb-1.5">{group.group}</p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+                      {group.cities.map(city => (
+                        <label key={city} className="flex items-center gap-1.5 text-sm cursor-pointer">
+                          <Checkbox
+                            checked={formData.preferred_cities.includes(city)}
+                            onCheckedChange={(checked) => {
+                              setFormData(prev => ({
+                                ...prev,
+                                preferred_cities: checked
+                                  ? [...prev.preferred_cities, city]
+                                  : prev.preferred_cities.filter(c => c !== city),
+                              }));
+                            }}
+                          />
+                          {city}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
