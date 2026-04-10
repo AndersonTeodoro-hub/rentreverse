@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
-import { Truck, Sparkles, Shield, Zap, Wifi, Flame, Star, ExternalLink, Tag, ChevronRight } from 'lucide-react';
+import { Truck, Sparkles, Shield, Zap, Wifi, Flame, Star, ExternalLink, Tag, ChevronRight, Plane, BedDouble, Car, Bell } from 'lucide-react';
 import { Layout } from '@/components/layout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -11,7 +11,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from 'sonner';
 
-type ServiceCategory = 'moving' | 'cleaning' | 'insurance' | 'utilities';
+type ServiceCategory = 'moving' | 'cleaning' | 'insurance' | 'utilities' | 'flights' | 'temp_housing' | 'car_rental';
 
 interface ServiceProvider {
   id: string;
@@ -59,7 +59,34 @@ const categoryConfig = {
     color: 'text-orange-500',
     bgColor: 'bg-orange-500/10',
   },
-};
+  flights: {
+    icon: Plane,
+    label: 'Voos',
+    description: 'Voos com desconto exclusivo',
+    color: 'text-sky-500',
+    bgColor: 'bg-sky-500/10',
+    comingSoon: true,
+    comingSoonDesc: 'Estamos a preparar parcerias com as melhores companhias aéreas para oferecer voos com desconto exclusivo para utilizadores RentReverse.',
+  },
+  temp_housing: {
+    icon: BedDouble,
+    label: 'Alojamento',
+    description: 'Alojamento temporário para a sua chegada',
+    color: 'text-amber-500',
+    bgColor: 'bg-amber-500/10',
+    comingSoon: true,
+    comingSoonDesc: 'Em breve poderá reservar alojamento temporário para os primeiros dias no seu novo país, com preços especiais para membros RentReverse.',
+  },
+  car_rental: {
+    icon: Car,
+    label: 'Rent a Car',
+    description: 'Aluguer de veículos com desconto',
+    color: 'text-rose-500',
+    bgColor: 'bg-rose-500/10',
+    comingSoon: true,
+    comingSoonDesc: 'Estamos a negociar parcerias com empresas de aluguer de carros para oferecer tarifas exclusivas a utilizadores RentReverse.',
+  },
+} as const;
 
 const subcategoryIcons: Record<string, React.ElementType> = {
   electricity: Zap,
@@ -219,7 +246,7 @@ export default function ServicesMarketplace() {
 
         {/* Category Tabs */}
         <Tabs value={activeCategory} onValueChange={(v) => setActiveCategory(v as ServiceCategory)}>
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-7">
             {(Object.keys(categoryConfig) as ServiceCategory[]).map((category) => {
               const config = categoryConfig[category];
               return (
@@ -233,8 +260,34 @@ export default function ServicesMarketplace() {
 
           {(Object.keys(categoryConfig) as ServiceCategory[]).map((category) => {
             const config = categoryConfig[category];
+            const isComingSoon = 'comingSoon' in config && config.comingSoon;
             const categoryProviders = providers?.filter(p => p.category === category) || [];
-            
+
+            if (isComingSoon) {
+              return (
+                <TabsContent key={category} value={category} className="mt-6">
+                  <div className="max-w-lg mx-auto py-12 text-center">
+                    <config.icon className={`h-16 w-16 mx-auto text-primary/30 mb-6`} />
+                    <Badge className="bg-primary/10 text-primary border-0 rounded-full px-4 py-1 mb-4">Em breve</Badge>
+                    <h2 className="text-xl font-semibold text-foreground mb-3">
+                      {config.label} — Em breve
+                    </h2>
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                      {'comingSoonDesc' in config ? config.comingSoonDesc : config.description}
+                    </p>
+                    <Button
+                      variant="outline"
+                      className="gap-2"
+                      onClick={() => toast.success('Vamos notificá-lo quando este serviço estiver disponível!')}
+                    >
+                      <Bell className="h-4 w-4" />
+                      Notificar-me quando disponível
+                    </Button>
+                  </div>
+                </TabsContent>
+              );
+            }
+
             return (
               <TabsContent key={category} value={category} className="mt-6">
                 <div className="mb-6">
