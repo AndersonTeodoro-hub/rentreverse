@@ -540,7 +540,14 @@
       "apartment": "Apartamento",
       "house": "Moradia",
       "studio": "Estúdio",
-      "room": "Quarto"
+      "room": "Quarto",
+      "hostelShared": "Quarto partilhado",
+      "hostelPrivate": "Quarto privado"
+    },
+    "category": {
+      "shortStay": "Curta duração",
+      "temporary": "Temporada",
+      "longTerm": "Longo prazo"
     },
     "form": {
       "title": "Título",
@@ -561,7 +568,10 @@
       "smokingAllowed": "Fumadores Permitidos",
       "images": "Fotografias",
       "addImages": "Adicionar Fotografias",
-      "imagesHint": "JPG, PNG ou WEBP. Máximo 5MB por imagem."
+      "imagesHint": "JPG, PNG ou WEBP. Máximo 5MB por imagem.",
+      "rentalCategory": "Categoria de arrendamento",
+      "minStayDays": "Estadia mínima (dias)",
+      "maxStayDays": "Estadia máxima (dias)"
     }
   },
   "notifications": {
@@ -584,6 +594,8 @@
     "priceRange": "Faixa de Preço (€/mês)",
     "bedrooms": "Quartos",
     "anyBedrooms": "Qualquer",
+    "rentalCategory": "Categoria de arrendamento",
+    "anyCategory": "Qualquer categoria",
     "propertyType": "Tipo de Imóvel",
     "anyType": "Qualquer tipo",
     "clearFilters": "Limpar Filtros",
@@ -604,7 +616,9 @@
       "apartment": "Apartamento",
       "house": "Casa",
       "studio": "Estúdio",
-      "room": "Quarto"
+      "room": "Quarto",
+      "hostelShared": "Quarto partilhado",
+      "hostelPrivate": "Quarto privado"
     },
     "petsAllowed": "Aceita animais",
     "smokingAllowed": "Permite fumar"

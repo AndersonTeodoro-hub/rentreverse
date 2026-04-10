@@ -522,7 +522,14 @@
       "apartment": "Apartment",
       "house": "House",
       "studio": "Studio",
-      "room": "Room"
+      "room": "Room",
+      "hostelShared": "Shared room",
+      "hostelPrivate": "Private room"
+    },
+    "category": {
+      "shortStay": "Short stay",
+      "temporary": "Temporary",
+      "longTerm": "Long term"
     },
     "form": {
       "title": "Title",
@@ -543,7 +550,10 @@
       "smokingAllowed": "Smoking Allowed",
       "images": "Photos",
       "addImages": "Add Photos",
-      "imagesHint": "JPG, PNG or WEBP. Maximum 5MB per image."
+      "imagesHint": "JPG, PNG or WEBP. Maximum 5MB per image.",
+      "rentalCategory": "Rental category",
+      "minStayDays": "Minimum stay (days)",
+      "maxStayDays": "Maximum stay (days)"
     }
   },
   "notifications": {
@@ -566,6 +576,8 @@
     "priceRange": "Price Range (€/month)",
     "bedrooms": "Bedrooms",
     "anyBedrooms": "Any",
+    "rentalCategory": "Rental category",
+    "anyCategory": "Any category",
     "propertyType": "Property Type",
     "anyType": "Any type",
     "clearFilters": "Clear Filters",
@@ -586,7 +598,9 @@
       "apartment": "Apartment",
       "house": "House",
       "studio": "Studio",
-      "room": "Room"
+      "room": "Room",
+      "hostelShared": "Shared room",
+      "hostelPrivate": "Private room"
     },
     "petsAllowed": "Pets allowed",
     "smokingAllowed": "Smoking allowed"
