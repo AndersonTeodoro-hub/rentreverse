@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
       manifest: {
         name: "RentReverse - Arrendamento Invertido",
         short_name: "RentReverse",
-        description: "A plataforma de arrendamento onde inquilinos publicam e proprietários encontram. Encontre o inquilino perfeito ou seja encontrado pelo seu lar ideal.",
+        description: "A plataforma de arrendamento onde inquilinos publicam o que procuram e proprietários verificados encontram-nos. Verificação automática de documentos, matching personalizado e contrato gerado automaticamente. Disponível em Portugal, Espanha e França.",
         theme_color: "#7c3aed",
         background_color: "#0f172a",
         display: "standalone",

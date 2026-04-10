@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     
     <!-- Primary Meta Tags -->
-    <title>RentReverse - Arrendamento Invertido</title>
-    <meta name="description" content="RentReverse é a plataforma de arrendamento onde inquilinos publicam e proprietários encontram. Encontre o inquilino perfeito ou seja encontrado pelo seu lar ideal." />
+    <title>RentReverse — Arrendamento Invertido | Portugal, Espanha & França</title>
+    <meta name="description" content="A plataforma de arrendamento onde inquilinos publicam o que procuram e proprietários verificados encontram-nos. Verificação automática de documentos, matching personalizado e contrato gerado automaticamente. Disponível em Portugal, Espanha e França." />
     <meta name="author" content="RentReverse" />
-    <meta name="keywords" content="arrendamento, aluguel, inquilino, proprietário, imóveis, Portugal, Lisboa, Porto" />
+    <meta name="keywords" content="arrendamento, aluguel, imóveis, Portugal, Espanha, França, inquilinos verificados, proprietários, contrato digital, trust score, matching, renda, casa, apartamento, quarto" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://rentreverse.app" />
     
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#7c3aed" />
@@ -30,21 +32,23 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://rentreverse.app/" />
-    <meta property="og:title" content="RentReverse - Arrendamento Invertido" />
-    <meta property="og:description" content="A plataforma de arrendamento onde inquilinos publicam e proprietários encontram." />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:url" content="https://rentreverse.app" />
+    <meta property="og:title" content="RentReverse — A Forma Inversa de Arrendar" />
+    <meta property="og:description" content="Pare de procurar sem fim. Deixe os proprietários encontrá-lo. Verificação automática, matching personalizado e contrato digital." />
+    <meta property="og:image" content="https://rentreverse.app/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:locale" content="pt_PT" />
-    
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="en_GB" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://rentreverse.app/" />
-    <meta name="twitter:title" content="RentReverse - Arrendamento Invertido" />
-    <meta name="twitter:description" content="A plataforma de arrendamento onde inquilinos publicam e proprietários encontram." />
-    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="twitter:title" content="RentReverse — A Forma Inversa de Arrendar" />
+    <meta name="twitter:description" content="Pare de procurar sem fim. Deixe os proprietários encontrá-lo." />
+    <meta name="twitter:image" content="https://rentreverse.app/og-image.png" />
     
     <!-- Preconnect to external services -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -69,6 +73,25 @@
         padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
       }
     </style>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "RentReverse",
+      "url": "https://rentreverse.app",
+      "description": "A plataforma de arrendamento onde inquilinos publicam o que procuram e proprietários verificados encontram-nos. Verificação automática de documentos, matching personalizado e contrato gerado automaticamente.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "availableLanguage": ["pt", "es", "en", "fr"]
+    }
+    </script>
   </head>
 
   <body>
