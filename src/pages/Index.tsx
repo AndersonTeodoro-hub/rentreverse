@@ -53,7 +53,7 @@ const Index = () => {
                 <span className="hidden sm:inline text-white/30">·</span>
                 <span className="flex items-center gap-1"><CheckCircle className="h-3.5 w-3.5 text-primary" /> Portugal & Espanha</span>
                 <span className="hidden sm:inline text-white/30">·</span>
-                <span className="flex items-center gap-1"><CheckCircle className="h-3.5 w-3.5 text-primary" /> Verificação por IA</span>
+                <span className="flex items-center gap-1"><CheckCircle className="h-3.5 w-3.5 text-primary" /> Verificação automática</span>
               </div>
 
               {/* CTAs */}
@@ -98,9 +98,9 @@ const Index = () => {
             {/* Right — Glass cards */}
             <div className="hidden lg:flex flex-col gap-5 pl-8">
               {[
-                { Icon: Shield, title: 'Verificação por IA', desc: 'Documentos verificados em segundos', delay: '0s' },
-                { Icon: Users, title: 'Matching Inteligente', desc: 'A IA encontra o inquilino ideal', delay: '0.15s' },
-                { Icon: FileText, title: 'Contrato Automático', desc: 'Gerado com base nas leis locais', delay: '0.3s' },
+                { Icon: Shield, title: 'Verificação Automática', desc: 'Documentos verificados de forma segura e instantânea', delay: '0s' },
+                { Icon: Users, title: 'Matching Personalizado', desc: 'Encontramos o inquilino ideal para o seu imóvel', delay: '0.15s' },
+                { Icon: FileText, title: 'Contrato Automático', desc: 'Contrato gerado automaticamente com base na legislação local', delay: '0.3s' },
               ].map(({ Icon, title, desc, delay }) => (
                 <div
                   key={title}
@@ -249,7 +249,7 @@ const Index = () => {
             {[
               { value: '4', label: 'idiomas suportados' },
               { value: '3', label: 'países cobertos' },
-              { value: '100%', label: 'verificação por IA' },
+              { value: '100%', label: 'verificação automática' },
               { value: '0€', label: 'para começar' },
             ].map(({ value, label }) => (
               <div key={label}>
