@@ -26,6 +26,9 @@ dist-ssr
 # Supabase
 supabase/.temp/
 
+# External references
+claude-cookbooks/
+
 # Environment variables
 .env
 .env.local
