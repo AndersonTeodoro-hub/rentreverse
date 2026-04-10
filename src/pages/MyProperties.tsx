@@ -18,6 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Layout } from "@/components/layout";
 import { useAuth } from "@/hooks/useAuth";
+import { CITIES_BY_COUNTRY } from "@/lib/cities";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -632,17 +633,17 @@ const MyProperties = () => {
               <div className="space-y-2">
                 <Label>{t('properties.form.city')} *</Label>
                 <Select value={formData.city} onValueChange={(v) => setFormData(prev => ({ ...prev, city: v }))}>
-                  <SelectTrigger>
+                  <SelectTrigger className="h-11">
                     <SelectValue placeholder="Lisboa" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem disabled value="pt-header" className="font-semibold text-xs text-muted-foreground">Portugal</SelectItem>
-                    {['Lisboa', 'Porto', 'Braga', 'Coimbra', 'Faro', 'Aveiro', 'Setúbal', 'Funchal', 'Viseu', 'Leiria', 'Évora', 'Cascais', 'Sintra', 'Almada', 'Amadora'].map(c => (
-                      <SelectItem key={c} value={c}>{c}</SelectItem>
-                    ))}
-                    <SelectItem disabled value="es-header" className="font-semibold text-xs text-muted-foreground">España</SelectItem>
-                    {['Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Málaga', 'Bilbao', 'Alicante', 'Zaragoza', 'Palma de Mallorca', 'Las Palmas'].map(c => (
-                      <SelectItem key={c} value={c}>{c}</SelectItem>
+                    {Object.entries(CITIES_BY_COUNTRY).map(([country, cities]) => (
+                      <div key={country}>
+                        <SelectItem disabled value={`header-${country}`} className="font-semibold text-xs text-muted-foreground uppercase tracking-wider">{country}</SelectItem>
+                        {cities.map(c => (
+                          <SelectItem key={c} value={c}>{c}</SelectItem>
+                        ))}
+                      </div>
                     ))}
                   </SelectContent>
                 </Select>

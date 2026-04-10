@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { 
-  Search, Plus, Edit, Trash2, MapPin, Euro, Bed, 
-  Calendar, MoreVertical, Home
+import {
+  Search, Plus, Edit, Trash2, MapPin, Euro, Bed,
+  Calendar, MoreVertical, Home, ChevronsUpDown, X
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,14 +13,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Layout } from "@/components/layout";
 import { useAuth } from "@/hooks/useAuth";
-
-const CITIES = [
-  { group: 'Portugal', cities: ['Lisboa', 'Porto', 'Braga', 'Coimbra', 'Faro', 'Aveiro', 'Setúbal', 'Funchal', 'Viseu', 'Leiria', 'Évora', 'Cascais', 'Sintra', 'Almada', 'Amadora'] },
-  { group: 'España', cities: ['Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Málaga', 'Bilbao', 'Alicante', 'Zaragoza', 'Palma de Mallorca', 'Las Palmas'] },
-];
+import { CITIES_BY_COUNTRY } from "@/lib/cities";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -368,38 +365,61 @@ const MyRequests = () => {
 
             <div className="space-y-2">
               <Label>{t('requests.form.cities')}</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" className="w-full justify-between h-11 font-normal">
+                    {formData.preferred_cities.length > 0
+                      ? `${formData.preferred_cities.length} cidade(s) selecionada(s)`
+                      : t('requests.form.citiesPlaceholder')}
+                    <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-80 p-0" align="start">
+                  <div className="p-3 max-h-64 overflow-y-auto space-y-4">
+                    {Object.entries(CITIES_BY_COUNTRY).map(([country, cities]) => (
+                      <div key={country}>
+                        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">{country}</p>
+                        <div className="grid grid-cols-2 gap-1">
+                          {cities.map(city => (
+                            <label key={city} className="flex items-center gap-2 text-sm cursor-pointer rounded-md px-2 py-1.5 hover:bg-accent transition-colors">
+                              <Checkbox
+                                checked={formData.preferred_cities.includes(city)}
+                                onCheckedChange={(checked) => {
+                                  setFormData(prev => ({
+                                    ...prev,
+                                    preferred_cities: checked
+                                      ? [...prev.preferred_cities, city]
+                                      : prev.preferred_cities.filter(c => c !== city),
+                                  }));
+                                }}
+                              />
+                              {city}
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
               {formData.preferred_cities.length > 0 && (
-                <div className="flex flex-wrap gap-1 mb-2">
+                <div className="flex flex-wrap gap-1.5 pt-1">
                   {formData.preferred_cities.map(c => (
-                    <Badge key={c} variant="secondary" className="text-xs">{c}</Badge>
+                    <Badge
+                      key={c}
+                      variant="secondary"
+                      className="text-xs gap-1 cursor-pointer hover:bg-destructive/10"
+                      onClick={() => setFormData(prev => ({
+                        ...prev,
+                        preferred_cities: prev.preferred_cities.filter(city => city !== c),
+                      }))}
+                    >
+                      {c}
+                      <X className="h-3 w-3" />
+                    </Badge>
                   ))}
                 </div>
               )}
-              <div className="border rounded-md p-3 max-h-48 overflow-y-auto space-y-3">
-                {CITIES.map(group => (
-                  <div key={group.group}>
-                    <p className="text-xs font-semibold text-muted-foreground mb-1.5">{group.group}</p>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
-                      {group.cities.map(city => (
-                        <label key={city} className="flex items-center gap-1.5 text-sm cursor-pointer">
-                          <Checkbox
-                            checked={formData.preferred_cities.includes(city)}
-                            onCheckedChange={(checked) => {
-                              setFormData(prev => ({
-                                ...prev,
-                                preferred_cities: checked
-                                  ? [...prev.preferred_cities, city]
-                                  : prev.preferred_cities.filter(c => c !== city),
-                              }));
-                            }}
-                          />
-                          {city}
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
