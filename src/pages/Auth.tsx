@@ -111,9 +111,7 @@ export default function Auth() {
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold text-2xl">
-                R
-              </div>
+              <img src="/logo_RentReverse.png" alt="RentReverse" className="h-12 w-12 rounded-xl" />
             </div>
             <h1 className="text-2xl font-bold text-foreground">
               {mode === 'login' ? t('auth.loginTitle') : t('auth.signupTitle')}
