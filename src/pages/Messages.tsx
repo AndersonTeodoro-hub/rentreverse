@@ -71,10 +71,9 @@ const Messages = () => {
 
   return (
     <Layout>
-      <div className="container py-6">
+      <div className="container py-8 px-6">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
-            <MessageCircle className="h-6 w-6 text-primary" />
+          <h1 className="text-3xl font-bold text-foreground">
             {t('chat.title')}
           </h1>
           <p className="text-muted-foreground mt-1">{t('chat.subtitle')}</p>
@@ -118,8 +117,8 @@ const Messages = () => {
                 />
               ) : (
                 <div className="flex flex-col items-center justify-center h-full text-center p-6">
-                  <MessageCircle className="h-16 w-16 text-muted-foreground/50 mb-4" />
-                  <h3 className="text-lg font-medium text-foreground mb-2">
+                  <MessageCircle className="h-16 w-16 text-muted-foreground/20 mb-6" />
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
                     {t('chat.selectConversation')}
                   </h3>
                   <p className="text-muted-foreground max-w-sm">

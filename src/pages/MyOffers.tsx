@@ -173,15 +173,18 @@ const MyOffers = () => {
   if (authLoading || isLoading) {
     return (
       <Layout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        <div className="max-w-4xl mx-auto py-8 px-4 space-y-4">
+          <div className="h-8 bg-muted animate-pulse rounded-lg w-1/3" />
+          <div className="h-4 bg-muted animate-pulse rounded-lg w-1/4" />
+          <div className="h-12 bg-muted animate-pulse rounded-lg" />
+          {[1, 2, 3].map(i => <div key={i} className="h-28 bg-muted animate-pulse rounded-xl" />)}
         </div>
       </Layout>
     );
   }
 
   const renderOfferCard = (offer: Offer, showActions: boolean = true) => (
-    <Card key={offer.id} className="overflow-hidden">
+    <Card key={offer.id} className="overflow-hidden rounded-xl border border-border hover:shadow-md transition-all">
       <Collapsible open={expandedOffers.has(offer.id)} onOpenChange={() => toggleExpand(offer.id)}>
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between">
@@ -328,22 +331,16 @@ const MyOffers = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/30 py-8 px-4">
+      <div className="min-h-screen bg-background py-8 px-4">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h1 className="text-3xl font-bold flex items-center gap-2">
-                <Mail className="w-8 h-8 text-primary" />
-                {t('offers.myOffers')}
-              </h1>
-              <p className="text-muted-foreground mt-1">
-                {userRole === 'tenant' ? t('offers.receivedOffers') : t('offers.sentOffers')}
-              </p>
-            </div>
-            <Button variant="outline" onClick={() => navigate('/dashboard')}>
-              {t('common.back')}
-            </Button>
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-foreground">
+              {t('offers.myOffers')}
+            </h1>
+            <p className="text-muted-foreground mt-1">
+              {userRole === 'tenant' ? t('offers.receivedOffers') : t('offers.sentOffers')}
+            </p>
           </div>
 
           <Tabs defaultValue="pending" className="space-y-6">
@@ -363,10 +360,10 @@ const MyOffers = () => {
               {pendingOffers.length > 0 ? (
                 pendingOffers.map(offer => renderOfferCard(offer))
               ) : (
-                <div className="text-center py-12">
-                  <Mail className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="text-lg font-medium">{t('offers.noPending')}</h3>
-                  <p className="text-muted-foreground">{t('offers.noPendingDesc')}</p>
+                <div className="text-center py-20">
+                  <Mail className="w-16 h-16 mx-auto text-muted-foreground/30 mb-6" />
+                  <h3 className="text-xl font-semibold text-foreground">{t('offers.noPending')}</h3>
+                  <p className="text-muted-foreground mt-1">{t('offers.noPendingDesc')}</p>
                 </div>
               )}
             </TabsContent>
@@ -375,10 +372,10 @@ const MyOffers = () => {
               {otherOffers.length > 0 ? (
                 otherOffers.map(offer => renderOfferCard(offer, false))
               ) : (
-                <div className="text-center py-12">
-                  <Mail className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="text-lg font-medium">{t('offers.noHistory')}</h3>
-                  <p className="text-muted-foreground">{t('offers.noHistoryDesc')}</p>
+                <div className="text-center py-20">
+                  <Mail className="w-16 h-16 mx-auto text-muted-foreground/30 mb-6" />
+                  <h3 className="text-xl font-semibold text-foreground">{t('offers.noHistory')}</h3>
+                  <p className="text-muted-foreground mt-1">{t('offers.noHistoryDesc')}</p>
                 </div>
               )}
             </TabsContent>

@@ -195,8 +195,10 @@ const MyRequests = () => {
   if (authLoading || isLoading) {
     return (
       <Layout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        <div className="max-w-4xl mx-auto py-8 px-4 space-y-4">
+          <div className="h-8 bg-muted animate-pulse rounded-lg w-1/3" />
+          <div className="h-4 bg-muted animate-pulse rounded-lg w-1/4" />
+          {[1, 2, 3].map(i => <div key={i} className="h-32 bg-muted animate-pulse rounded-xl" />)}
         </div>
       </Layout>
     );
@@ -204,36 +206,30 @@ const MyRequests = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/30 py-8 px-4">
+      <div className="min-h-screen bg-background py-8 px-4">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-3xl font-bold flex items-center gap-2">
-                <Search className="w-8 h-8 text-primary" />
+              <h1 className="text-3xl font-bold text-foreground">
                 {t('requests.myRequests')}
               </h1>
               <p className="text-muted-foreground mt-1">
                 {t('requests.subtitle')}
               </p>
             </div>
-            <div className="flex gap-2">
-              <Button variant="outline" onClick={() => navigate('/dashboard')}>
-                {t('common.back')}
-              </Button>
-              <Button onClick={handleAdd}>
-                <Plus className="w-4 h-4 mr-2" />
-                {t('requests.add')}
-              </Button>
-            </div>
+            <Button onClick={handleAdd} className="gap-2">
+              <Plus className="w-4 h-4" />
+              {t('requests.add')}
+            </Button>
           </div>
 
           {/* Requests List */}
           {requests && requests.length > 0 ? (
             <div className="space-y-4">
               {requests.map((request) => (
-                <Card key={request.id}>
-                  <CardHeader className="pb-3">
+                <Card key={request.id} className="rounded-xl border border-border hover:shadow-md transition-all">
+                  <CardHeader className="pb-3 p-6">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
@@ -279,37 +275,40 @@ const MyRequests = () => {
                       </DropdownMenu>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                      {request.preferred_cities && (
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <MapPin className="w-4 h-4" />
-                          <span>{request.preferred_cities.join(', ')}</span>
-                        </div>
-                      )}
+                  <CardContent className="px-6 pb-6">
+                    {request.preferred_cities && request.preferred_cities.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {request.preferred_cities.map(city => (
+                          <Badge key={city} variant="secondary" className="bg-primary/10 text-primary border-0 rounded-full px-3 py-1 text-xs">
+                            {city}
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
                       {(request.min_budget || request.max_budget) && (
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <Euro className="w-4 h-4" />
-                          <span>
-                            {request.min_budget && request.max_budget 
+                        <div>
+                          <p className="text-xs text-muted-foreground mb-0.5">{t('requests.form.budget', 'Orçamento')}</p>
+                          <p className="text-xl font-bold text-primary">
+                            {request.min_budget && request.max_budget
                               ? `€${request.min_budget} - €${request.max_budget}`
-                              : request.max_budget 
-                                ? `${t('browseTenants.upTo')} €${request.max_budget}`
-                                : `${t('requests.from')} €${request.min_budget}`
+                              : request.max_budget
+                                ? `até €${request.max_budget}`
+                                : `desde €${request.min_budget}`
                             }
-                          </span>
+                          </p>
                         </div>
                       )}
                       {request.min_bedrooms && (
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <Bed className="w-4 h-4" />
-                          <span>{request.min_bedrooms}+ {t('browseTenants.bedrooms')}</span>
+                        <div>
+                          <p className="text-xs text-muted-foreground mb-0.5">{t('explore.bedrooms')}</p>
+                          <p className="font-medium text-foreground">{request.min_bedrooms}+</p>
                         </div>
                       )}
                       {request.move_in_date && (
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <Calendar className="w-4 h-4" />
-                          <span>{new Date(request.move_in_date).toLocaleDateString()}</span>
+                        <div>
+                          <p className="text-xs text-muted-foreground mb-0.5">{t('requests.form.moveIn', 'Entrada')}</p>
+                          <p className="font-medium text-foreground">{new Date(request.move_in_date).toLocaleDateString()}</p>
                         </div>
                       )}
                     </div>
@@ -318,12 +317,12 @@ const MyRequests = () => {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <Home className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
-              <h3 className="text-lg font-medium">{t('requests.noRequests')}</h3>
-              <p className="text-muted-foreground mb-4">{t('requests.noRequestsDesc')}</p>
-              <Button onClick={handleAdd}>
-                <Plus className="w-4 h-4 mr-2" />
+            <div className="text-center py-20">
+              <Home className="w-16 h-16 mx-auto text-muted-foreground/30 mb-6" />
+              <h3 className="text-xl font-semibold text-foreground">{t('requests.noRequests')}</h3>
+              <p className="text-muted-foreground mt-1 mb-6 max-w-md mx-auto">{t('requests.noRequestsDesc')}</p>
+              <Button onClick={handleAdd} className="gap-2">
+                <Plus className="w-4 h-4" />
                 {t('requests.addFirst')}
               </Button>
             </div>

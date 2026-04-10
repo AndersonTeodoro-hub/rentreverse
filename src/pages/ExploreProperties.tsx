@@ -167,7 +167,7 @@ export default function ExploreProperties() {
     <div className="space-y-6">
       {/* City Search */}
       <div className="space-y-2">
-        <label className="text-sm font-medium">{t('explore.cityLabel')}</label>
+        <label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{t('explore.cityLabel')}</label>
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
@@ -181,7 +181,7 @@ export default function ExploreProperties() {
 
       {/* Price Range */}
       <div className="space-y-4">
-        <label className="text-sm font-medium">{t('explore.priceRange')}</label>
+        <label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{t('explore.priceRange')}</label>
         <div className="px-2">
           <Slider
             value={[minPrice, maxPrice]}
@@ -204,7 +204,7 @@ export default function ExploreProperties() {
 
       {/* Bedrooms */}
       <div className="space-y-2">
-        <label className="text-sm font-medium">{t('explore.bedrooms')}</label>
+        <label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{t('explore.bedrooms')}</label>
         <Select value={minBedrooms} onValueChange={(v) => handleFilterChange(setMinBedrooms, v)}>
           <SelectTrigger>
             <SelectValue placeholder={t('explore.anyBedrooms')} />
@@ -221,7 +221,7 @@ export default function ExploreProperties() {
 
       {/* Rental Category */}
       <div className="space-y-2">
-        <label className="text-sm font-medium">{t('explore.rentalCategory')}</label>
+        <label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{t('explore.rentalCategory')}</label>
         <Select value={rentalCategory} onValueChange={(v) => handleFilterChange(setRentalCategory, v)}>
           <SelectTrigger>
             <SelectValue placeholder={t('explore.anyCategory')} />
@@ -237,7 +237,7 @@ export default function ExploreProperties() {
 
       {/* Property Type */}
       <div className="space-y-2">
-        <label className="text-sm font-medium">{t('explore.propertyType')}</label>
+        <label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{t('explore.propertyType')}</label>
         <Select value={propertyType} onValueChange={(v) => handleFilterChange(setPropertyType, v)}>
           <SelectTrigger>
             <SelectValue placeholder={t('explore.anyType')} />
@@ -256,21 +256,23 @@ export default function ExploreProperties() {
 
       {/* Clear Filters */}
       {hasActiveFilters && (
-        <Button variant="outline" onClick={clearFilters} className="w-full">
-          <X className="h-4 w-4 mr-2" />
-          {t('explore.clearFilters')}
-        </Button>
+        <>
+          <hr className="border-border" />
+          <button onClick={clearFilters} className="text-sm text-primary hover:underline w-full text-left">
+            {t('explore.clearFilters')}
+          </button>
+        </>
       )}
     </div>
   );
 
   return (
     <Layout>
-      <div className="container py-8">
+      <div className="container py-8 px-6">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">{t('explore.title')}</h1>
-          <p className="text-muted-foreground">{t('explore.subtitle')}</p>
+          <h1 className="text-3xl font-bold text-foreground">{t('explore.title')}</h1>
+          <p className="text-muted-foreground mt-1">{t('explore.subtitle')}</p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -360,16 +362,20 @@ export default function ExploreProperties() {
                 ))}
               </div>
             ) : filteredProperties.length === 0 ? (
-              <Card className="p-12 text-center">
-                <Home className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                <h3 className="text-lg font-semibold mb-2">{t('explore.noResults')}</h3>
-                <p className="text-muted-foreground mb-4">{t('explore.noResultsDesc')}</p>
-                {hasActiveFilters && (
+              <div className="py-20 text-center">
+                <Home className="h-16 w-16 mx-auto text-muted-foreground/30 mb-6" />
+                <h3 className="text-xl font-semibold text-foreground mb-2">{t('explore.noResults')}</h3>
+                <p className="text-muted-foreground mb-6 max-w-md mx-auto">{t('explore.noResultsDesc')}</p>
+                {hasActiveFilters ? (
                   <Button variant="outline" onClick={clearFilters}>
                     {t('explore.clearFilters')}
                   </Button>
+                ) : (
+                  <Button asChild>
+                    <Link to="/my-requests">{t('explore.createRequest', 'Criar pedido de arrendamento')}</Link>
+                  </Button>
                 )}
-              </Card>
+              </div>
             ) : (
               <>
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -397,7 +403,7 @@ export default function ExploreProperties() {
                       </button>
                     )}
                     <Link to={`/property/${property.id}`}>
-                      <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full">
+                      <Card className="overflow-hidden hover:shadow-md transition-all h-full rounded-xl border border-border">
                         {/* Image */}
                         <div className="relative h-48 bg-muted">
                           {property.images && property.images.length > 0 ? (
@@ -407,8 +413,8 @@ export default function ExploreProperties() {
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <div className="flex items-center justify-center h-full">
-                              <Home className="h-12 w-12 text-muted-foreground" />
+                            <div className="flex items-center justify-center h-full bg-gradient-to-br from-primary/10 to-primary/5">
+                              <Home className="h-10 w-10 text-primary/30" />
                             </div>
                           )}
                           <Badge className="absolute top-3 right-3 bg-primary">
