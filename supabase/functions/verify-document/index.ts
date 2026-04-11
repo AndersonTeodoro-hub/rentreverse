@@ -2,7 +2,7 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": "https://rentreverse.app",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
@@ -21,9 +21,20 @@ interface AIAnalysisResult {
   summary: string;
 }
 
+const MAX_PAYLOAD_BYTES = 5 * 1024 * 1024; // 5 MB
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Reject oversized payloads up-front (before reading the body)
+  const contentLength = Number(req.headers.get("content-length") ?? 0);
+  if (contentLength > MAX_PAYLOAD_BYTES) {
+    return new Response(
+      JSON.stringify({ error: "Payload too large. Maximum size is 5MB." }),
+      { status: 413, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
   }
 
   try {

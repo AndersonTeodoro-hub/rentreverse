@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { z } from 'zod';
 import { Layout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,6 +9,11 @@ import { Label } from '@/components/ui/label';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
+
+const credentialsSchema = z.object({
+  email: z.string().trim().email({ message: 'Email inválido' }),
+  password: z.string().min(8, { message: 'A password deve ter pelo menos 8 caracteres' }),
+});
 
 export default function Auth() {
   const { t } = useTranslation();
@@ -23,6 +29,8 @@ export default function Auth() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
 
   useEffect(() => {
     const newMode = searchParams.get('mode') === 'signup' ? 'signup' : 'login';
@@ -31,6 +39,18 @@ export default function Auth() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Inline validation with Zod (email format + min password length)
+    setEmailError(null);
+    setPasswordError(null);
+    const parsed = credentialsSchema.safeParse({ email, password });
+    if (!parsed.success) {
+      const fieldErrors = parsed.error.flatten().fieldErrors;
+      setEmailError(fieldErrors.email?.[0] ?? null);
+      setPasswordError(fieldErrors.password?.[0] ?? null);
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -133,11 +153,18 @@ export default function Auth() {
                     type="email"
                     placeholder="you@example.com"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      if (emailError) setEmailError(null);
+                    }}
                     className="pl-10"
+                    aria-invalid={emailError ? true : undefined}
                     required
                   />
                 </div>
+                {emailError && (
+                  <p className="text-sm text-destructive">{emailError}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -149,10 +176,14 @@ export default function Auth() {
                     type={showPassword ? 'text' : 'password'}
                     placeholder="••••••••"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      if (passwordError) setPasswordError(null);
+                    }}
                     className="pl-10 pr-10"
+                    aria-invalid={passwordError ? true : undefined}
                     required
-                    minLength={6}
+                    minLength={8}
                   />
                   <button
                     type="button"
@@ -162,6 +193,9 @@ export default function Auth() {
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
                 </div>
+                {passwordError && (
+                  <p className="text-sm text-destructive">{passwordError}</p>
+                )}
               </div>
 
               {mode === 'signup' && (
@@ -177,7 +211,7 @@ export default function Auth() {
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       className="pl-10"
                       required
-                      minLength={6}
+                      minLength={8}
                     />
                   </div>
                 </div>
