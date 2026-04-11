@@ -105,6 +105,42 @@ export default function Auth() {
     }
   };
 
+  const handleForgotPassword = async () => {
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail) {
+      toast({
+        title: t('auth.error'),
+        description: t('auth.forgotPasswordEmptyEmail', 'Preencha o email primeiro.'),
+        variant: 'destructive',
+      });
+      return;
+    }
+    const emailCheck = z.string().email().safeParse(trimmedEmail);
+    if (!emailCheck.success) {
+      setEmailError('Email inválido');
+      return;
+    }
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(trimmedEmail, {
+        redirectTo: `${window.location.origin}/auth`,
+      });
+      if (error) throw error;
+      toast({
+        title: t('auth.success'),
+        description: t(
+          'auth.forgotPasswordSent',
+          'Email de recuperação enviado! Verifique a sua caixa de entrada.'
+        ),
+      });
+    } catch (error: any) {
+      toast({
+        title: t('auth.error'),
+        description: error.message,
+        variant: 'destructive',
+      });
+    }
+  };
+
   const handleGoogleLogin = async () => {
     try {
       const { error } = await supabase.auth.signInWithOAuth({
@@ -221,6 +257,7 @@ export default function Auth() {
                 <div className="text-right">
                   <button
                     type="button"
+                    onClick={handleForgotPassword}
                     className="text-sm text-primary hover:underline"
                   >
                     {t('auth.forgotPassword')}

@@ -104,6 +104,26 @@ export default function Profile() {
     navigate("/");
   };
 
+  const handleChangePassword = async () => {
+    if (!user?.email) return;
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(user.email, {
+        redirectTo: `${window.location.origin}/auth`,
+      });
+      if (error) throw error;
+      toast({
+        title: t("profile.passwordResetSent", "Email de alteração de password enviado!"),
+        description: t("profile.passwordResetSentDesc", "Verifique a sua caixa de entrada."),
+      });
+    } catch (err: any) {
+      toast({
+        title: t("common.error", "Erro"),
+        description: err.message || t("profile.passwordResetError", "Não foi possível enviar o email."),
+        variant: "destructive",
+      });
+    }
+  };
+
   useEffect(() => {
     if (!authLoading && !user) navigate("/auth");
   }, [user, authLoading, navigate]);
@@ -253,7 +273,7 @@ export default function Profile() {
                 <Shield className="h-4 w-4" />
                 {t("profile.verifyProfile", "Verificar perfil")}
               </Button>
-              <Button variant="outline" size="sm" disabled className="gap-2 opacity-50">
+              <Button variant="outline" size="sm" className="gap-2" onClick={handleChangePassword}>
                 {t("profile.changePassword", "Alterar password")}
               </Button>
             </div>

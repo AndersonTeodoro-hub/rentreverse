@@ -2,8 +2,10 @@ import { useTranslation } from 'react-i18next';
 import { Layout } from '@/components/layout';
 import { Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/hooks/useAuth';
+import { useToast } from '@/hooks/use-toast';
 import {
   Accordion,
   AccordionContent,
@@ -11,8 +13,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+type PlanCtaType = 'getStarted' | 'upgrade' | 'contact';
+
 export default function Pricing() {
   const { t } = useTranslation();
+  const { user } = useAuth();
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
   const tenantPlans = [
     {
@@ -28,6 +35,7 @@ export default function Pricing() {
         { included: false, text: t('pricing.tenant.free.feature5') },
       ],
       cta: t('pricing.cta.getStarted'),
+      ctaType: 'getStarted' as PlanCtaType,
       popular: false,
     },
     {
@@ -43,6 +51,7 @@ export default function Pricing() {
         { included: true, text: t('pricing.tenant.premium.feature5') },
       ],
       cta: t('pricing.cta.upgrade'),
+      ctaType: 'upgrade' as PlanCtaType,
       popular: true,
     },
   ];
@@ -61,6 +70,7 @@ export default function Pricing() {
         { included: false, text: t('pricing.landlord.free.feature5') },
       ],
       cta: t('pricing.cta.getStarted'),
+      ctaType: 'getStarted' as PlanCtaType,
       popular: false,
     },
     {
@@ -76,6 +86,7 @@ export default function Pricing() {
         { included: true, text: t('pricing.landlord.pro.feature5') },
       ],
       cta: t('pricing.cta.upgrade'),
+      ctaType: 'upgrade' as PlanCtaType,
       popular: true,
     },
     {
@@ -91,9 +102,27 @@ export default function Pricing() {
         { included: true, text: t('pricing.landlord.business.feature5') },
       ],
       cta: t('pricing.cta.contact'),
+      ctaType: 'contact' as PlanCtaType,
       popular: false,
     },
   ];
+
+  const handleUpgradeClick = () => {
+    if (!user) {
+      navigate('/auth?mode=signup');
+      return;
+    }
+    toast({
+      title: t(
+        'pricing.upgradeComingSoonTitle',
+        'O sistema de pagamentos estará disponível em breve.'
+      ),
+      description: t(
+        'pricing.upgradeComingSoonDesc',
+        'Será notificado por email assim que estiver disponível.'
+      ),
+    });
+  };
 
   const PlanCard = ({ plan, className }: { plan: typeof tenantPlans[0]; className?: string }) => (
     <div
@@ -130,9 +159,27 @@ export default function Pricing() {
           </li>
         ))}
       </ul>
-      <Button variant={plan.popular ? 'default' : 'outline'} className="w-full" asChild>
-        <Link to="/auth?mode=signup">{plan.cta}</Link>
-      </Button>
+      {plan.ctaType === 'getStarted' && (
+        <Button variant={plan.popular ? 'default' : 'outline'} className="w-full" asChild>
+          <Link to="/auth?mode=signup">{plan.cta}</Link>
+        </Button>
+      )}
+      {plan.ctaType === 'upgrade' && (
+        <Button
+          variant={plan.popular ? 'default' : 'outline'}
+          className="w-full"
+          onClick={handleUpgradeClick}
+        >
+          {plan.cta}
+        </Button>
+      )}
+      {plan.ctaType === 'contact' && (
+        <Button variant={plan.popular ? 'default' : 'outline'} className="w-full" asChild>
+          <a href="mailto:info@rentreverse.app?subject=RentReverse%20Business%20Plan">
+            {plan.cta}
+          </a>
+        </Button>
+      )}
     </div>
   );
 

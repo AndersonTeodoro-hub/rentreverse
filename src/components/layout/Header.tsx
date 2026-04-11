@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Bell, Heart, TrendingDown, MessageCircle, ShoppingBag, Users, User, Shield, LogOut } from 'lucide-react';
+import { Menu, X, Bell, Heart, TrendingDown, MessageCircle, Users, User, Shield, LogOut } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -30,7 +30,6 @@ export function Header() {
     { to: '/explore-properties', label: t('nav.exploreProperties') },
     { to: '/how-it-works', label: t('nav.howItWorks') },
     { to: '/pricing', label: t('nav.pricing') },
-    { to: '/services', label: t('nav.services'), icon: ShoppingBag },
   ];
 
   // Add "Browse Tenants" for landlords

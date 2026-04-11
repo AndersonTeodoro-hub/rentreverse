@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { Truck, Sparkles, Shield, Zap, Wifi, Flame, Star, ExternalLink, Tag, ChevronRight, Plane, BedDouble, Car, Bell } from 'lucide-react';
@@ -12,6 +13,16 @@ import { useAuth } from '@/hooks/useAuth';
 import { toast } from 'sonner';
 
 type ServiceCategory = 'moving' | 'cleaning' | 'insurance' | 'utilities' | 'flights' | 'temp_housing' | 'car_rental';
+
+type CategoryEntry = {
+  icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  description: string;
+  color: string;
+  bgColor: string;
+  comingSoon?: boolean;
+  comingSoonDesc?: string;
+};
 
 interface ServiceProvider {
   id: string;
@@ -30,7 +41,7 @@ interface ServiceProvider {
   reviews_count: number;
 }
 
-const categoryConfig = {
+const categoryConfig: Record<ServiceCategory, CategoryEntry> = {
   moving: {
     icon: Truck,
     label: 'Mudanças',
@@ -86,7 +97,7 @@ const categoryConfig = {
     comingSoon: true,
     comingSoonDesc: 'Estamos a negociar parcerias com empresas de aluguer de carros para oferecer tarifas exclusivas a utilizadores RentReverse.',
   },
-} as const;
+};
 
 const subcategoryIcons: Record<string, React.ElementType> = {
   electricity: Zap,
@@ -273,7 +284,7 @@ export default function ServicesMarketplace() {
                       {config.label} — Em breve
                     </h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                      {'comingSoonDesc' in config ? config.comingSoonDesc : config.description}
+                      {config.comingSoonDesc ?? config.description}
                     </p>
                     <Button
                       variant="outline"
@@ -374,9 +385,11 @@ export default function ServicesMarketplace() {
                   Aproveite os descontos na sua próxima mudança!
                 </p>
               </div>
-              <Button variant="outline" className="shrink-0">
-                Como funciona
-                <ChevronRight className="ml-2 h-4 w-4" />
+              <Button variant="outline" className="shrink-0" asChild>
+                <Link to="/how-it-works">
+                  Como funciona
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
               </Button>
             </div>
           </CardContent>
