@@ -47,6 +47,45 @@ serve(async (req) => {
     // Create Supabase admin client
     const supabase = createClient(SUPABASE_URL!, SUPABASE_SERVICE_ROLE_KEY!);
 
+    // Authorization: ensure the caller owns the verification record
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader) {
+      return new Response(
+        JSON.stringify({ error: "Missing authorization header" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const token = authHeader.replace("Bearer ", "");
+    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+
+    if (authError || !user) {
+      return new Response(
+        JSON.stringify({ error: "Unauthorized" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const { data: ownerCheck, error: ownerError } = await supabase
+      .from("user_verifications")
+      .select("user_id")
+      .eq("id", verificationId)
+      .single();
+
+    if (ownerError || !ownerCheck) {
+      return new Response(
+        JSON.stringify({ error: "Verification record not found" }),
+        { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    if (ownerCheck.user_id !== user.id) {
+      return new Response(
+        JSON.stringify({ error: "Forbidden" }),
+        { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     // Build the system prompt based on document type
     const systemPrompts: Record<string, string> = {
       identity: `You are a document verification AI specialist. Analyze the identity document image and extract:

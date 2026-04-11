@@ -19,6 +19,25 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
+    // Authorization: caller must be the landlord or tenant on this offer
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader) {
+      return new Response(
+        JSON.stringify({ error: 'Missing authorization header' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const token = authHeader.replace('Bearer ', '');
+    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+
+    if (authError || !user) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     // Fetch offer details with property and tenant info
     const { data: offer, error: offerError } = await supabase
       .from('offers')
@@ -28,6 +47,13 @@ serve(async (req) => {
 
     if (offerError || !offer) {
       throw new Error('Offer not found');
+    }
+
+    if (offer.landlord_id !== user.id && offer.tenant_id !== user.id) {
+      return new Response(
+        JSON.stringify({ error: 'Forbidden: not a participant of this offer' }),
+        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
     }
 
     // Fetch landlord profile

@@ -42,6 +42,63 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
+    // Authorization: only landlords may run risk analysis. If a property_id
+    // is supplied, the caller must own that property. Otherwise the caller
+    // must at least hold the 'landlord' role (used by the BrowseTenants UI).
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader) {
+      return new Response(
+        JSON.stringify({ error: "Missing authorization header" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const token = authHeader.replace("Bearer ", "");
+    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+
+    if (authError || !user) {
+      return new Response(
+        JSON.stringify({ error: "Unauthorized" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    if (property_id) {
+      const { data: propertyOwner, error: propertyOwnerError } = await supabase
+        .from("properties")
+        .select("user_id")
+        .eq("id", property_id)
+        .single();
+
+      if (propertyOwnerError || !propertyOwner) {
+        return new Response(
+          JSON.stringify({ error: "Property not found" }),
+          { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      if (propertyOwner.user_id !== user.id) {
+        return new Response(
+          JSON.stringify({ error: "Forbidden: not the owner of this property" }),
+          { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    } else {
+      const { data: roleRow, error: roleError } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", user.id)
+        .eq("role", "landlord")
+        .maybeSingle();
+
+      if (roleError || !roleRow) {
+        return new Response(
+          JSON.stringify({ error: "Forbidden: only landlords can run risk analysis" }),
+          { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    }
+
     // Fetch tenant data
     const { data: profile } = await supabase
       .from("profiles")

@@ -74,10 +74,29 @@ serve(async (req) => {
 
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Fetch property details
+    // Authorization: caller must be the owner (landlord) of the property
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader) {
+      return new Response(JSON.stringify({ error: "Missing authorization header" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const token = authHeader.replace("Bearer ", "");
+    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+
+    if (authError || !user) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Fetch property details (includes user_id for ownership check)
     const { data: property, error: propError } = await supabase
       .from("properties")
-      .select("id, title, city, rent_amount, bedrooms, pets_allowed, smoking_allowed, available_from")
+      .select("id, user_id, title, city, rent_amount, bedrooms, pets_allowed, smoking_allowed, available_from")
       .eq("id", property_id)
       .single();
 
@@ -85,6 +104,13 @@ serve(async (req) => {
       console.error("Error fetching property:", propError);
       return new Response(JSON.stringify({ error: "Property not found" }), {
         status: 404,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (property.user_id !== user.id) {
+      return new Response(JSON.stringify({ error: "Forbidden: not the owner of this property" }), {
+        status: 403,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
