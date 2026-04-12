@@ -46,6 +46,8 @@ interface Property {
   available_from: string | null;
 }
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 // Rate limiting: 10 requests per minute per IP
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
@@ -78,8 +80,8 @@ serve(async (req) => {
   try {
     const { property_id } = await req.json();
 
-    if (!property_id) {
-      return new Response(JSON.stringify({ error: "property_id is required" }), {
+    if (!property_id || !UUID_RE.test(property_id)) {
+      return new Response(JSON.stringify({ error: "Invalid or missing property_id (must be UUID)" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });

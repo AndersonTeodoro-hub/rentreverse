@@ -11,6 +11,22 @@ import { Layout } from "@/components/layout";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+
+const landlordFormSchema = z.object({
+  fullName: z.string().min(1, "Nome é obrigatório"),
+  phone: z.string().regex(/^\+[1-9]\d{6,14}$/, "Telefone deve estar no formato E.164 (ex: +351999999999)").or(z.literal("")),
+  isCompany: z.boolean(),
+  companyName: z.string(),
+  taxId: z.string(),
+  propertiesCount: z.string().refine(
+    (v) => v === "" || (Number.isInteger(Number(v)) && Number(v) >= 1 && Number(v) <= 1000),
+    "Número de imóveis deve ser entre 1 e 1000"
+  ),
+}).refine((data) => !data.isCompany || data.taxId.trim().length > 0, {
+  message: "NIF é obrigatório para empresas",
+  path: ["taxId"],
+});
 
 interface LandlordFormData {
   fullName: string;
@@ -70,9 +86,19 @@ const LandlordOnboarding = () => {
 
   const handleSubmit = async () => {
     if (!user) return;
-    
+
+    const result = landlordFormSchema.safeParse(formData);
+    if (!result.success) {
+      toast({
+        title: t('common.error'),
+        description: result.error.errors[0].message,
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
-    
+
     try {
       // Update profile
       const { error: profileError } = await supabase

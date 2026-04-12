@@ -17,6 +17,17 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Star, Plus, X, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { z } from "zod";
+
+const ratingRange = z.number().int().min(1, "Mínimo 1 estrela").max(5, "Máximo 5 estrelas");
+const reviewSchema = z.object({
+  overallRating: ratingRange,
+  paymentRating: z.number().int().min(0).max(5),
+  communicationRating: z.number().int().min(0).max(5),
+  propertyRating: z.number().int().min(0).max(5),
+  respectRating: z.number().int().min(0).max(5),
+  reviewText: z.string().max(2000, "Comentário não pode exceder 2000 caracteres"),
+});
 
 interface WriteReviewDialogProps {
   open: boolean;
@@ -90,7 +101,13 @@ export const WriteReviewDialog = ({
   const submitMutation = useMutation({
     mutationFn: async () => {
       if (!user) throw new Error("Not authenticated");
-      if (overallRating === 0) throw new Error("Please provide an overall rating");
+
+      const validation = reviewSchema.safeParse({
+        overallRating, paymentRating, communicationRating, propertyRating, respectRating, reviewText,
+      });
+      if (!validation.success) {
+        throw new Error(validation.error.errors[0].message);
+      }
 
       const { error } = await supabase.from("rental_reviews").insert({
         contract_id: contractId,

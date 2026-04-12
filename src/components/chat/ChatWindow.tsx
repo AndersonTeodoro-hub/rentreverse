@@ -55,11 +55,14 @@ export function ChatWindow({ conversation, onBack }: ChatWindowProps) {
     inputRef.current?.focus();
   }, [conversation.id]);
 
+  const MAX_MESSAGE_LENGTH = 2000;
+
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newMessage.trim()) return;
 
     const content = newMessage.trim();
+    if (content.length > MAX_MESSAGE_LENGTH) return;
     setNewMessage('');
 
     try {
@@ -193,6 +196,7 @@ export function ChatWindow({ conversation, onBack }: ChatWindowProps) {
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder={t('chat.messagePlaceholder')}
             className="flex-1"
+            maxLength={MAX_MESSAGE_LENGTH}
             disabled={sendMessage.isPending}
           />
           <Button

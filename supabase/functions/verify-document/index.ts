@@ -23,6 +23,20 @@ interface AIAnalysisResult {
 
 const MAX_PAYLOAD_BYTES = 5 * 1024 * 1024; // 5 MB
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const ALLOWED_DOCUMENT_TYPES = ["identity", "income", "employment", "address"] as const;
+
+function isAllowedDocumentUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
+    const supabaseHost = new URL(supabaseUrl).hostname;
+    return parsed.hostname === supabaseHost || parsed.hostname.endsWith(".supabase.co");
+  } catch {
+    return false;
+  }
+}
+
 // Rate limiting: 10 requests per minute per IP
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
@@ -75,6 +89,27 @@ serve(async (req) => {
     if (!documentUrl || !documentType || !verificationId) {
       return new Response(
         JSON.stringify({ error: "Missing required fields" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    if (!UUID_RE.test(verificationId)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid verificationId format" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    if (!ALLOWED_DOCUMENT_TYPES.includes(documentType as any)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid documentType. Must be one of: identity, income, employment, address" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    if (!isAllowedDocumentUrl(documentUrl)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid document URL. Only project storage URLs are allowed." }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }

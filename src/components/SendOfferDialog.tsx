@@ -11,6 +11,15 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+
+const offerSchema = z.object({
+  proposedRent: z.string().refine((v) => v === "" || (Number(v) > 0 && isFinite(Number(v))), "Renda deve ser maior que 0"),
+  proposedMoveIn: z.string().refine((v) => v === "" || v >= new Date().toISOString().split("T")[0], "Data deve ser hoje ou no futuro"),
+  message: z.string().max(1000, "Mensagem não pode exceder 1000 caracteres"),
+  contactPhone: z.string().regex(/^\+[1-9]\d{6,14}$/, "Telefone deve estar no formato E.164").or(z.literal("")),
+  contactEmail: z.string().email("Email inválido").or(z.literal("")),
+});
 
 interface TenantInfo {
   user_id: string;
@@ -73,7 +82,12 @@ const SendOfferDialog = ({ open, onOpenChange, tenant, propertyContext }: SendOf
   const sendOfferMutation = useMutation({
     mutationFn: async () => {
       if (!user) throw new Error('Not authenticated');
-      
+
+      const validation = offerSchema.safeParse({ proposedRent, proposedMoveIn, message, contactPhone, contactEmail });
+      if (!validation.success) {
+        throw new Error(validation.error.errors[0].message);
+      }
+
       if (isLandlordMode) {
         // Landlord sending offer to tenant
         if (!tenant || !selectedProperty) throw new Error('Missing data');

@@ -23,6 +23,8 @@ interface TenantRiskAnalysis {
   confidence_score: number;
 }
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 // Rate limiting: 10 requests per minute per IP
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
@@ -55,9 +57,16 @@ serve(async (req) => {
   try {
     const { tenant_id, property_id } = await req.json();
 
-    if (!tenant_id) {
+    if (!tenant_id || !UUID_RE.test(tenant_id)) {
       return new Response(
-        JSON.stringify({ error: "tenant_id is required" }),
+        JSON.stringify({ error: "Invalid or missing tenant_id (must be UUID)" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    if (property_id && !UUID_RE.test(property_id)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid property_id format (must be UUID)" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }

@@ -49,11 +49,15 @@ export function VirtualTour360({
       const cssLink = document.createElement('link');
       cssLink.rel = 'stylesheet';
       cssLink.href = 'https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css';
+      cssLink.integrity = 'sha384-02yn80EH0cF+s23taAmuhEZ04p3CTbQvV0QZMr2reUxajpfvcLNKlzsPkZwx14mf';
+      cssLink.crossOrigin = 'anonymous';
       document.head.appendChild(cssLink);
 
       // Load JS
       const script = document.createElement('script');
       script.src = 'https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js';
+      script.integrity = 'sha384-S5+w/JlcNAOymqXGNrvzn2F++XsaHTJdex6KE5VbKryfFgqJiRUJOgOkUqaiOZTf';
+      script.crossOrigin = 'anonymous';
       script.async = true;
       script.onload = () => setIsLoaded(true);
       document.head.appendChild(script);

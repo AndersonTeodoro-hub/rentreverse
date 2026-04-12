@@ -7,13 +7,85 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+
+// Rate limiting: 10 requests per minute per IP
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX = 10;
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return true;
+  }
+  entry.count++;
+  return entry.count <= RATE_LIMIT_MAX;
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
+  const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (!checkRateLimit(clientIp)) {
+    return new Response(
+      JSON.stringify({ error: "Too many requests" }),
+      { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
+  }
+
   try {
     const { offerId, templateId, startDate, endDate, depositMonths } = await req.json();
+
+    // Validate all parameters
+    if (!offerId || !UUID_RE.test(offerId)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid or missing offerId (must be UUID)" }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    if (!templateId || !UUID_RE.test(templateId)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid or missing templateId (must be UUID)" }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    if (!startDate || !ISO_DATE_RE.test(startDate) || isNaN(Date.parse(startDate))) {
+      return new Response(
+        JSON.stringify({ error: "Invalid or missing startDate (must be YYYY-MM-DD)" }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    const today = new Date().toISOString().split('T')[0];
+    if (startDate < today) {
+      return new Response(
+        JSON.stringify({ error: "startDate must be today or in the future" }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    if (!endDate || !ISO_DATE_RE.test(endDate) || isNaN(Date.parse(endDate))) {
+      return new Response(
+        JSON.stringify({ error: "Invalid or missing endDate (must be YYYY-MM-DD)" }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    if (endDate <= startDate) {
+      return new Response(
+        JSON.stringify({ error: "endDate must be after startDate" }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    if (depositMonths == null || !Number.isInteger(depositMonths) || depositMonths < 1 || depositMonths > 6) {
+      return new Response(
+        JSON.stringify({ error: "depositMonths must be an integer between 1 and 6" }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;

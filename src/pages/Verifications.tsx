@@ -16,7 +16,18 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
 import TrustScoreCard from "@/components/TrustScoreCard";
+
+const referenceSchema = z.object({
+  name: z.string().min(1, "Nome é obrigatório"),
+  email: z.string().email("Email inválido"),
+  phone: z.string().regex(/^\+[1-9]\d{6,14}$/, "Telefone deve estar no formato E.164 (ex: +351999999999)").or(z.literal("")),
+  relationship: z.string().min(1, "Relação é obrigatória"),
+});
+
+const ALLOWED_FILE_TYPES = ["application/pdf", "image/jpeg", "image/png"];
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 import { AIVerificationAnalysis } from "@/components/AIVerificationAnalysis";
 
 type VerificationType = 'identity' | 'income' | 'employment' | 'address';
@@ -124,7 +135,12 @@ const Verifications = () => {
   const addReferenceMutation = useMutation({
     mutationFn: async (data: typeof referenceForm) => {
       if (!user) throw new Error('Not authenticated');
-      
+
+      const validation = referenceSchema.safeParse(data);
+      if (!validation.success) {
+        throw new Error(validation.error.errors[0].message);
+      }
+
       const { error } = await supabase
         .from('user_references')
         .insert({
@@ -161,6 +177,25 @@ const Verifications = () => {
     if (!event.target.files || !event.target.files[0] || !user || !selectedType) return;
     
     const file = event.target.files[0];
+
+    if (!ALLOWED_FILE_TYPES.includes(file.type)) {
+      toast({
+        title: t('common.error'),
+        description: "Formato não suportado. Use PDF, JPG ou PNG.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      toast({
+        title: t('common.error'),
+        description: "Ficheiro demasiado grande. Máximo 10MB.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     const fileExt = file.name.split('.').pop();
     const fileName = `${user.id}/${selectedType}-${Date.now()}.${fileExt}`;
     

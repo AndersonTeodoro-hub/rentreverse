@@ -11,6 +11,19 @@ import { Layout } from "@/components/layout";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+
+const tenantFormSchema = z.object({
+  fullName: z.string().min(1, "Nome é obrigatório"),
+  phone: z.string().regex(/^\+[1-9]\d{6,14}$/, "Telefone deve estar no formato E.164 (ex: +351999999999)").or(z.literal("")),
+  profession: z.string(),
+  monthlyIncome: z.string().refine((v) => v === "" || (Number(v) > 0 && isFinite(Number(v))), "Rendimento deve ser maior que 0"),
+  maxBudget: z.string().refine((v) => v === "" || (Number(v) > 0 && isFinite(Number(v))), "Orçamento deve ser maior que 0"),
+  moveInDate: z.string().refine((v) => v === "" || v >= new Date().toISOString().split("T")[0], "Data deve ser hoje ou no futuro"),
+  preferredLocations: z.string(),
+  hasPets: z.boolean(),
+  isSmoker: z.boolean(),
+});
 
 interface TenantFormData {
   fullName: string;
@@ -77,9 +90,19 @@ const TenantOnboarding = () => {
 
   const handleSubmit = async () => {
     if (!user) return;
-    
+
+    const result = tenantFormSchema.safeParse(formData);
+    if (!result.success) {
+      toast({
+        title: t('common.error'),
+        description: result.error.errors[0].message,
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
-    
+
     try {
       // Update profile
       const { error: profileError } = await supabase
