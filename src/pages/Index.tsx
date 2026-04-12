@@ -345,7 +345,7 @@ const Index = () => {
             <span className="text-white/90">Comece a ser encontrado.</span>
           </h2>
           <p className="mt-4 text-lg text-white/80 max-w-xl mx-auto">
-            Junte-se a centenas de imigrantes que já encontraram casa sem stress.
+            Junte-se a quem já arrendou de forma mais simples, rápida e segura.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" asChild className="gap-2 bg-white text-[#1e3a5f] hover:bg-white/90 shadow-lg">
@@ -354,7 +354,7 @@ const Index = () => {
                 Criar perfil grátis
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="gap-2 border-white text-white hover:bg-white/10 hover:border-white">
+            <Button size="lg" variant="outline" asChild className="gap-2 border-2 border-white text-white hover:bg-white hover:text-blue-900">
               <Link to="/auth?mode=signup&role=landlord">
                 <Building2 className="h-5 w-5" />
                 {t('hero.forLandlords')}
