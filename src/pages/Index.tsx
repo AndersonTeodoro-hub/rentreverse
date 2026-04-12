@@ -5,7 +5,7 @@ import {
   ArrowRight, Home, Building2, Share2, Users,
   UserPlus, Search, Handshake, Shield, FileText,
   Eye, Star, UserCheck, Clock, Sparkles, CheckCircle,
-  ChevronDown, Quote, Database, Globe, Cpu,
+  ChevronDown, Mail,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Layout } from '@/components/layout';
@@ -14,33 +14,6 @@ const Index = () => {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<'tenant' | 'landlord'>('tenant');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const testimonials = [
-    {
-      name: 'Maria',
-      age: 34,
-      origin: 'Brasileira em Lisboa',
-      initials: 'M',
-      color: 'bg-rose-500',
-      text: 'Recebi 4 propostas em 2 dias. Nunca pensei que fosse tão fácil encontrar casa em Portugal.',
-    },
-    {
-      name: 'Carlos',
-      age: 28,
-      origin: 'Angolano no Porto',
-      initials: 'C',
-      color: 'bg-blue-500',
-      text: 'Todos me pediam fiador português. Aqui os proprietários é que me contactaram a mim.',
-    },
-    {
-      name: 'Aisha',
-      age: 31,
-      origin: 'Cabo-Verdiana em Braga',
-      initials: 'A',
-      color: 'bg-amber-500',
-      text: 'Assinei o contrato antes de aterrar. Cheguei com tudo tratado.',
-    },
-  ];
 
   const faqs = [
     {
@@ -206,47 +179,25 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ─── Testimonials ─── */}
+      {/* ─── User Stories ─── */}
       <section className="py-20 lg:py-28 bg-muted/30">
-        <div className="container">
-          <div className="text-center mb-16">
-            <span className="inline-block bg-primary/10 text-primary rounded-full px-4 py-1 text-sm font-medium mb-4">
-              Histórias reais
-            </span>
-            <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
-              Imigrantes que já encontraram casa
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Sem fiador, sem stress, sem fraudes.
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
-            {testimonials.map((item) => (
-              <div
-                key={item.name}
-                className="rounded-xl border border-border bg-card p-6 flex flex-col hover:shadow-md transition-shadow"
-              >
-                <Quote className="h-8 w-8 text-primary/20 mb-4" />
-                <p className="text-foreground leading-relaxed flex-1">
-                  "{item.text}"
-                </p>
-                <div className="flex items-center gap-1 mt-4 mb-4">
-                  {[1, 2, 3, 4, 5].map((s) => (
-                    <Star key={s} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <div className="flex items-center gap-3 pt-4 border-t border-border">
-                  <div className={`h-10 w-10 rounded-full ${item.color} flex items-center justify-center text-white font-semibold text-sm`}>
-                    {item.initials}
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground text-sm">{item.name}, {item.age} anos</p>
-                    <p className="text-xs text-muted-foreground">{item.origin}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+        <div className="container text-center max-w-2xl">
+          <span className="inline-block bg-primary/10 text-primary rounded-full px-4 py-1 text-sm font-medium mb-4">
+            Comunidade
+          </span>
+          <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
+            O que dizem os nossos utilizadores
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Estamos a recolher as primeiras histórias reais. Sê o primeiro a partilhar a tua.
+          </p>
+          <div className="mt-8">
+            <Button asChild className="gap-2">
+              <a href="mailto:anderson@rentreverse.app?subject=A minha história no RentReverse">
+                <Mail className="h-4 w-4" />
+                Partilhar a minha história
+              </a>
+            </Button>
           </div>
         </div>
       </section>
@@ -346,32 +297,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ─── Technology Partners ─── */}
-      <section className="py-16 lg:py-20 bg-background">
-        <div className="container text-center">
-          <h3 className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-2">
-            Tecnologia de confiança
-          </h3>
-          <p className="text-xs text-muted-foreground mb-8">
-            Infraestrutura segura e escalável
-          </p>
-          <div className="flex items-center justify-center gap-10 md:gap-16 flex-wrap">
-            <div className="flex items-center gap-2 text-muted-foreground/60">
-              <Database className="h-5 w-5" />
-              <span className="text-lg font-semibold tracking-tight">Supabase</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground/60">
-              <Globe className="h-5 w-5" />
-              <span className="text-lg font-semibold tracking-tight">Vercel</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground/60">
-              <Cpu className="h-5 w-5" />
-              <span className="text-lg font-semibold tracking-tight">Google AI</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ─── FAQ ─── */}
       <section className="py-20 lg:py-28 bg-muted/30">
         <div className="container max-w-3xl">
@@ -416,7 +341,8 @@ const Index = () => {
       <section className="py-20 lg:py-24 bg-gradient-to-r from-[#1e3a5f] to-[#2563eb]">
         <div className="container text-center">
           <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-            A sua casa em Portugal começa aqui.
+            Pare de procurar.<br />
+            <span className="text-white/90">Comece a ser encontrado.</span>
           </h2>
           <p className="mt-4 text-lg text-white/80 max-w-xl mx-auto">
             Junte-se a centenas de imigrantes que já encontraram casa sem stress.
@@ -428,7 +354,7 @@ const Index = () => {
                 Criar perfil grátis
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="gap-2 border-white/40 text-white hover:bg-white/10">
+            <Button size="lg" variant="outline" asChild className="gap-2 border-white text-white hover:bg-white/10 hover:border-white">
               <Link to="/auth?mode=signup&role=landlord">
                 <Building2 className="h-5 w-5" />
                 {t('hero.forLandlords')}
