@@ -94,6 +94,7 @@ export function VirtualTourEmbed({
                   frameBorder="0"
                   allowFullScreen
                   allow="xr-spatial-tracking; gyroscope; accelerometer"
+                  sandbox="allow-same-origin allow-scripts allow-presentation"
                   className="w-full aspect-video"
                 />
               </div>
@@ -191,6 +192,7 @@ export function VirtualTourEmbed({
                 frameBorder="0"
                 allowFullScreen
                 allow="xr-spatial-tracking; gyroscope; accelerometer"
+                sandbox="allow-same-origin allow-scripts allow-presentation"
                 className="w-full"
                 style={{ minHeight: '70vh' }}
               />

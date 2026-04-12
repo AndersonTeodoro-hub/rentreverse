@@ -99,6 +99,8 @@ export function useConversations() {
   });
 }
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export function useCreateConversation() {
   const queryClient = useQueryClient();
   const { user } = useAuth();
@@ -114,6 +116,7 @@ export function useCreateConversation() {
       offerId?: string;
     }) => {
       if (!user?.id) throw new Error('Not authenticated');
+      if (!UUID_RE.test(otherUserId)) throw new Error('Invalid user ID');
 
       // Check if conversation already exists
       const { data: existing } = await supabase
