@@ -187,6 +187,10 @@ serve(async (req) => {
       .eq('user_id', offer.tenant_id)
       .single();
 
+    // Fetch tenant email from auth.users
+    const { data: { user: tenantUser } } = await supabase.auth.admin.getUserById(offer.tenant_id);
+    const tenantEmail = tenantUser?.email || '';
+
     // Fetch template
     const { data: template, error: templateError } = await supabase
       .from('contract_templates')
@@ -202,13 +206,26 @@ serve(async (req) => {
     const rentAmount = offer.proposed_rent || property.rent_amount;
     const depositAmount = rentAmount * (depositMonths || 2);
 
+    // Localized text based on template country
+    const localizedAllowed: Record<string, { yes: string; no: string }> = {
+      PT: { yes: 'Permitido', no: 'Não permitido' },
+      ES: { yes: 'Permitido', no: 'No permitido' },
+      FR: { yes: 'Autorisé', no: 'Non autorisé' },
+      EN: { yes: 'Allowed', no: 'Not allowed' },
+    };
+    const localeMap: Record<string, string> = { PT: 'pt-PT', ES: 'es-ES', FR: 'fr-FR', EN: 'en-GB' };
+
+    const cc = template.country_code || 'PT';
+    const allowed = localizedAllowed[cc] || localizedAllowed['PT'];
+    const locale = localeMap[cc] || 'pt-PT';
+
     // Replace placeholders in template
     let contractContent = template.content
       .replace(/\{\{landlord_name\}\}/g, landlordProfile?.full_name || 'Senhorio')
       .replace(/\{\{landlord_email\}\}/g, offer.landlord_email || '')
       .replace(/\{\{landlord_phone\}\}/g, offer.landlord_phone || '')
       .replace(/\{\{tenant_name\}\}/g, tenantProfile?.full_name || 'Inquilino')
-      .replace(/\{\{tenant_email\}\}/g, '')
+      .replace(/\{\{tenant_email\}\}/g, tenantEmail)
       .replace(/\{\{property_address\}\}/g, `${property.address}, ${property.city}`)
       .replace(/\{\{property_type\}\}/g, property.property_type)
       .replace(/\{\{start_date\}\}/g, startDate)
@@ -216,9 +233,9 @@ serve(async (req) => {
       .replace(/\{\{rent_amount\}\}/g, rentAmount.toString())
       .replace(/\{\{deposit_amount\}\}/g, depositAmount.toString())
       .replace(/\{\{deposit_months\}\}/g, (depositMonths || 2).toString())
-      .replace(/\{\{pets_allowed\}\}/g, property.pets_allowed ? 'Permitido' : 'Não permitido')
-      .replace(/\{\{smoking_allowed\}\}/g, property.smoking_allowed ? 'Permitido' : 'Não permitido')
-      .replace(/\{\{signature_date\}\}/g, new Date().toLocaleDateString());
+      .replace(/\{\{pets_allowed\}\}/g, property.pets_allowed ? allowed.yes : allowed.no)
+      .replace(/\{\{smoking_allowed\}\}/g, property.smoking_allowed ? allowed.yes : allowed.no)
+      .replace(/\{\{signature_date\}\}/g, new Date().toLocaleDateString(locale));
 
     // Create contract in database
     const { data: contract, error: contractError } = await supabase
