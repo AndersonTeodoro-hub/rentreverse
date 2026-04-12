@@ -82,12 +82,12 @@ const Index = () => {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.1]">
-                Os proprietários vêm até si.{' '}
-                <span className="text-primary">Não o contrário.</span>
+                Pare de procurar.<br />
+                <span className="text-primary">Comece a ser encontrado.</span>
               </h1>
 
               <p className="mt-6 text-lg text-white/80 sm:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                Para imigrantes que precisam de casa rápido, sem historial português e sem fraudes.
+                Inquilinos recebem propostas. Proprietários encontram inquilinos verificados. Sem perder tempo.
               </p>
 
               <div className="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-x-4 gap-y-1 text-sm text-white/70">
