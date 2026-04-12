@@ -354,8 +354,8 @@ const Index = () => {
                 Criar perfil grátis
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="gap-2 border-2 border-white text-white hover:bg-white hover:text-blue-900">
-              <Link to="/auth?mode=signup&role=landlord">
+            <Button size="lg" variant="outline" asChild className="gap-2 border-2 !border-white !text-white hover:bg-white hover:!text-blue-900">
+              <Link to="/auth?mode=signup&role=landlord" style={{ color: 'inherit' }}>
                 <Building2 className="h-5 w-5" />
                 {t('hero.forLandlords')}
                 <ArrowRight className="h-4 w-4" />
