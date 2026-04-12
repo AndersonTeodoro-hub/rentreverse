@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "app.rentreverse.twa",
+    "sha256_cert_fingerprints": [
+      "0D:0F:26:72:D3:2A:0C:DE:D9:EE:C4:72:63:07:A2:BD:8C:24:7A:90:A5:91:95:9A:A7:32:29:90:5E:86:60:7E"
+    ]
+  }
+}]
