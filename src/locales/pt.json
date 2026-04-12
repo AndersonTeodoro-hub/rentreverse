@@ -538,7 +538,14 @@
     "phone": "Telefone",
     "email": "Email",
     "send": "Enviar",
-    "createContract": "Criar Contrato"
+    "createContract": "Criar Contrato",
+    "status": {
+      "pending": "Pendente",
+      "accepted": "Aceite",
+      "rejected": "Recusado",
+      "expired": "Expirado",
+      "cancelled": "Cancelado"
+    }
   },
   "requests": {
     "myRequests": "Os Meus Pedidos",
