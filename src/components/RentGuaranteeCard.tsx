@@ -54,30 +54,13 @@ export function RentGuaranteeCard({
   const fetchQuote = async () => {
     setIsLoading(true);
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        toast.error('Sessão expirada. Faça login novamente.');
-        return;
-      }
+      const { data, error } = await supabase.functions.invoke('calculate-guarantee-premium', {
+        body: { contract_id: contractId, coverage_months: 12 },
+      });
 
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/calculate-guarantee-premium`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session.access_token}`,
-          },
-          body: JSON.stringify({ contract_id: contractId, coverage_months: 12 }),
-        }
-      );
+      if (error) throw error;
+      if (data.error) throw new Error(data.error);
 
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Erro ao calcular cotação');
-      }
-
-      const data = await response.json();
       setQuote(data);
     } catch (error) {
       console.error('Error fetching quote:', error);
