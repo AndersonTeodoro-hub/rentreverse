@@ -64,7 +64,7 @@ export function RentGuaranteeCard({
       setQuote(data);
     } catch (error) {
       console.error('Error fetching quote:', error);
-      toast.error('Erro ao obter cotação. Tente novamente.');
+      toast.error(t('rentGuarantee.quoteError'));
     } finally {
       setIsLoading(false);
     }
@@ -76,7 +76,7 @@ export function RentGuaranteeCard({
     setIsActivating(true);
     try {
       const { data: { user } } = await supabase.auth.getUser();
-      if (!user) throw new Error('Não autenticado');
+      if (!user) throw new Error(t('rentGuarantee.notAuthenticated'));
 
       // Get contract details for tenant_id and property_id
       const { data: contract, error: contractError } = await supabase
@@ -85,7 +85,7 @@ export function RentGuaranteeCard({
         .eq('id', contractId)
         .single();
 
-      if (contractError || !contract) throw new Error('Contrato não encontrado');
+      if (contractError || !contract) throw new Error(t('rentGuarantee.contractNotFound'));
 
       const startDate = new Date();
       const endDate = new Date();
@@ -114,11 +114,11 @@ export function RentGuaranteeCard({
 
       if (error) throw error;
 
-      toast.success('Garantia de renda solicitada! Entraremos em contacto em breve.');
+      toast.success(t('rentGuarantee.guaranteeRequested'));
       onGuaranteeCreated?.();
     } catch (error) {
       console.error('Error activating guarantee:', error);
-      toast.error('Erro ao ativar garantia. Tente novamente.');
+      toast.error(t('rentGuarantee.activateError'));
     } finally {
       setIsActivating(false);
     }
@@ -126,12 +126,12 @@ export function RentGuaranteeCard({
 
   const getStatusBadge = (status: string) => {
     const statusConfig: Record<string, { variant: 'default' | 'secondary' | 'destructive' | 'outline', label: string, icon: React.ReactNode }> = {
-      pending: { variant: 'outline', label: 'Pendente', icon: <Clock className="h-3 w-3" /> },
-      quoted: { variant: 'secondary', label: 'Cotação', icon: <AlertCircle className="h-3 w-3" /> },
-      active: { variant: 'default', label: 'Ativa', icon: <ShieldCheck className="h-3 w-3" /> },
-      claimed: { variant: 'destructive', label: 'Sinistro', icon: <AlertCircle className="h-3 w-3" /> },
-      expired: { variant: 'outline', label: 'Expirada', icon: <Clock className="h-3 w-3" /> },
-      cancelled: { variant: 'outline', label: 'Cancelada', icon: <AlertCircle className="h-3 w-3" /> },
+      pending: { variant: 'outline', label: t('rentGuarantee.statusPending'), icon: <Clock className="h-3 w-3" /> },
+      quoted: { variant: 'secondary', label: t('rentGuarantee.statusQuoted'), icon: <AlertCircle className="h-3 w-3" /> },
+      active: { variant: 'default', label: t('rentGuarantee.statusActive'), icon: <ShieldCheck className="h-3 w-3" /> },
+      claimed: { variant: 'destructive', label: t('rentGuarantee.statusClaimed'), icon: <AlertCircle className="h-3 w-3" /> },
+      expired: { variant: 'outline', label: t('rentGuarantee.statusExpired'), icon: <Clock className="h-3 w-3" /> },
+      cancelled: { variant: 'outline', label: t('rentGuarantee.statusCancelled'), icon: <AlertCircle className="h-3 w-3" /> },
     };
     
     const config = statusConfig[status] || statusConfig.pending;
@@ -151,7 +151,7 @@ export function RentGuaranteeCard({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ShieldCheck className="h-5 w-5 text-primary" />
-              <CardTitle className="text-lg">Garantia de Renda</CardTitle>
+              <CardTitle className="text-lg">{t('rentGuarantee.title')}</CardTitle>
             </div>
             {getStatusBadge(existingGuarantee.status)}
           </div>
@@ -160,22 +160,22 @@ export function RentGuaranteeCard({
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <p className="text-muted-foreground">Cobertura</p>
-              <p className="font-semibold">{existingGuarantee.coverage_months} meses</p>
+              <p className="text-muted-foreground">{t('rentGuarantee.coverage')}</p>
+              <p className="font-semibold">{existingGuarantee.coverage_months} {t('rentGuarantee.months')}</p>
             </div>
             <div>
-              <p className="text-muted-foreground">Prémio Anual</p>
+              <p className="text-muted-foreground">{t('rentGuarantee.annualPremium')}</p>
               <p className="font-semibold">€{existingGuarantee.annual_premium.toFixed(2)}</p>
             </div>
             {existingGuarantee.coverage_start_date && (
               <div>
-                <p className="text-muted-foreground">Início</p>
+                <p className="text-muted-foreground">{t('rentGuarantee.coverageStart')}</p>
                 <p className="font-semibold">{new Date(existingGuarantee.coverage_start_date).toLocaleDateString('pt-PT')}</p>
               </div>
             )}
             {existingGuarantee.coverage_end_date && (
               <div>
-                <p className="text-muted-foreground">Fim</p>
+                <p className="text-muted-foreground">{t('rentGuarantee.coverageEnd')}</p>
                 <p className="font-semibold">{new Date(existingGuarantee.coverage_end_date).toLocaleDateString('pt-PT')}</p>
               </div>
             )}
@@ -185,7 +185,7 @@ export function RentGuaranteeCard({
             <div className="pt-2">
               <Button variant="outline" className="w-full" disabled>
                 <AlertCircle className="mr-2 h-4 w-4" />
-                Reportar Sinistro
+                {t('rentGuarantee.reportClaim')}
               </Button>
             </div>
           )}
@@ -199,10 +199,10 @@ export function RentGuaranteeCard({
       <CardHeader className="pb-2">
         <div className="flex items-center gap-2">
           <Shield className="h-5 w-5 text-muted-foreground" />
-          <CardTitle className="text-lg">Garantia de Renda</CardTitle>
+          <CardTitle className="text-lg">{t('rentGuarantee.title')}</CardTitle>
         </div>
         <CardDescription>
-          Proteja-se contra incumprimento de pagamento
+          {t('rentGuarantee.subtitle')}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -211,15 +211,15 @@ export function RentGuaranteeCard({
             <div className="space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
-                <span>Cobertura até 12 meses de renda</span>
+                <span>{t('rentGuarantee.feature1')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
-                <span>Despesas legais incluídas</span>
+                <span>{t('rentGuarantee.feature2')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
-                <span>Desconto baseado no Trust Score</span>
+                <span>{t('rentGuarantee.feature3')}</span>
               </div>
             </div>
             
@@ -231,12 +231,12 @@ export function RentGuaranteeCard({
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  A calcular...
+                  {t('rentGuarantee.calculating')}
                 </>
               ) : (
                 <>
                   <Shield className="mr-2 h-4 w-4" />
-                  Obter Cotação
+                  {t('rentGuarantee.getQuote')}
                 </>
               )}
             </Button>
@@ -245,7 +245,7 @@ export function RentGuaranteeCard({
           <>
             <div className="rounded-lg bg-muted/50 p-4 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Trust Score do Inquilino</span>
+                <span className="text-sm text-muted-foreground">{t('rentGuarantee.tenantTrustScore')}</span>
                 <div className="flex items-center gap-2">
                   <Progress value={quote.tenant_trust_score} className="w-20 h-2" />
                   <span className="font-semibold">{quote.tenant_trust_score}/100</span>
@@ -255,7 +255,7 @@ export function RentGuaranteeCard({
               {quote.has_open_banking && (
                 <Badge variant="secondary" className="text-xs">
                   <ShieldCheck className="mr-1 h-3 w-3" />
-                  Verificação Bancária
+                  {t('rentGuarantee.bankVerification')}
                 </Badge>
               )}
             </div>
@@ -264,15 +264,15 @@ export function RentGuaranteeCard({
 
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Renda Mensal</span>
+                <span className="text-muted-foreground">{t('rentGuarantee.monthlyRent')}</span>
                 <span>€{quote.monthly_rent.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Cobertura Máxima</span>
+                <span className="text-muted-foreground">{t('rentGuarantee.maxCoverage')}</span>
                 <span className="font-semibold">€{quote.max_coverage_amount.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Taxa Base</span>
+                <span className="text-muted-foreground">{t('rentGuarantee.baseRate')}</span>
                 <span>{(quote.base_premium_rate * 100).toFixed(1)}%</span>
               </div>
               
@@ -280,14 +280,14 @@ export function RentGuaranteeCard({
                 <div className="flex justify-between text-sm text-green-600">
                   <span className="flex items-center gap-1">
                     <TrendingDown className="h-3 w-3" />
-                    Desconto Trust Score
+                    {t('rentGuarantee.trustScoreDiscount')}
                   </span>
                   <span>-{(quote.trust_score_discount * 100).toFixed(1)}%</span>
                 </div>
               )}
               
               <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Taxa Final</span>
+                <span className="text-muted-foreground">{t('rentGuarantee.finalRate')}</span>
                 <span className="font-semibold text-primary">{(quote.final_premium_rate * 100).toFixed(1)}%</span>
               </div>
             </div>
@@ -296,14 +296,14 @@ export function RentGuaranteeCard({
 
             <div className="rounded-lg bg-primary/10 p-4 space-y-2">
               <div className="flex justify-between items-center">
-                <span className="font-medium">Prémio Anual</span>
+                <span className="font-medium">{t('rentGuarantee.annualPremium')}</span>
                 <span className="text-xl font-bold text-primary">€{quote.annual_premium.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-sm text-muted-foreground">
-                <span>≈ €{quote.monthly_premium.toFixed(2)}/mês</span>
+                <span>≈ €{quote.monthly_premium.toFixed(2)}/{t('rentGuarantee.monthlyPremium')}</span>
                 {quote.savings_vs_base > 0 && (
                   <span className="text-green-600">
-                    Poupa €{quote.savings_vs_base.toFixed(2)}
+                    {t('rentGuarantee.savings')} €{quote.savings_vs_base.toFixed(2)}
                   </span>
                 )}
               </div>
@@ -311,7 +311,7 @@ export function RentGuaranteeCard({
 
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
               <Clock className="h-3 w-3" />
-              <span>Cotação válida até {new Date(quote.quote_valid_until).toLocaleDateString('pt-PT')}</span>
+              <span>{t('rentGuarantee.quoteValidUntil')} {new Date(quote.quote_valid_until).toLocaleDateString()}</span>
             </div>
 
             <div className="flex gap-2">
@@ -320,7 +320,7 @@ export function RentGuaranteeCard({
                 className="flex-1"
                 onClick={() => setQuote(null)}
               >
-                Cancelar
+                {t('common.cancel')}
               </Button>
               <Button 
                 className="flex-1"
@@ -330,12 +330,12 @@ export function RentGuaranteeCard({
                 {isActivating ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    A processar...
+                    {t('rentGuarantee.processing')}
                   </>
                 ) : (
                   <>
                     <ShieldCheck className="mr-2 h-4 w-4" />
-                    Ativar Garantia
+                    {t('rentGuarantee.activateGuarantee')}
                   </>
                 )}
               </Button>

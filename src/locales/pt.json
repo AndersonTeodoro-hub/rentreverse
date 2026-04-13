@@ -883,7 +883,15 @@
     "feature2": "Despesas legais incluídas",
     "feature3": "Desconto baseado no Trust Score",
     "guaranteeRequested": "Garantia de renda solicitada! Entraremos em contacto em breve.",
-    "bankVerification": "Verificação Bancária"
+    "bankVerification": "Verificação Bancária",
+    "tenantTrustScore": "Trust Score do Inquilino",
+    "quoteError": "Erro ao obter cotação. Tente novamente.",
+    "activateError": "Erro ao ativar garantia. Tente novamente.",
+    "notAuthenticated": "Não autenticado",
+    "contractNotFound": "Contrato não encontrado",
+    "coverageStart": "Início",
+    "coverageEnd": "Fim",
+    "months": "meses"
   },
   "howItWorks": {
     "title": "Como funciona",
@@ -972,5 +980,34 @@
     "noResultsDesc": "Tente ajustar os filtros para ver mais resultados",
     "excellent": "Excelente",
     "good": "Bom"
+  },
+  "riskAnalysis": {
+    "title": "Análise de Risco com IA",
+    "subtitle": "Análise preditiva baseada em dados verificados",
+    "refreshSuccess": "Análise atualizada com sucesso",
+    "refreshError": "Erro ao atualizar análise",
+    "errorTitle": "Erro na Análise",
+    "errorDefault": "Não foi possível analisar o risco",
+    "tryAgain": "Tentar Novamente",
+    "defaultRisk": "Risco de Incumprimento",
+    "defaultProbability": "Probabilidade de Incumprimento",
+    "confidenceScore": "Confiança da Análise",
+    "recommendedRent": "Renda Recomendada",
+    "demand": "Procura",
+    "behavioralPatterns": "Padrões Comportamentais",
+    "marketAnalysis": "Análise de Mercado",
+    "recommendations": "Recomendações",
+    "lastAnalysis": "Última análise:",
+    "level": {
+      "low": "Baixo",
+      "medium": "Médio",
+      "high": "Alto",
+      "very_high": "Muito Alto"
+    },
+    "demandLevel": {
+      "high": "alta",
+      "medium": "média",
+      "low": "baixa"
+    }
   }
 }

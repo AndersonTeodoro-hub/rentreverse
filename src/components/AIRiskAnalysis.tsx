@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -90,6 +91,7 @@ export const AIRiskAnalysis = ({
   propertyId, 
   compact = false 
 }: AIRiskAnalysisProps) => {
+  const { t } = useTranslation();
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const { data, isLoading, error, refetch } = useQuery({
@@ -111,9 +113,9 @@ export const AIRiskAnalysis = ({
     setIsRefreshing(true);
     try {
       await refetch();
-      toast.success("Análise atualizada com sucesso");
+      toast.success(t('riskAnalysis.refreshSuccess'));
     } catch {
-      toast.error("Erro ao atualizar análise");
+      toast.error(t('riskAnalysis.refreshError'));
     } finally {
       setIsRefreshing(false);
     }
@@ -140,16 +142,16 @@ export const AIRiskAnalysis = ({
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-destructive">
             <AlertTriangle className="h-5 w-5" />
-            Erro na Análise
+            {t('riskAnalysis.errorTitle')}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground mb-4">
-            {error instanceof Error ? error.message : "Não foi possível analisar o risco"}
+            {error instanceof Error ? error.message : t('riskAnalysis.errorDefault')}
           </p>
           <Button variant="outline" size="sm" onClick={handleRefresh}>
             <RefreshCw className="h-4 w-4 mr-2" />
-            Tentar Novamente
+            {t('riskAnalysis.tryAgain')}
           </Button>
         </CardContent>
       </Card>
@@ -168,14 +170,12 @@ export const AIRiskAnalysis = ({
             <div className="flex items-center gap-3">
               <Brain className="h-5 w-5 text-primary" />
               <div>
-                <p className="font-medium">Risco de Incumprimento</p>
+                <p className="font-medium">{t('riskAnalysis.defaultRisk')}</p>
                 <p className="text-2xl font-bold">{analysis.default_probability}%</p>
               </div>
             </div>
             <Badge variant={getRiskBadgeVariant(analysis.risk_level)}>
-              {analysis.risk_level === "very_high" ? "Muito Alto" : 
-               analysis.risk_level === "high" ? "Alto" :
-               analysis.risk_level === "medium" ? "Médio" : "Baixo"}
+              {t(`riskAnalysis.level.${analysis.risk_level}`)}
             </Badge>
           </div>
           <Progress 
@@ -194,10 +194,10 @@ export const AIRiskAnalysis = ({
           <div>
             <CardTitle className="flex items-center gap-2">
               <Brain className="h-5 w-5 text-primary" />
-              Análise de Risco com IA
+              {t('riskAnalysis.title')}
             </CardTitle>
             <CardDescription>
-              Análise preditiva baseada em dados verificados
+              {t('riskAnalysis.subtitle')}
             </CardDescription>
           </div>
           <Button 
@@ -216,7 +216,7 @@ export const AIRiskAnalysis = ({
           <div className="bg-muted/50 rounded-lg p-4">
             <div className="flex items-center gap-2 mb-2">
               <Shield className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">Probabilidade de Incumprimento</span>
+              <span className="text-sm text-muted-foreground">{t('riskAnalysis.defaultProbability')}</span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-3xl font-bold">{analysis.default_probability}%</span>
@@ -235,7 +235,7 @@ export const AIRiskAnalysis = ({
           <div className="bg-muted/50 rounded-lg p-4">
             <div className="flex items-center gap-2 mb-2">
               <BarChart3 className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">Confiança da Análise</span>
+              <span className="text-sm text-muted-foreground">{t('riskAnalysis.confidenceScore')}</span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-3xl font-bold">{analysis.confidence_score}%</span>
@@ -252,14 +252,13 @@ export const AIRiskAnalysis = ({
           <div className="bg-muted/50 rounded-lg p-4">
             <div className="flex items-center gap-2 mb-2">
               <DollarSign className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">Renda Recomendada</span>
+              <span className="text-sm text-muted-foreground">{t('riskAnalysis.recommendedRent')}</span>
             </div>
             <div className="text-xl font-bold">
               €{analysis.market_insights.recommended_rent_range.min} - €{analysis.market_insights.recommended_rent_range.max}
             </div>
             <p className={`text-sm mt-1 ${getDemandColor(analysis.market_insights.demand_level)}`}>
-              Procura {analysis.market_insights.demand_level === "high" ? "alta" : 
-                       analysis.market_insights.demand_level === "medium" ? "média" : "baixa"}
+              {t('riskAnalysis.demand')} {t(`riskAnalysis.demandLevel.${analysis.market_insights.demand_level}`)}
             </p>
           </div>
         </div>
@@ -268,7 +267,7 @@ export const AIRiskAnalysis = ({
         <div>
           <h4 className="font-medium mb-3 flex items-center gap-2">
             <TrendingUp className="h-4 w-4" />
-            Padrões Comportamentais
+            {t('riskAnalysis.behavioralPatterns')}
           </h4>
           <div className="grid gap-2">
             {analysis.behavioral_patterns.map((pattern, index) => (
@@ -290,7 +289,7 @@ export const AIRiskAnalysis = ({
         <div className="bg-primary/5 rounded-lg p-4">
           <h4 className="font-medium mb-2 flex items-center gap-2">
             <BarChart3 className="h-4 w-4" />
-            Análise de Mercado
+            {t('riskAnalysis.marketAnalysis')}
           </h4>
           <p className="text-sm text-muted-foreground">
             {analysis.market_insights.market_comparison}
@@ -301,7 +300,7 @@ export const AIRiskAnalysis = ({
         <div>
           <h4 className="font-medium mb-3 flex items-center gap-2">
             <Lightbulb className="h-4 w-4" />
-            Recomendações
+            {t('riskAnalysis.recommendations')}
           </h4>
           <ul className="space-y-2">
             {analysis.recommendations.map((rec, index) => (
@@ -315,7 +314,7 @@ export const AIRiskAnalysis = ({
 
         {/* Analysis Timestamp */}
         <p className="text-xs text-muted-foreground text-right">
-          Última análise: {new Date(data.analyzed_at).toLocaleString("pt-PT")}
+          {t('riskAnalysis.lastAnalysis')} {new Date(data.analyzed_at).toLocaleString()}
         </p>
       </CardContent>
     </Card>
